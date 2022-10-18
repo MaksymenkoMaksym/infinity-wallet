@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 // import styled from 'styled-components';
 import Header from './Header';
 import Chart from './Chart';
+import TestCom from './TestCom/TestCom ';
 //case1 theme
 // const Div = styled.div`
 //   color: ${props => props.theme.colors.green};
@@ -29,8 +30,10 @@ export const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Header />} />
-        <Route path="/text" element={<Header />} />
+        <Route path="/" element={<Header />}>
+          <Route path="/test" element={<TestCom />} />
+          <Route path="*" element={<p>Not found</p>} />
+        </Route>
       </Routes>
       <Chart />
     </div>
