@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Infinity-Wallet/static/css/main.7acaea2f.css",
-    "main.js": "/Infinity-Wallet/static/js/main.07d3183d.js",
+    "main.js": "/Infinity-Wallet/static/js/main.9ea29b0b.js",
     "index.html": "/Infinity-Wallet/index.html",
     "main.7acaea2f.css.map": "/Infinity-Wallet/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/Infinity-Wallet/static/js/main.07d3183d.js.map"
+    "main.9ea29b0b.js.map": "/Infinity-Wallet/static/js/main.9ea29b0b.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/js/main.9ea29b0b.js"
   ]
 }
