@@ -1,16 +1,13 @@
+import styled from 'styled-components';
+
+const Div = styled.div`
+  color: ${props => props.theme.colors.green};
+`;
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: 'red',
-      }}
-    >
-      infinity-wallet
+    <div>
+      <Div>infinity-wallet</Div>
     </div>
   );
 };
