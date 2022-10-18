@@ -1,25 +1,13 @@
 {
   "files": {
-    "main.css": "/Infinity-Wallet/static/css/main.10b06957.css",
-    "main.js": "/Infinity-Wallet/static/js/main.9ba0ae8b.js",
-    "static/media/Circe-Regular.eot": "/Infinity-Wallet/static/media/Circe-Regular.13bbfad0e7f851273f3c.eot",
-    "static/media/Circe-Regular.ttf": "/Infinity-Wallet/static/media/Circe-Regular.814e4dd4329ffdb6c9ed.ttf",
-    "static/media/Circe-Bold.eot": "/Infinity-Wallet/static/media/Circe-Bold.23b8280ab15052d5ba11.eot",
-    "static/media/Circe-Bold.ttf": "/Infinity-Wallet/static/media/Circe-Bold.63396ee791f60623acbf.ttf",
-    "static/media/Circe-Bold.woff": "/Infinity-Wallet/static/media/Circe-Bold.8a1c4d2d35cdd2d6704b.woff",
-    "static/media/Circe-Regular.woff": "/Infinity-Wallet/static/media/Circe-Regular.b3583e41e063203a7e74.woff",
-    "static/media/Poppins-Regular.eot": "/Infinity-Wallet/static/media/Poppins-Regular.dd1ec14243b1116b57a0.eot",
-    "static/media/Poppins-Regular.ttf": "/Infinity-Wallet/static/media/Poppins-Regular.9c4f95b9398348dfe795.ttf",
-    "static/media/Poppins-Bold.eot": "/Infinity-Wallet/static/media/Poppins-Bold.22cfe96ce2d603dcf200.eot",
-    "static/media/Poppins-Bold.ttf": "/Infinity-Wallet/static/media/Poppins-Bold.13c17db889176bed9ddf.ttf",
-    "static/media/Poppins-Regular.woff": "/Infinity-Wallet/static/media/Poppins-Regular.7d50cfcb7fdf5bd337a0.woff",
-    "static/media/Poppins-Bold.woff": "/Infinity-Wallet/static/media/Poppins-Bold.125974335c0c9046c212.woff",
+    "main.css": "/Infinity-Wallet/static/css/main.7acaea2f.css",
+    "main.js": "/Infinity-Wallet/static/js/main.9ea29b0b.js",
     "index.html": "/Infinity-Wallet/index.html",
-    "main.10b06957.css.map": "/Infinity-Wallet/static/css/main.10b06957.css.map",
-    "main.9ba0ae8b.js.map": "/Infinity-Wallet/static/js/main.9ba0ae8b.js.map"
+    "main.7acaea2f.css.map": "/Infinity-Wallet/static/css/main.7acaea2f.css.map",
+    "main.9ea29b0b.js.map": "/Infinity-Wallet/static/js/main.9ea29b0b.js.map"
   },
   "entrypoints": [
-    "static/css/main.10b06957.css",
-    "static/js/main.9ba0ae8b.js"
+    "static/css/main.7acaea2f.css",
+    "static/js/main.9ea29b0b.js"
   ]
 }
