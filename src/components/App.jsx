@@ -1,3 +1,4 @@
+import Chart from './Chart'
 import styled from 'styled-components';
 //case1 theme
 // const Div = styled.div`
@@ -26,6 +27,7 @@ export const App = () => {
     <div>
       <Div padding="2em">infinity-wallet</Div>
       <Div2 padding="2em">infinity-wallet</Div2>
+      <Chart />
     </div>
   );
 };
