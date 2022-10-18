@@ -1,5 +1,7 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form} from "formik";
 import * as yup from 'yup';
+import { Input, Label, Placeholder, Letter } from "./RegistrationForm.styled";
+
 
 export const RegisterForm = () => {
 const initialValues = {
@@ -24,15 +26,30 @@ resetForm()
     <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validate={schema}
+        validationSchema={schema}
     >
-        <Form>
-            <Field type="email" name="email" placeholder="E-mail"/>
-            <Field type="password" name="password" placeholder="Password"/>
-            <Field type="password" name="confirmPassword" placeholder="Confirm password"/>
-            <Field type="text" name="firstName" placeholder="First name"/>
-            <button type="submit">REGISTER</button>
-            <button type="submit">LOG IN</button>
+        <Form >
+            
+          
+            
+            <Label name="email">
+                <Input type="email" name="email" placeholder=" "/>
+                <Letter className="svg"/>
+                <Placeholder className="placeholder">E-mail</Placeholder>
+            </Label>
+                
+           
+            <Label name="password">
+            <Input type="password" name="password" placeholder="Password" />
+            </Label>
+            <Label name="confirmPassword">
+            <Input type="password" name="confirmPassword" placeholder="Confirm password" />
+            </Label>
+            <Label name="firstName">
+            <Input type="text" name="firstName" placeholder="First name" />
+            </Label>
+            <button type="submit" style={{ width: "100%", height: "50px", marginBottom: "40px"}}>REGISTER</button>
+            <button type="submit" style={{ width: "100%", height: "50px", marginBottom: "40px"}}>LOG IN</button>
         </Form>
     </Formik>
 )} 

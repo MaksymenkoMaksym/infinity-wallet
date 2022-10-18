@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { RegistrationPage } from 'pages/RegistrationPage';
 //case1 theme
 // const Div = styled.div`
 //   color: ${props => props.theme.colors.green};
@@ -24,8 +25,7 @@ const Div2 = styled(Div)`
 export const App = () => {
   return (
     <div>
-      <Div padding="2em">infinity-wallet</Div>
-      <Div2 padding="2em">infinity-wallet</Div2>
+  <RegistrationPage/>
     </div>
   );
 };
