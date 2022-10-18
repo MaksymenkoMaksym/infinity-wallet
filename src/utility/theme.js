@@ -9,14 +9,25 @@ export const theme = {
     gray: '#BDBDBD',
     grayIcon: '#E0E0E0',
 
-    background: { white: '#fff', blur: 'rgba(255, 255, 255, 0.7)' },
-
-    primary: '#07c',
-    secondary: '#05a',
-    accent: '#609',
-    muted: '#f6f6f6',
+    background: {
+      white: '#fff',
+      blurSelect: 'rgba(255, 255, 255, 0.7)',
+      blurTablet: 'rgba(255, 255, 255, 0.4)',
+      currency: '#4A56E2',
+    },
+    diagram: {
+      main: '#FED057',
+      products: '#FFD8D0',
+      car: '#FD9498',
+      selfConcern: '#C5BAFF',
+      childCare: '#6E78E8',
+      home: '#4A56E2',
+      education: '#81E1FF',
+      leisure: '#24CCA7',
+      other: '#00AD84',
+    },
   },
-  space: [0, 2, 4, 8, 16, 20, 32, 40, 64, 128, 256],
+  space: [0, 10, 20, 30, 40, 50, 110],
   fonts: {
     main: 'Circe, sans-serif',
     secondary: 'Poppins, sans-serif',
@@ -33,8 +44,7 @@ export const theme = {
     bold: 700,
   },
   lineHeights: {
-    body: 1.5,
-    heading: 1.125,
+    main: 1.5,
   },
   borders: {
     none: 'none',
@@ -42,11 +52,14 @@ export const theme = {
   },
   radii: {
     none: '0',
-    sm: '6px',
-    md: '10px',
-    lg: '16px',
-    btn: '20px',
-    balance: '30px',
+    sm: '10px',
+    md: '20px',
+    lg: '30px',
     round: '50%',
   },
+  breakpoints: [
+    '40em',
+    '@media (min-width: 56em) and (orientation: landscape)',
+    '64em',
+  ],
 };
