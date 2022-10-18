@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 // import styled from 'styled-components';
 import Header from './Header';
+import Chart from './Chart';
 //case1 theme
 // const Div = styled.div`
 //   color: ${props => props.theme.colors.green};
@@ -27,11 +28,11 @@ import Header from './Header';
 export const App = () => {
   return (
     <div>
-      {/* <Div padding="2em">infinity-wallet</Div>
-      <Div2 padding="2em">infinity-wallet</Div2> */}
       <Routes>
-        <Route path="*" element={<Header />} />
+        <Route path="/" element={<Header />} />
+        <Route path="/text" element={<Header />} />
       </Routes>
+      <Chart />
     </div>
   );
 };
