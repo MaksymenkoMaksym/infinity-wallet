@@ -2,12 +2,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import MediaQuery from 'react-responsive';
-import { List, ListItem, TextItem, Icon } from './Navigation.styled';
+import {
+  // NavContainer,
+  List,
+  ListItem,
+  TextItem,
+  Icon,
+} from './Navigation.styled';
 import sprite from '../../assets/images/icons.svg';
 
 const Navigation = () => {
   return (
-    <nav className="nav_container">
+    // <NavContainer>
+    <nav>
       <List className="nav_list">
         <ListItem>
           <NavLink to="/home">
@@ -45,26 +52,8 @@ const Navigation = () => {
         </ListItem>
       </List>
     </nav>
+    // </NavContainer>
   );
 };
 
 export default Navigation;
-
-// const Example = () => (
-//   <div>
-//     <MediaQuery minWidth={1200}>
-//       <p>desktop</p>
-//     </MediaQuery>
-
-//     <MediaQuery minWidth={760} maxWidth={1199}>
-//       <p>tablet</p>
-//     </MediaQuery>
-
-//     <MediaQuery minWidth={320} maxWidth={759}>
-//       {/* You can also use a function (render prop) as a child */}
-//       <p>mobile</p>
-//     </MediaQuery>
-//   </div>
-// );
-
-// export default Example;
