@@ -9,10 +9,10 @@ export const Container = styled.div`
   min-width: 280px;
   max-width: 348px;
   max-height: 347px;
-  border-radius: 30px;
+  border-radius: ${props => props.theme.radii.lg};
   background-color: ${props => props.theme.colors.background.currency};
 
-  @media (min-width: 1280px) {
+  ${props => props.theme.breakpoints.desc} {
     width: 348px;
     height: 347px;
   }
@@ -44,32 +44,32 @@ export const Tbody = styled.tbody`
   @media (max-width: 767px) {
     background-image: url(${waveMobile});
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
+  ${props => props.theme.breakpoints.tab} {
     background-image: url(${waveTablet});
   } ;
 `;
 
 export const Thead = styled.thead`
-  font-family: Circe; sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    padding-top: 11px;
-    padding-bottom: 12px;
-    color: #ffffff;
-    background-color: #6e78e8;
-    align-items: center;
-    border-bottom: 0px;
+  font-family: ${props => props.theme.fonts.main};
+  font-size: ${props => props.theme.fontSizes.m};
+  font-weight: ${props => props.theme.fontWeights.bold};
+  padding-top: 11px;
+  padding-bottom: 12px;
+  color: ${props => props.theme.colors.white};
+  background-color: #6e78e8;
+  align-items: center;
+  border-bottom: 0px;
 
-    @media (min-width:768px) {
-      padding-top: 17px;
-      padding-bottom: 16px;
-    };
+  ${props => props.theme.breakpoints.tab} {
+    padding-top: 17px;
+    padding-bottom: 16px;
+  } ;
 `;
 
 export const TdName = styled.td`
-  font-family: Circe;
-    font-size: 16px;
-    font-weight: 400;
+    font-family: ${props => props.theme.fonts.main};
+    font-size: ${props => props.theme.fontSizes.s};
+    font-weight: ${props => props.theme.fontWeights.normal};
     padding-top: 10px;
     padding-bottom: 10px;
     color: ${props => props.theme.colors.white};;
@@ -79,9 +79,9 @@ export const TdName = styled.td`
 `;
 
 export const TdValue = styled.td`
-  font-family: Circe;
-    font-size: 16px;
-    font-weight: 400;
+    font-family: ${props => props.theme.fonts.main};
+    font-size: ${props => props.theme.fontSizes.s};
+    font-weight: ${props => props.theme.fontWeights.normal};
     color: ${props => props.theme.colors.white};;
     border-bottom: 0px;
     };
