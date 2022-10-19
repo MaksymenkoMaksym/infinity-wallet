@@ -1,11 +1,11 @@
-import { Formik, Form} from 'formik';
+import { Formik} from 'formik';
 import * as yup from 'yup';
 import svgIcon from "../../assets/images/icons.svg"
 import {
   Input,
   Label,
   Placeholder,
-  IconSvg, Button, ActiveButton
+  IconSvg, Button, ActiveButton, StyledForm
 } from './RegistrationForm.styled';
 
 export const RegistrationForm = () => {
@@ -33,7 +33,7 @@ export const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <Form style={{marginTop: "60px"}}>
+      <StyledForm style={{marginTop: "60px"}}>
         <Label name="email">
           <Input type="email" name="email" placeholder=" " />
           <IconSvg>
@@ -73,7 +73,7 @@ export const RegistrationForm = () => {
           type="submit">
           LOG IN
         </Button>
-      </Form>
+      </StyledForm>
     </Formik>
   );
 };
