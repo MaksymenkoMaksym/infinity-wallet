@@ -1,7 +1,6 @@
 import Balance from 'components/Balance/Balance';
-import Chart from 'components/Chart';
 import Currency from 'components/Currency/Currency';
-import { Table } from 'components/Currency/Currency.styled';
+
 import Navigation from 'components/Navigation/Navigation';
 
 // import MediaQuery from 'react-responsive';
@@ -14,8 +13,6 @@ const Home = () => {
       <Navigation />
       <Balance />
       <Currency />
-      <Chart />
-      <Table />
     </>
   );
 };
