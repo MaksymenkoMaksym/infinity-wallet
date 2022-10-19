@@ -1,7 +1,7 @@
-import Navigation from 'components/Navigation/Navigation';
+import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
+// import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
 
-import React from 'react';
-import CurrencyPage from 'pages/CurrencyPage';
+import Navigation from 'components/Navigation/Navigation';
 
 import { RegistrationPage, LoginPage } from '../../pages';
 import TestModal from 'components/TestModal';
@@ -10,11 +10,13 @@ const TestCom = () => {
   return (
     <>
       <DashboardPage />
+      <ButtonAddTransactions />
+      {/* <ModalAddTransactions /> */}
       <Navigation />
-      <CurrencyPage />
       <RegistrationPage />
       <LoginPage />
       <TestModal />
+      <span>spa span </span>
     </>
   );
 };
