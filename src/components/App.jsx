@@ -5,6 +5,10 @@ import Header from './Header';
 import Chart from './Chart';
 import Table from './Table';
 import TestCom from './TestCom/TestCom ';
+import Navigation from './Navigation/Navigation';
+import CurrencyPage from 'pages/CurrencyPage';
+import Balance from './Balance/Balance';
+import Currency from './Currency/Currency';
 //case1 theme
 // const Div = styled.div`
 //   color: ${props => props.theme.colors.green};
@@ -33,9 +37,13 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Header />}>
           <Route path="/test" element={<TestCom />} />
+          <Route path="/currency" element={<CurrencyPage />} />
           <Route path="*" element={<p>Not found</p>} />
         </Route>
       </Routes>
+      {/* <Navigation /> */}
+      <Balance />
+      <Currency />
       <Chart />
       <Table />
     </div>
