@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/infinity-wallet/static/css/main.e9241a87.css",
-    "main.js": "/infinity-wallet/static/js/main.7f6fa3e3.js",
+    "main.css": "/infinity-wallet/static/css/main.20ddfff2.css",
+    "main.js": "/infinity-wallet/static/js/main.ec284afb.js",
     "static/media/Circe-Regular.eot": "/infinity-wallet/static/media/Circe-Regular.13bbfad0e7f851273f3c.eot",
     "static/media/Circe-Regular.ttf": "/infinity-wallet/static/media/Circe-Regular.814e4dd4329ffdb6c9ed.ttf",
     "static/media/Circe-Bold.eot": "/infinity-wallet/static/media/Circe-Bold.23b8280ab15052d5ba11.eot",
     "static/media/Circe-Bold.ttf": "/infinity-wallet/static/media/Circe-Bold.63396ee791f60623acbf.ttf",
+    "static/media/icons.svg": "/infinity-wallet/static/media/icons.0a82f2d1f54b34c0044ea8d6fef0613d.svg",
     "static/media/Circe-Bold.woff": "/infinity-wallet/static/media/Circe-Bold.8a1c4d2d35cdd2d6704b.woff",
     "static/media/Circe-Regular.woff": "/infinity-wallet/static/media/Circe-Regular.b3583e41e063203a7e74.woff",
     "static/media/Poppins-Regular.eot": "/infinity-wallet/static/media/Poppins-Regular.dd1ec14243b1116b57a0.eot",
     "static/media/Poppins-Regular.ttf": "/infinity-wallet/static/media/Poppins-Regular.9c4f95b9398348dfe795.ttf",
     "static/media/Poppins-Bold.eot": "/infinity-wallet/static/media/Poppins-Bold.22cfe96ce2d603dcf200.eot",
     "static/media/Poppins-Bold.ttf": "/infinity-wallet/static/media/Poppins-Bold.13c17db889176bed9ddf.ttf",
-    "static/media/icons.svg": "/infinity-wallet/static/media/icons.8c5161b2e1d0860e8441f74d3c4c479a.svg",
     "static/media/Poppins-Regular.woff": "/infinity-wallet/static/media/Poppins-Regular.7d50cfcb7fdf5bd337a0.woff",
     "static/media/Poppins-Bold.woff": "/infinity-wallet/static/media/Poppins-Bold.125974335c0c9046c212.woff",
     "static/media/wave-tablet.svg": "/infinity-wallet/static/media/wave-tablet.9d30631a24f166f08eeb69009f8585ac.svg",
     "static/media/wave-mobile.svg": "/infinity-wallet/static/media/wave-mobile.340c22a500ab5a21cd92a8df9fb25c67.svg",
     "index.html": "/infinity-wallet/index.html",
-    "main.e9241a87.css.map": "/infinity-wallet/static/css/main.e9241a87.css.map",
-    "main.7f6fa3e3.js.map": "/infinity-wallet/static/js/main.7f6fa3e3.js.map"
+    "main.20ddfff2.css.map": "/infinity-wallet/static/css/main.20ddfff2.css.map",
+    "main.ec284afb.js.map": "/infinity-wallet/static/js/main.ec284afb.js.map"
   },
   "entrypoints": [
-    "static/css/main.e9241a87.css",
-    "static/js/main.7f6fa3e3.js"
+    "static/css/main.20ddfff2.css",
+    "static/js/main.ec284afb.js"
   ]
 }
