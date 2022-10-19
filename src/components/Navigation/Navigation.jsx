@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import MediaQuery from 'react-responsive';
 import {
   // NavContainer,
   List,
@@ -10,6 +9,7 @@ import {
   Icon,
 } from './Navigation.styled';
 import sprite from '../../assets/images/icons.svg';
+import { Mob, Tab } from 'components/MediaWraper/MediaWraper';
 
 const Navigation = () => {
   return (
@@ -23,9 +23,9 @@ const Navigation = () => {
                 <use href={`${sprite}#icon-home`}></use>
               </Icon>
             </>
-            <MediaQuery minWidth={768}>
+            <Tab>
               <TextItem>Home</TextItem>
-            </MediaQuery>
+            </Tab>
           </NavLink>
         </ListItem>
         <ListItem>
@@ -35,20 +35,20 @@ const Navigation = () => {
                 <use href={`${sprite}#icon-timeline`}></use>
               </Icon>
             </>
-            <MediaQuery minWidth={768}>
+            <Tab>
               <TextItem>Statistics</TextItem>
-            </MediaQuery>
+            </Tab>
           </NavLink>
         </ListItem>
 
         <ListItem className="nav_link_currency">
-          <MediaQuery maxWidth={767}>
+          <Mob>
             <NavLink to="/currency">
               <Icon>
                 <use href={`${sprite}#icon-currency`}></use>
               </Icon>
             </NavLink>
-          </MediaQuery>
+          </Mob>
         </ListItem>
       </List>
     </nav>

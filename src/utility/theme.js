@@ -12,7 +12,7 @@ export const theme = {
     background: {
       white: '#fff',
       blurSelect: 'rgba(255, 255, 255, 0.7)',
-      blurTablet: 'rgba(255, 255, 255, 0.4)',
+      blurTablet: '#E7EAF2',
       currency: '#4A56E2',
     },
     diagram: {
