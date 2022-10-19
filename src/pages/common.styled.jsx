@@ -14,10 +14,24 @@ background-color: #ffffff;
   background-image: url(${VioletSpot}), url(${PinkSpot});
   background-repeat: no-repeat, no-repeat;
   background-position:  -133.33px 655px, 396.41px -123px;
-
+  @media (min-width: 1280px) {
+    display: flex;
+    padding: 0;
+    height: 100vh;
+    
+  }
 
 }`
 
+export const Backdrop = styled.div`
+height: 100%;
+width: 57%;
+padding-top: 52px;
+padding-bottom: 52px;
+display: flex;
+justify-content: center;
+align-items: center;
+`
 
 
 
@@ -35,12 +49,17 @@ background-color: #ffffff;
 }
     @media (min-width: 768px) {
     width: 533px;
-padding-top: 40px;
-padding-bottom: 60px;
+    padding-top: 40px;
+    padding-bottom: 60px;
     border-radius: 20px;
     min-width: auto;
     min-height: auto;
     overflow: hidden;
+  }
+  @media (min-width: 1280px) {
+    width: 533px;
+  
+
   }
 `
 
