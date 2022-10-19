@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import TestModal from './TestModal';
 //case1 theme
 // const Div = styled.div`
 //   color: ${props => props.theme.colors.green};
@@ -26,6 +27,7 @@ export const App = () => {
     <div>
       <Div padding="2em">infinity-wallet</Div>
       <Div2 padding="2em">infinity-wallet</Div2>
+      <TestModal />
     </div>
   );
 };
