@@ -18,6 +18,7 @@ export const List = styled.ul`
   gap: 36px;
   margin: 0;
   padding: 0;
+  padding-top: 15px;
   padding-bottom: 15px;
 
   ${props => props.theme.breakpoints.tab} {
@@ -38,9 +39,18 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: inherit;
 
   ${props => props.theme.breakpoints.tab} {
   }
+`;
+
+export const StyledLink = styled.a`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
 `;
 
 export const TextItem = styled.span`
