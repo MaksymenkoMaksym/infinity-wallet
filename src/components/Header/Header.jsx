@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from 'components/Logo/Logo';
-import PropTypes from 'prop-types';
+
 import { Outlet } from 'react-router-dom';
 import logo from '../../assets/images/icons.svg';
 
@@ -12,9 +12,11 @@ import {
   ExitIcon,
   HeaderTag,
 } from './Header.styled';
-import { logOutUser } from 'redux/auth/operation';
+import { loginUser, logOutUser } from 'redux/auth/authOperation';
+import { selectUser } from 'redux/auth/authSelectors';
 
-const Header = ({ name = 'Максим Максименко' }) => {
+const Header = () => {
+  const { username } = useSelector(selectUser);
   const dispatch = useDispatch();
   //   const user = {
   //     username: 'infinity',
@@ -24,7 +26,14 @@ const Header = ({ name = 'Максим Максименко' }) => {
   const logOut = () => {
     dispatch(logOutUser());
   };
-
+  // const logIn = () => {
+  //   dispatch(
+  //     loginUser({
+  //       email: 'infinity@gmail.com',
+  //       password: 'infinity26',
+  //     })
+  //   );
+  // };
   return (
     <>
       <HeaderTag>
@@ -33,7 +42,7 @@ const Header = ({ name = 'Максим Максименко' }) => {
           <LogoText>TEST</LogoText>
         </StyledLink>
         <UserDiv>
-          <UserSpan>{name}</UserSpan>
+          <UserSpan>{username}</UserSpan>
           <ExitIcon
             onClick={() => {
               logOut();
@@ -46,10 +55,6 @@ const Header = ({ name = 'Максим Максименко' }) => {
       <Outlet />
     </>
   );
-};
-
-Header.propTypes = {
-  name: PropTypes.string,
 };
 
 export default Header;

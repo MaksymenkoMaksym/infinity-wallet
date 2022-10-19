@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import {
@@ -7,7 +6,6 @@ import {
   ListItem,
   TextItem,
   Icon,
-  StyledLink,
 } from './Navigation.styled';
 import sprite from '../../assets/images/icons.svg';
 import { Mob, Tab } from 'components/MediaWraper/MediaWraper';
