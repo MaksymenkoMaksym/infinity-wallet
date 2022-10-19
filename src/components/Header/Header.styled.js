@@ -27,6 +27,7 @@ const ExitIcon = styled.svg`
   display: inline-block;
   width: 18px;
   height: 18px;
+  cursor: pointer;
 `;
 const LogoText = styled.span`
   display: inline-block;
