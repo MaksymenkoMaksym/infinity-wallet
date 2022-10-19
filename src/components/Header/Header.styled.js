@@ -16,6 +16,11 @@ const LogoIcon = styled.svg`
   width: 30px;
   height: 30px;
   margin-right: 16px;
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+  }
 `;
 
 const ExitIcon = styled.svg`
@@ -30,6 +35,9 @@ const LogoText = styled.span`
   font-weight: ${props => props.theme.fontWeights.bold};
   font-size: ${props => props.theme.fontSizes.m};
   line-height: ${props => props.theme.lineHeights.main};
+  @media (min-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 const StyledLink = styled(Link)`
