@@ -1,15 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 
-
 // import styled from 'styled-components';
 import Header from './Header';
 import Chart from './Chart';
 import Table from './Table';
 import TestCom from './TestCom/TestCom ';
-import Navigation from './Navigation/Navigation';
+import Navigation from './Navigation';
 import CurrencyPage from 'pages/CurrencyPage';
-import Balance from './Balance/Balance';
-import Currency from './Currency/Currency';
+import Balance from './Balance';
+import Currency from './Currency';
 //case1 theme
 // const Div = styled.div`
 //   color: ${props => props.theme.colors.green};
@@ -35,7 +34,6 @@ import Currency from './Currency/Currency';
 export const App = () => {
   return (
     <div>
-     
       <Routes>
         <Route path="/" element={<Header />}>
           <Route path="/test" element={<TestCom />} />
@@ -43,7 +41,7 @@ export const App = () => {
           <Route path="*" element={<p>Not found</p>} />
         </Route>
       </Routes>
-      {/* <Navigation /> */}
+      <Navigation />
       <Balance />
       <Currency />
       <Chart />

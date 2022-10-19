@@ -57,9 +57,9 @@ export const theme = {
     lg: '30px',
     round: '50%',
   },
-  breakpoints: [
-    '40em',
-    '@media (min-width: 56em) and (orientation: landscape)',
-    '64em',
-  ],
+  breakpoints: {
+    mob: '',
+    tab: '@media screen and (min-width: 768px)',
+    desc: '@media screen and (min-width: 1280px)',
+  },
 };

@@ -11,8 +11,8 @@ const TestCom = () => {
     <>
       <Navigation />
       <CurrencyPage />
-      <RegistrationPage />
-      <LoginPage />
+      {/* <RegistrationPage />
+      <LoginPage /> */}
     </>
   );
 };
