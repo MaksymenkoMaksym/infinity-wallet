@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 
-
 // import styled from 'styled-components';
 import Header from './Header';
 import Chart from './Chart';
@@ -31,7 +30,6 @@ import TestCom from './TestCom/TestCom ';
 export const App = () => {
   return (
     <div>
-     
       <Routes>
         <Route path="/" element={<Header />}>
           <Route path="/test" element={<TestCom />} />
