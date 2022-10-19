@@ -13,7 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <BrowserRouter basename="/infinity-wallet">
+      <BrowserRouter
+      // basename="/infinity-wallet"
+      >
         <App />
       </BrowserRouter>
     </ThemeProvider>

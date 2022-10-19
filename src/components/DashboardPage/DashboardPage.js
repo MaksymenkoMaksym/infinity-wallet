@@ -1,47 +1,82 @@
-import { LiTitleMob, Li, LiTitle, Ul, Div, Sum } from './DashboardPage.styled';
+// import { useDispatch} from 'react-redux';
+import { TransactionSerializer } from './TransactionSerializer';
+import {
+  LiTitleMob,
+  Li,
+  LiTitle,
+  Ul,
+  Div,
+  Sum,
+  UlTitle,
+  UlItems,
+  UlBoard,
+} from './DashboardPage.styled';
+import { Tab } from 'components/MediaWraper/MediaWraper';
 
 const DashboardPage = () => {
-  //   const media320 = useMediaPredicate('(min-width: 320px)');
-  //   const media768 = useMediaPredicate('(max-width: 768px)');
+  // const dispatch = useDispatch();
+
+  //   id*	string
+  // transactionDate*	string
+  // type*	string
+  // Enum:
+  // [ INCOME, EXPENSE ]
+  // categoryId*	string
+  // userId*	string
+  // comment*	string
+  // amount*	number
+  // balanceAfter*
+
+  //  useEffect(() => {
+  //    dispatch(fetchTransactionSerializer());
+  //  }, [dispatch]);
+
   return (
     <Div>
-      <ul style={{ padding: 0, margin: 0 }}>
-        <ul style={{ display: 'none' }}>
-          <LiTitle>Date</LiTitle>
-          <LiTitle>Type</LiTitle>
-          <LiTitle>Category</LiTitle>
-          <LiTitle>Comment</LiTitle>
-          <LiTitle>Sum</LiTitle>
-          <LiTitle>Balance</LiTitle>
-          <LiTitle></LiTitle>
-        </ul>
-        <Ul>
-          <LiTitleMob>Date</LiTitleMob>
-          <Li>25.10.22</Li>
-        </Ul>
-        <Ul>
-          <LiTitleMob>Type</LiTitleMob>
-          <Li> - </Li>
-        </Ul>
-        <Ul>
-          <LiTitleMob>Category</LiTitleMob>
-          <Li>Other</Li>
-        </Ul>
-        <Ul>
-          <LiTitleMob>Comment</LiTitleMob>
-          <Li>Gift for your wife</Li>
-        </Ul>
-        <Ul>
-          <LiTitleMob>Sum</LiTitleMob>
-          <Li>
-            <Sum>300.00</Sum>
-          </Li>
-        </Ul>
-        <Ul>
-          <LiTitleMob>Balance</LiTitleMob>
-          <Li>6 900.00</Li>
-        </Ul>
-      </ul>
+      <UlBoard>
+        <Tab>
+          <UlTitle>
+            <LiTitle>Date</LiTitle>
+            <LiTitle>Type</LiTitle>
+            <LiTitle>Category</LiTitle>
+            <LiTitle>Comment</LiTitle>
+            <LiTitle>Sum</LiTitle>
+            <LiTitle>Balance</LiTitle>
+          </UlTitle>
+        </Tab>
+        {TransactionSerializer.map(item => {
+          return (
+            <UlItems key={item.key}>
+              <Ul transaction={item.type}>
+                <LiTitleMob>Date</LiTitleMob>
+                <Li>{item.transactionDate}</Li>
+              </Ul>
+              <Ul transaction={item.type}>
+                <LiTitleMob>Type</LiTitleMob>
+                <Li>{item.type === 'INCOME' ? '+' : '-'} </Li>
+              </Ul>
+              <Ul transaction={item.type}>
+                <LiTitleMob>Category</LiTitleMob>
+                <Li>{item.categoryId}</Li>
+              </Ul>
+              <Ul transaction={item.type}>
+                <LiTitleMob>Comment</LiTitleMob>
+                <Li>{item.comment}</Li>
+              </Ul>
+              <Ul transaction={item.type}>
+                <LiTitleMob>Sum</LiTitleMob>
+                <Li>
+                  <Sum transaction={item.type}>{item.amount}</Sum>
+                </Li>
+              </Ul>
+              <Ul transaction={item.type}>
+                <LiTitleMob>Balance</LiTitleMob>
+                <Li>{item.balanceAfter}</Li>
+              </Ul>
+            </UlItems>
+          );
+        })}
+      </UlBoard>
     </Div>
   );
 };
