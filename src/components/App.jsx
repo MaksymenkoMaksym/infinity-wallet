@@ -5,10 +5,11 @@ import TestCom from './TestCom/TestCom ';
 import CurrencyPage from 'pages/CurrencyPage';
 import { LoginPage, RegistrationPage } from 'pages';
 import Home from 'pages/HomePage';
+import Container from './Container';
 
 export const App = () => {
   return (
-    <div>
+    <Container>
       <Routes>
         <Route path="/" element={<Header />}>
           <Route path="home" element={<Home />} />
@@ -19,6 +20,6 @@ export const App = () => {
           <Route path="*" element={<p>Not found</p>} />
         </Route>
       </Routes>
-    </div>
+    </Container>
   );
 };
