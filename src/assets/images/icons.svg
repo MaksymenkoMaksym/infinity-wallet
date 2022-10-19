@@ -208,5 +208,8 @@
 <path fill="#263238" style="fill: var(--color7, #263238)" d="M1.588 8.031h-0.722l0.036-0.269h0.651l0.036 0.269z"></path>
 <path fill="#455a64" style="fill: var(--color10, #455a64)" d="M1.646 7.666h-0.835v0.229h0.835v-0.229z"></path>
 </symbol>
+<symbol id="Ellipse" viewBox="0 0 13 10">
+<path fill="#ffd8d0" style="fill: var(--color1, #ffd8d0)" d="M11.042 7.671c-1.761 2.466-4.95 2.78-7.644 1.834-3.090-1.245-4.090-4.73-2.917-7.641 1.088-2.701 4.325-1.646 7.089-1.719 5.115-0.093 6.809 3.184 3.472 7.526z"></path>
+</symbol>
 </defs>
 </svg>

@@ -1,11 +1,25 @@
 import styled from "styled-components";
+import VioletSpot from "../assets/images/Ellipse-1.png";
+import PinkSpot from "../assets/images/Ellipse-2.png";
+
 
 
 export const Body = styled.div`
 background-color: #ffffff;
 @media (min-width: 768px) {
+  padding-top: 60px;
+  padding-bottom: 48px;
   background-color: #E5E5E5;
+  overflow: hidden;
+  background-image: url(${VioletSpot}), url(${PinkSpot});
+  background-repeat: no-repeat, no-repeat;
+  background-position:  -133.33px 655px, 396.41px -123px;
+
+
 }`
+
+
+
 
 
 export const Section = styled.section`
@@ -27,8 +41,6 @@ padding-bottom: 60px;
     min-width: auto;
     min-height: auto;
     overflow: hidden;
-    
   }
 `
-
 
