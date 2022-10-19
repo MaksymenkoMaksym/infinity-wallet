@@ -33,7 +33,7 @@ export const Title = styled.p`
   margin: 0;
   padding-top: 8px;
   padding-left: 32px;
-  margin-bottom: 12px;
+  // margin-bottom: 12px;
 
   ${props => props.theme.breakpoints.tab} {
     padding-left: 40px;
