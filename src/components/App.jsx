@@ -1,7 +1,9 @@
-import styled from 'styled-components';
-import ButtonAddTransactions from './ButtonAddTransactions/ButtonAddTransactions';
-import ModalAddTransactions from './ModalAddTransactions/ModalAddTransactions';
+import { Route, Routes } from 'react-router-dom';
 
+// import styled from 'styled-components';
+import Header from './Header';
+import Chart from './Chart';
+import TestCom from './TestCom/TestCom ';
 //case1 theme
 // const Div = styled.div`
 //   color: ${props => props.theme.colors.green};
@@ -12,25 +14,28 @@ import ModalAddTransactions from './ModalAddTransactions/ModalAddTransactions';
 // `;
 
 //case2 attribute
-const Div = styled.div`
-  color: ${props => props.theme.colors.green};
-  font-family: ${props => props.theme.fonts.main};
-  font-size: ${props => props.theme.fontSizes.xl};
-  padding: ${props => props.padding};
-`;
+// const Div = styled.div`
+//   color: ${props => props.theme.colors.green};
+//   font-family: ${props => props.theme.fonts.main};
+//   font-size: ${props => props.theme.fontSizes.xl};
+//   padding: ${props => props.padding};
+// `;
 
 //case 3 same tag so can do this
-const Div2 = styled(Div)`
-  border: ${props => props.theme.borders.normal};
-`;
+// const Div2 = styled(Div)`
+//   border: ${props => props.theme.borders.normal};
+// `;
 
 export const App = () => {
   return (
     <div>
-      <Div padding="2em">infinity-wallet</Div>
-      <Div2 padding="2em">infinity-wallet</Div2>
-      <ButtonAddTransactions />
-      <ModalAddTransactions />
+      <Routes>
+        <Route path="/" element={<Header />}>
+          <Route path="/test" element={<TestCom />} />
+          <Route path="*" element={<p>Not found</p>} />
+        </Route>
+      </Routes>
+      <Chart />
     </div>
   );
 };
