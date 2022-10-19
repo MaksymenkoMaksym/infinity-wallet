@@ -7,7 +7,7 @@ const HeaderTag = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 320px;
-  padding: 15px 20px;
+  padding: 15px 0;
   margin-left: auto;
   margin-right: auto;
 `;

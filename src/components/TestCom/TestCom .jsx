@@ -13,6 +13,7 @@ const TestCom = () => {
       <RegistrationPage />
       <LoginPage />
       <TestModal />
+      <span>spa span </span>
     </>
   );
 };
