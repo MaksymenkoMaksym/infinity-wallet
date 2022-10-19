@@ -25,7 +25,7 @@ const Div2 = styled(Div)`
 export const App = () => {
   return (
     <div>
-  <RegistrationPage/>
+
     </div>
   );
 };
