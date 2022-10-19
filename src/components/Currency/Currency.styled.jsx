@@ -5,7 +5,7 @@ import waveTablet from '../../assets/images/wave-tablet.svg';
 
 export const Container = styled.div`
   margin-left: auto;
-  margin-right: auto;
+  // margin-right: auto;
   min-width: 280px;
   max-width: 348px;
   max-height: 347px;
