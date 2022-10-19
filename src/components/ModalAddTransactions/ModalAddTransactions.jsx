@@ -18,6 +18,7 @@ import {
   CloseBox,
 } from './ModalAddTransactions.styled';
 import Switch from 'react-switch';
+import { Tab } from 'components/MediaWraper/MediaWraper';
 
 const ModalAddTransactions = () => {
   const [isIncome, setIsIncome] = useState(true);
@@ -47,11 +48,13 @@ const ModalAddTransactions = () => {
   return (
     <Overlay onClick={handleCloseModal}>
       <Modal>
-        <CloseBox>
-          <CloseIcon>
-            <use href={`${sprite}#icon-close`}></use>
-          </CloseIcon>
-        </CloseBox>
+        <Tab>
+          <CloseBox>
+            <CloseIcon>
+              <use href={`${sprite}#icon-close`}></use>
+            </CloseIcon>
+          </CloseBox>
+        </Tab>
         <Title>Add transaction</Title>
         <Formik initialValues={initialValues} onSubmit={handleFormSubmit}>
           {({ isSubmitting, values, setFieldValue }) => (

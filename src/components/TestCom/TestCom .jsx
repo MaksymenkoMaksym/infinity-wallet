@@ -1,5 +1,5 @@
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
-// import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
+import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
 
 import Navigation from 'components/Navigation/Navigation';
 
@@ -9,7 +9,7 @@ const TestCom = () => {
   return (
     <>
       <ButtonAddTransactions />
-      {/* <ModalAddTransactions /> */}
+      <ModalAddTransactions />
       <Navigation />
       <RegistrationPage />
       <LoginPage />
