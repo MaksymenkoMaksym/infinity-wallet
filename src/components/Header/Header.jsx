@@ -1,11 +1,12 @@
+import Logo from 'components/Logo/Logo';
 import PropTypes from 'prop-types';
 import { Outlet } from 'react-router-dom';
 import logo from '../../assets/images/icons.svg';
+
 import {
   UserDiv,
   UserSpan,
   StyledLink,
-  LogoIcon,
   LogoText,
   ExitIcon,
   HeaderTag,
@@ -15,12 +16,7 @@ const Header = ({ name = 'Максим Максименко' }) => {
   return (
     <>
       <HeaderTag>
-        <StyledLink to={'/'}>
-          <LogoIcon>
-            <use href={logo + `#icon-logo`}></use>
-          </LogoIcon>
-          <LogoText>Wallet</LogoText>
-        </StyledLink>
+        <Logo />
         <StyledLink to={'/test'}>
           <LogoText>TEST</LogoText>
         </StyledLink>
