@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 //case1 theme
 // const Div = styled.div`
 //   color: ${props => props.theme.colors.green};
