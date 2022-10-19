@@ -13,12 +13,13 @@ const isTabletOrMobile = useMediaQuery({ maxWidth: 1279 })
 const isTabletOrBigScreen = useMediaQuery({minWidth: 768})
 // const isMobile = useMediaQuery({maxWidth: 480})
 // const isRetina = useMediaQuery({ minResolution: 2})
+const icon = "#frame-2";
 
     return (
         <>
     <Body >
-        {isTabletOrBigScreen && <TitleThumb/>}
-        {isBigScreen && <BackdropBox/>}
+        {isTabletOrBigScreen && <TitleThumb icon={icon}/>}
+        {isBigScreen && <BackdropBox Form={RegistrationForm}/>}
         {isTabletOrMobile && <Section>
                 <Logo/>
                 <RegistrationForm/>

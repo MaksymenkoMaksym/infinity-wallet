@@ -5,7 +5,7 @@ import {
     Input,
     Label,
     Placeholder,
-    IconSvg, Button, ActiveButton
+    IconSvg, Button, ActiveButton, StyledForm
   } from './RegistrationForm.styled';
 
 
@@ -32,7 +32,7 @@ export const LoginForm = () => {
         onSubmit={handleSubmit}
         validate={schema}
     >
-        <Form>
+        <StyledForm>
         <Label name="email">
           <Input type="email" name="email" placeholder=" " />
           <IconSvg className="svg">
@@ -47,9 +47,9 @@ export const LoginForm = () => {
           </IconSvg>
           <Placeholder className="placeholder">Password</Placeholder>
         </Label>
-            <Button type="submit">REGISTER</Button>
             <ActiveButton type="submit">LOG IN</ActiveButton>
-        </Form>
+            <Button type="submit">REGISTER</Button>
+        </StyledForm>
     </Formik>
 )} 
 
