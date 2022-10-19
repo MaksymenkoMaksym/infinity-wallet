@@ -1,8 +1,11 @@
-import { LoginForm } from "components/Forms"
+import { LoginForm } from "components/Forms";
+import { Section } from './common.styled';
+import Logo from 'components/Logo/Logo';
 
 export const LoginPage = () => {
-    return (<>
-    <h1>Login Page</h1>
-    <LoginForm/>
-    </>
+    return (
+  <Section>
+        <Logo/>
+        <LoginForm/>
+    </Section>
 )}

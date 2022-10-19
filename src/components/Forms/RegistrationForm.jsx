@@ -33,7 +33,7 @@ export const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <Form>
+      <Form style={{marginTop: "60px"}}>
         <Label name="email">
           <Input type="email" name="email" placeholder=" " />
           <IconSvg>
