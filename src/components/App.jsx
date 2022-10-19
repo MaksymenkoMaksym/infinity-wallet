@@ -10,9 +10,9 @@ import DiagramPage from 'pages/DiagramPage';
 
 export const App = () => {
   return (
-    // <Container>
+    <Container>
       <Routes>
-        {/* <Route path="/" element={<Header />}> */}
+        <Route path="/" element={<Header />}>
           <Route path="home" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
@@ -20,8 +20,8 @@ export const App = () => {
           <Route path="/currency" element={<CurrencyPage />} />
           <Route path="/test" element={<TestCom />} />
           <Route path="*" element={<p>Not found</p>} />
-        {/* </Route> */}
+        </Route>
       </Routes>
-    // </Container>
+    </Container>
   );
 };
