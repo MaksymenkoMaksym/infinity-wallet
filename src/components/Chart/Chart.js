@@ -1,6 +1,8 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import styled from 'styled-components';
+import { theme } from '../../utility/theme';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -33,23 +35,27 @@ export const data = {
       //   'rgba(255, 159, 64, 1)',
       // ],
       borderWidth: 1,
-      hoverOffset: 20,
+      hoverOffset: 15,
       cutout: '70%',
     },
   ],
 };
 
 export const options = {
-  responsive: false,
+  //responsive: false,
   plugins: {
     legend: {
       display: false,
     },
   },
   layout: {
-    padding: 15,
+    padding: 7,
   },
 };
+
+const fontWeight = theme.fontWeights.bold;
+const fontSize = theme.fontSizes.m;
+const mainFont = theme.fonts.main;
 
 const plugins = [
   {
@@ -58,8 +64,7 @@ const plugins = [
         height = chart.height,
         ctx = chart.ctx;
       ctx.restore();
-      const fontSize = (height / 160).toFixed(2);
-      ctx.font = fontSize + 'em sans-serif';
+      ctx.font = `${fontWeight} ${fontSize} ${mainFont}`;
       ctx.textBaseline = 'center';
       const text = 'Total: $100',
         textX = Math.round((width - ctx.measureText(text).width) / 2),
@@ -70,10 +75,21 @@ const plugins = [
   },
 ];
 
+const Div = styled.div`
+  width: 294px;
+  height: 294px;
+  margin: 0 auto;
+
+  ${props => props.theme.breakpoints.tab} {
+    width: 334px;
+    height: 334px;
+    margin: 0;
+  }
+`;
 const Chart = () => {
   console.log(<Doughnut data={data.text} />);
   return (
-    <div>
+    <Div>
       <Doughnut
         data={data}
         options={options}
@@ -81,8 +97,7 @@ const Chart = () => {
         width={280}
         height={280}
       />
-      ;
-    </div>
+    </Div>
   );
 };
 
