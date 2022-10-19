@@ -4,7 +4,7 @@ import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTra
 import Navigation from 'components/Navigation/Navigation';
 
 import { RegistrationPage, LoginPage } from '../../pages';
-import TestModal from 'components/TestModal';
+import ModalLogout from 'components/ModalLogout';
 const TestCom = () => {
   return (
     <>
@@ -13,7 +13,7 @@ const TestCom = () => {
       <Navigation />
       <RegistrationPage />
       <LoginPage />
-      <TestModal />
+      <ModalLogout />
       <span>spa span </span>
     </>
   );

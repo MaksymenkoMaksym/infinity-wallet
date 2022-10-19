@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 
-const TestModal = () => {
+const ModalLogout = () => {
   const [show, setShow] = useState(false);
   return (
     <div className="App">
       <button onClick={() => setShow(true)}>Show Modal</button>
-      <Modal title="My Modal" onClose={() => setShow(false)} show={show}>
-        <p>This is modal body</p>
-      </Modal>
+      <Modal onClose={() => setShow(false)} show={show} title="Exit the App?" />
     </div>
   );
 };
 
-export default TestModal;
+export default ModalLogout;
