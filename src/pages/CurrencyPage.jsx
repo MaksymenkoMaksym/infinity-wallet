@@ -1,9 +1,9 @@
 import Currency from 'components/Currency/Currency';
+import Navigation from 'components/Navigation/Navigation';
 // import Navigation from 'components/Navigation/Navigation';
 import React from 'react';
 // import MediaQuery from 'react-responsive';
 import { useMediaQuery } from 'react-responsive';
-// import { redirect } from 'react-router-dom';
 
 const CurrencyPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -14,7 +14,7 @@ const CurrencyPage = () => {
       {/* <Navigation /> */}
       {isMobile && (
         <>
-          {/* <Navigation /> */}
+          <Navigation />
           <Currency />
         </>
       )}
