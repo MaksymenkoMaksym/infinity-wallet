@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/infinity-wallet/static/css/main.73f58473.css",
-    "main.js": "/infinity-wallet/static/js/main.efa8fe69.js",
+    "main.js": "/infinity-wallet/static/js/main.e4de5cd3.js",
     "static/media/Circe-Regular.eot": "/infinity-wallet/static/media/Circe-Regular.13bbfad0e7f851273f3c.eot",
     "static/media/Circe-Regular.ttf": "/infinity-wallet/static/media/Circe-Regular.814e4dd4329ffdb6c9ed.ttf",
     "static/media/Circe-Bold.eot": "/infinity-wallet/static/media/Circe-Bold.23b8280ab15052d5ba11.eot",
@@ -14,15 +14,15 @@
     "static/media/Poppins-Bold.ttf": "/infinity-wallet/static/media/Poppins-Bold.13c17db889176bed9ddf.ttf",
     "static/media/Poppins-Regular.woff": "/infinity-wallet/static/media/Poppins-Regular.7d50cfcb7fdf5bd337a0.woff",
     "static/media/Poppins-Bold.woff": "/infinity-wallet/static/media/Poppins-Bold.125974335c0c9046c212.woff",
-    "static/media/icons.svg": "/infinity-wallet/static/media/icons.c941c83620a259e8b9e346ee9af51066.svg",
+    "static/media/icons.svg": "/infinity-wallet/static/media/icons.cf9907cfcc4ec1468f706f479266fcf1.svg",
     "static/media/wave-tablet.svg": "/infinity-wallet/static/media/wave-tablet.9d30631a24f166f08eeb69009f8585ac.svg",
     "static/media/wave-mobile.svg": "/infinity-wallet/static/media/wave-mobile.340c22a500ab5a21cd92a8df9fb25c67.svg",
     "index.html": "/infinity-wallet/index.html",
     "main.73f58473.css.map": "/infinity-wallet/static/css/main.73f58473.css.map",
-    "main.efa8fe69.js.map": "/infinity-wallet/static/js/main.efa8fe69.js.map"
+    "main.e4de5cd3.js.map": "/infinity-wallet/static/js/main.e4de5cd3.js.map"
   },
   "entrypoints": [
     "static/css/main.73f58473.css",
-    "static/js/main.efa8fe69.js"
+    "static/js/main.e4de5cd3.js"
   ]
 }
