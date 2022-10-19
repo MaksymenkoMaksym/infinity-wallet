@@ -12,28 +12,17 @@ import {
   ExitIcon,
   HeaderTag,
 } from './Header.styled';
-import { loginUser, logOutUser } from 'redux/auth/authOperation';
+import { logOutUser } from 'redux/auth/authOperation';
 import { selectUser } from 'redux/auth/authSelectors';
 
 const Header = () => {
   const { username } = useSelector(selectUser);
   const dispatch = useDispatch();
-  //   const user = {
-  //     username: 'infinity',
-  //     email: 'infinity@gmail.com',
-  //     password: 'infinity26',
-  //   };
+
   const logOut = () => {
     dispatch(logOutUser());
   };
-  // const logIn = () => {
-  //   dispatch(
-  //     loginUser({
-  //       email: 'infinity@gmail.com',
-  //       password: 'infinity26',
-  //     })
-  //   );
-  // };
+
   return (
     <>
       <HeaderTag>
