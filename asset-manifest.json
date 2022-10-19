@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/infinity-wallet/static/css/main.73f58473.css",
-    "main.js": "/infinity-wallet/static/js/main.161afb2c.js",
+    "main.css": "/infinity-wallet/static/css/main.e9241a87.css",
+    "main.js": "/infinity-wallet/static/js/main.28bdf485.js",
     "static/media/Circe-Regular.eot": "/infinity-wallet/static/media/Circe-Regular.13bbfad0e7f851273f3c.eot",
     "static/media/Circe-Regular.ttf": "/infinity-wallet/static/media/Circe-Regular.814e4dd4329ffdb6c9ed.ttf",
     "static/media/Circe-Bold.eot": "/infinity-wallet/static/media/Circe-Bold.23b8280ab15052d5ba11.eot",
@@ -18,11 +18,11 @@
     "static/media/wave-tablet.svg": "/infinity-wallet/static/media/wave-tablet.9d30631a24f166f08eeb69009f8585ac.svg",
     "static/media/wave-mobile.svg": "/infinity-wallet/static/media/wave-mobile.340c22a500ab5a21cd92a8df9fb25c67.svg",
     "index.html": "/infinity-wallet/index.html",
-    "main.73f58473.css.map": "/infinity-wallet/static/css/main.73f58473.css.map",
-    "main.161afb2c.js.map": "/infinity-wallet/static/js/main.161afb2c.js.map"
+    "main.e9241a87.css.map": "/infinity-wallet/static/css/main.e9241a87.css.map",
+    "main.28bdf485.js.map": "/infinity-wallet/static/js/main.28bdf485.js.map"
   },
   "entrypoints": [
-    "static/css/main.73f58473.css",
-    "static/js/main.161afb2c.js"
+    "static/css/main.e9241a87.css",
+    "static/js/main.28bdf485.js"
   ]
 }
