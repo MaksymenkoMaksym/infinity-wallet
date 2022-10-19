@@ -1,5 +1,5 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import MediaQuery from 'react-responsive';
 import { List, ListItem, TextItem, Icon } from './Navigation.styled';
@@ -10,38 +10,37 @@ const Navigation = () => {
     <nav className="nav_container">
       <List className="nav_list">
         <ListItem>
-          {/* <NavLink to="/home"> */}
-          <>
-            <Icon>
-              <use href={`${sprite}#icon-home`}></use>
-            </Icon>
-          </>
-          <MediaQuery minWidth={768}>
-            <TextItem>Home</TextItem>
-          </MediaQuery>
-          {/* </NavLink> */}
+          <NavLink to="/home">
+            <>
+              <Icon>
+                <use href={`${sprite}#icon-home`}></use>
+              </Icon>
+            </>
+            <MediaQuery minWidth={768}>
+              <TextItem>Home</TextItem>
+            </MediaQuery>
+          </NavLink>
         </ListItem>
         <ListItem>
-          {/* <NavLink to="/diagram"> */}
-          <>
-            <Icon>
-              <use href={`${sprite}#icon-timeline`}></use>
-            </Icon>
-          </>
-          <MediaQuery minWidth={768}>
-            <TextItem>Statistics</TextItem>
-          </MediaQuery>
-          {/* </NavLink> */}
+          <NavLink to="/diagram">
+            <>
+              <Icon>
+                <use href={`${sprite}#icon-timeline`}></use>
+              </Icon>
+            </>
+            <MediaQuery minWidth={768}>
+              <TextItem>Statistics</TextItem>
+            </MediaQuery>
+          </NavLink>
         </ListItem>
 
         <ListItem className="nav_link_currency">
           <MediaQuery maxWidth={767}>
-            {/* <NavLink
-                to="/currency"> */}
-            <Icon>
-              <use href={`${sprite}#icon-currency`}></use>
-            </Icon>
-            {/* </NavLink> */}
+            <NavLink to="/currency">
+              <Icon>
+                <use href={`${sprite}#icon-currency`}></use>
+              </Icon>
+            </NavLink>
           </MediaQuery>
         </ListItem>
       </List>
