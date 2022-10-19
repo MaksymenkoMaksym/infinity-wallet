@@ -1,7 +1,23 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import css from '../Table/Table.module.css';
+import select from '../../assets/images/icons.svg';
+
+import {
+  ColorSpan,
+  IconBtn,
+  Item,
+  ListUl,
+  ParagraphHead,
+  ParagraphNumber,
+  ParagraphText,
+  ParagraphTotal,
+  TableHead,
+  TotalDiv,
+  WraperDiv,
+  SelectBtn,
+  SelectText,
+} from './Table.styled';
 
 const Table = () => {
   //   const [startYers, setStartYers] = useState(new Date());
@@ -69,52 +85,83 @@ const Table = () => {
     setIsOpen(!isOpen);
   };
 
+  function timeConverter(UNIX_timestamp) {
+    const a = new Date(UNIX_timestamp * 1000);
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    // const year = a.getFullYear();
+    const month = months[a.getMonth()];
+
+    return month;
+  }
+
   return (
     <>
-      <div className={css.wraper}>
-        <button className={css.table_picker} onClick={handleClick}>
-          <span className={css.picker_text}>Месяц</span>
-        </button>
-        <button className={css.table_picker} onClick={handleClick}>
-          <span className={css.picker_text}>Год</span>
+      <WraperDiv>
+        <SelectBtn>
+          <SelectText>{timeConverter(startDate)}</SelectText>
           {isOpen && (
             <DatePicker
               selected={startDate}
               onChange={handleChange}
-              showYearPicker
+              // showYearPicker
               inline
-              dateFormat="yyyy"
+              dateFormat="MM/yyyy"
+              showMonthYearPicker
             />
           )}
-        </button>
+          <IconBtn onClick={handleClick}>
+            <use href={select + `#icon-select`} />
+          </IconBtn>
+        </SelectBtn>
+        <SelectBtn>
+          <SelectText>Год</SelectText>
 
-        <div className={css.table_head}>
-          <p className={css.head_text}>Категория</p>
-          <p className={css.head_text}>Сумма</p>
-        </div>
-        <ul className={css.table_list}>
+          <IconBtn onClick={handleClick}>
+            <use href={select + `#icon-select`} />
+          </IconBtn>
+        </SelectBtn>
+
+        <TableHead>
+          <ParagraphHead>Категория</ParagraphHead>
+          <ParagraphHead>Сумма</ParagraphHead>
+        </TableHead>
+        <ListUl>
           {diagram.map(item => {
             return (
-              <li className={css.table_item}>
-                <span
-                  className={css.item_square}
-                  style={{ background: item.color }}
-                ></span>
-                <p className={css.item_text}>{item.name}</p>
-                <p className={css.item_number}>{item.value.toFixed(2)}</p>
-              </li>
+              <Item>
+                <ColorSpan style={{ background: item.color }}></ColorSpan>
+                <ParagraphText>{item.name}</ParagraphText>
+                <ParagraphNumber>{item.value.toFixed(2)}</ParagraphNumber>
+              </Item>
             );
           })}
-        </ul>
-        <div className={css.table_total}>
-          <p className={css.total_text}>Расходы:</p>
-          <p className={css.total_number}>{totalDiagram.toFixed(2)}</p>
-        </div>
-        <div className={css.table_total}>
-          <p className={css.total_text}>Доходы:</p>
-          <p className={css.number_income}>5000.00</p>
-        </div>
-      </div>
+        </ListUl>
+        <TotalDiv>
+          <ParagraphText style={{ fontWeight: 700, margin: 0 }}>
+            Расходы:
+          </ParagraphText>
+          <ParagraphTotal>{totalDiagram.toFixed(2)}</ParagraphTotal>
+        </TotalDiv>
+        <TotalDiv>
+          <ParagraphText style={{ fontWeight: 700, margin: 0 }}>
+            Доходы:
+          </ParagraphText>
+          <ParagraphTotal income>5000.00</ParagraphTotal>
+        </TotalDiv>
+      </WraperDiv>
     </>
   );
 };
