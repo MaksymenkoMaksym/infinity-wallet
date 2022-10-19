@@ -102,7 +102,7 @@ border-radius: ${props => props.theme.radii.sm};
  padding: 0;
    margin-bottom: 8px;
   min-width: 280px;
-  background: ${props => props.theme.colors.white};
+   background: transparent;
   @media (min-width: 768px) {
    border-radius: ${props => props.theme.radii.none};
     display: flex;

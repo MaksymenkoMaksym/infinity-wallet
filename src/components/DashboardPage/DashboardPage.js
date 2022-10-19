@@ -11,6 +11,7 @@ import {
   UlItems,
   UlBoard,
 } from './DashboardPage.styled';
+import { Tab } from 'components/MediaWraper/MediaWraper';
 
 const DashboardPage = () => {
   // const dispatch = useDispatch();
@@ -33,14 +34,16 @@ const DashboardPage = () => {
   return (
     <Div>
       <UlBoard>
-        <UlTitle>
-          <LiTitle>Date</LiTitle>
-          <LiTitle>Type</LiTitle>
-          <LiTitle>Category</LiTitle>
-          <LiTitle>Comment</LiTitle>
-          <LiTitle>Sum</LiTitle>
-          <LiTitle>Balance</LiTitle>
-        </UlTitle>
+        <Tab>
+          <UlTitle>
+            <LiTitle>Date</LiTitle>
+            <LiTitle>Type</LiTitle>
+            <LiTitle>Category</LiTitle>
+            <LiTitle>Comment</LiTitle>
+            <LiTitle>Sum</LiTitle>
+            <LiTitle>Balance</LiTitle>
+          </UlTitle>
+        </Tab>
         {TransactionSerializer.map(item => {
           return (
             <UlItems key={item.key}>
