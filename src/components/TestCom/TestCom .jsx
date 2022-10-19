@@ -1,12 +1,13 @@
 import React from 'react';
-import DashboardPage from '../DashboardPage';
-
+import { RegistrationPage, LoginPage } from '../../pages';
 const TestCom = () => {
-  return (
-    <div>
-      <DashboardPage />{' '}
-    </div>
-  );
-};
+  return(
+  <>
+  <RegistrationPage/>
+  <LoginPage/>
+  </>
+)};
+
+
 
 export default TestCom;
