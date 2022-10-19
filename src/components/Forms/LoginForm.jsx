@@ -5,7 +5,7 @@ import {
     Input,
     Label,
     Placeholder,
-    IconSvg
+    IconSvg, Button, ActiveButton
   } from './RegistrationForm.styled';
 
 
@@ -47,8 +47,8 @@ export const LoginForm = () => {
           </IconSvg>
           <Placeholder className="placeholder">Password</Placeholder>
         </Label>
-            <button type="submit">REGISTER</button>
-            <button type="submit">LOG IN</button>
+            <Button type="submit">REGISTER</Button>
+            <ActiveButton type="submit">LOG IN</ActiveButton>
         </Form>
     </Formik>
 )} 
