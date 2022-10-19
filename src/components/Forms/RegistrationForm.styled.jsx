@@ -60,15 +60,16 @@ export const Button = styled.button`
     height: 50px;
     margin-bottom: 40px;
     background-color: #ffffff;
-    color: "4A56E2";
-    border: 1px solid "4A56E2";
+    color: #4A56E2;
+    border: 1px solid #4A56E2;
     border-radius: 20px;
-
+    letter-spacing: 0.1rem;
+    font-size: 18px;
+    line-height: 1.5;
 `
 
 export const ActiveButton = styled(Button)`
-    color: "#ffffff";
-    background-color: " 24CCA7";
-
-
+    color: #ffffff;
+    background-color: #24CCA7;
+    border: 1px solid #24CCA7;
 `
