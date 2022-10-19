@@ -56,6 +56,19 @@ transition: border-color 250ms linear;
 
 
 export const Button = styled.button`
+    width: 100%;
+    height: 50px;
+    margin-bottom: 40px;
+    background-color: #ffffff;
+    color: "4A56E2";
+    border: 1px solid "4A56E2";
+    border-radius: 20px;
+
+`
+
+export const ActiveButton = styled(Button)`
+    color: "#ffffff";
+    background-color: " 24CCA7";
 
 
 `
