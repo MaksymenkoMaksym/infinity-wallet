@@ -1,4 +1,4 @@
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import { useState } from 'react';
 import sprite from '../../assets/images/icons.svg';
 import {
