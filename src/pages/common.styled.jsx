@@ -18,12 +18,14 @@ background-color: #ffffff;
     display: flex;
     padding: 0;
     height: 100vh;
+    background-position:  -150.33px 305px, 756.41px -143px;
     
   }
 
 }`
 
 export const Backdrop = styled.div`
+box-sizing: border-box;
 height: 100%;
 width: 57%;
 padding-top: 52px;
@@ -31,6 +33,9 @@ padding-bottom: 52px;
 display: flex;
 justify-content: center;
 align-items: center;
+background: rgba(255, 255, 255, 0.4);
+backdrop-filter: blur(25px);
+-webkit-backdrop-filter: blur(25px);
 `
 
 

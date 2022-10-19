@@ -1,7 +1,9 @@
 import svgIcon from "../../assets/images/icons.svg";
 import { PrimarySvg, Box, Title } from "./TitleThumb.styled";
 
+
 export const TitleThumb = () => {
+
     return(
     <Box > 
         <PrimarySvg>
