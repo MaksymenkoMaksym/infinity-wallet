@@ -1,8 +1,5 @@
 import styled from "styled-components";
 import { Field } from "formik";
-import {ReactComponent as LetterSvg} from "../../assets/images/letter.svg";
-import {ReactComponent as LockSvg} from "../../assets/images/lock.svg";
-import {ReactComponent as AvatarSvg} from "../../assets/images/avatar.svg"
  
 export const Label = styled.label`
 margin-bottom: 40px;
@@ -23,7 +20,7 @@ transition: color 250ms linear, transform 250ms linear, font-size 250ms linear;
 
 
 export const Input = styled(Field)`
-width: 100%;
+/* width: 100%; */
 height: 20px;
 font-size: 18px;
 
@@ -48,7 +45,7 @@ transition: border-color 250ms linear;
 }
 `
 
-export const Letter = styled(LetterSvg)`
+export const IconSvg = styled.svg`
 width: 24px;
 height: 24px;
 fill: currentColor;
@@ -57,24 +54,6 @@ top: -7px;
 left: 10px;
 transition:  color 250ms linear;
 `
-
-export const Lock = styled(LockSvg)`
-width: 24px;
-height: 24px;
-fill: currentColor;
-position: absolute;
-top: -7px;
-left: 10px;
-transition:  color 250ms linear;
-`
-export const Avatar = styled(AvatarSvg)`
-width: 24px;
-height: 24px;
-fill: currentColor;
-position: absolute;
-top: -7px;
-left: 10px;
-transition:  color 250ms linear;`
 
 export const Button = styled.button`
 `

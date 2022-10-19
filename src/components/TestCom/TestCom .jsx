@@ -1,7 +1,11 @@
 import React from 'react';
-
+import { RegistrationPage, LoginPage } from '../../pages';
 const TestCom = () => {
-  return <div>TestCom </div>;
-};
+  return(
+  <>
+  <RegistrationPage/>
+  <LoginPage/>
+  </>
+)};
 
 export default TestCom;
