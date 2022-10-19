@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 // import styled from 'styled-components';
 import Header from './Header';
 import Chart from './Chart';
+import Table from './Table';
 import TestCom from './TestCom/TestCom ';
 //case1 theme
 // const Div = styled.div`
@@ -38,6 +39,7 @@ export const App = () => {
         </Route>
       </Routes>
       <Chart />
+      <Table />
     </div>
   );
 };
