@@ -5,11 +5,14 @@ import MediaQuery from 'react-responsive';
 import React from 'react';
 import CurrencyPage from 'pages/CurrencyPage';
 
+import { RegistrationPage, LoginPage } from '../../pages';
 const TestCom = () => {
   return (
     <>
       <Navigation />
       <CurrencyPage />
+      <RegistrationPage />
+      <LoginPage />
     </>
   );
 };
