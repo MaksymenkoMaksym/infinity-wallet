@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 
 import { useFormik} from 'formik';
 
@@ -17,6 +17,23 @@ import {
 } from './RegistrationForm.styled';
 
 export const RegistrationForm = () => {
+  const {pathname} = useLocation() 
+
+  const FormDefine = () => {
+    const formFields = [ "email", "password", "confirmPassword", "firstName" ]
+    switch (pathname) {
+        case '/login':
+            return [...formFields.slice(0, 2)];
+    
+        default:
+           return [...formFields];
+    }
+        }
+
+const location = FormDefine().length === 4;
+const buttonTextActive = location ? "REGISTER" : "LOG IN";
+const buttonText = location ? "LOG IN" : "REGISTER"
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,22 +44,31 @@ export const RegistrationForm = () => {
       .required("missing password"),
     confirmPassword: Yup.string()
       .min(6, 'password should be 8 chars minimum').max(12, 'password should be 12 chars maximum')
-      .required("missing password"),
+      .required("missing confirm password"),
     firstName: Yup.string()
     .min(1).max(12, 'first name should be 12 chars maximum.')
     .required("missing first name")
   });
 
   const onSubmit = ({firstName: username, email, password, confirmPassword}, { resetForm }) => {
-    if (password !== confirmPassword) {
-      return alert('password !== confirmPassword');
-    }
+
     dispatch(registerUser({username, email, password}));
     resetForm();
   };
+ 
   const navi = () => {
-    navigate('/login');
+    navigate(location ? '/login' : '/registration');
   };
+
+  const typeVar = name => {
+    switch (name) {
+      case "password":
+      case "confirmPassword":
+        return "password"
+      default:
+        return "text";
+    }
+  }
 
 
     const formik = useFormik({
@@ -58,49 +84,28 @@ export const RegistrationForm = () => {
       validateOnBlur: false,
     })
 
-
     return (
       <StyledForm style={{ marginTop: '60px' }} onSubmit={formik.handleSubmit}>
-        <Label name="email">
-          <Input type="text" name="email" placeholder=" " {...formik.getFieldProps("email")}/>
-          <IconSvg >
-            <use href={svgIcon + `#icon-email`}></use>
-          </IconSvg>
-          <Placeholder>E-mail</Placeholder>
-          {formik.touched.email && formik.errors.email ? (<ErrorBox>{formik.errors.email}</ErrorBox>) : null}
-        </Label>
-        <Label name="password">
-          <Input type="password" name="password" placeholder=" " {...formik.getFieldProps("password")}/>
-                <IconSvg>
-            <use href={svgIcon + `#icon-lock`}></use>
-          </IconSvg>
-          <Placeholder>Password</Placeholder>
-          {formik.touched.password && formik.errors.password ? (<ErrorBox>{formik.errors.password}</ErrorBox>) : null}
-        </Label>
-        <Label name="confirmPassword">
-          <Input type="password" name="confirmPassword" placeholder=" " {...formik.getFieldProps("confirmPassword")}/>
-          <IconSvg>
-            <use href={svgIcon + `#icon-lock`}></use>
-          </IconSvg>
-          <Placeholder>Confirm password</Placeholder>
-          {formik.touched.confirmPassword && formik.errors.confirmPassword ? (<ErrorBox>{formik.errors.confirmPassword}</ErrorBox>) : null}
-        </Label>
-        <Label name="firstName">
-          <Input type="text" name="firstName" placeholder=" " {...formik.getFieldProps("firstName")}/>
-          <IconSvg>
-            <use href={svgIcon + `#icon-account_box`}></use>
-          </IconSvg>
-          <Placeholder>First name</Placeholder>
-          {formik.touched.firstName && formik.errors.firstName ? (<ErrorBox>{formik.errors.firstName}</ErrorBox>) : null}
-        </Label>
-        <ActiveButton type="submit">REGISTER</ActiveButton>
+
+{FormDefine().map(item => {
+  return ( <Label name="email" key = {item}>
+  <Input type={typeVar(item)} name={item} placeholder=" " {...formik.getFieldProps(item)}/>
+  <IconSvg >
+    <use href={svgIcon + `#icon-${item}`}></use>
+  </IconSvg>
+  <Placeholder>{item}</Placeholder>
+  {formik.touched[item] && formik.errors[item] ? (<ErrorBox>{formik.errors[item]}</ErrorBox>) : null}
+</Label>)
+})}
+
+        <ActiveButton type="submit">{buttonTextActive}</ActiveButton>
         <Button
           type="button"
           onClick={() => {
             navi();
           }}
         >
-          LOG IN
+          {buttonText}
         </Button>
       </StyledForm>
 

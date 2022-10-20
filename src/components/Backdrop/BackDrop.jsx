@@ -1,12 +1,13 @@
 import { Section, Backdrop} from '../../pages/common.styled';
 import Logo from 'components/Logo/Logo';
+import {RegistrationForm} from '../../components/Forms';
 
-export const BackdropBox = ({Form}) => {
+export const BackdropBox = () => {
     return (
     <Backdrop> 
         <Section>
             <Logo/>
-            <Form/>
+            <RegistrationForm/>
         </Section>
     </Backdrop>)
 }

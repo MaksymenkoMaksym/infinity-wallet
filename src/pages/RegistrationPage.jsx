@@ -1,4 +1,4 @@
-import {RegistrationForm} from '../components/Forms';
+
 import { Body} from './common.styled';
 
 import { TitleThumb } from 'components/TitleThumb/TitleThumb';
@@ -19,8 +19,8 @@ const isTabletOrBigScreen = useMediaQuery({minWidth: 768})
         <>
     <Body >
         {isTabletOrBigScreen && <TitleThumb />}
-        {isBigScreen && <BackdropBox Form={RegistrationForm}/>}
-        {isTabletOrMobile && <BackdropBox Form={RegistrationForm}/>}   
+        {isBigScreen && <BackdropBox/>}
+        {isTabletOrMobile && <BackdropBox/>}   
 
     </Body>
     
