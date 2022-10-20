@@ -4,6 +4,7 @@ import { Doughnut } from 'react-chartjs-2';
 import styled from 'styled-components';
 import { theme } from '../../utility/theme';
 import { useSelector } from 'react-redux';
+import { selectTransactionsForPeriod } from 'redux/transactions/transactionsSelectors';
 
 const Div = styled.div`
   width: 294px;
@@ -20,19 +21,16 @@ const Div = styled.div`
 const Chart = () => {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  const transactions = useSelector(
-    state => state.transaction.transactionsForPeriod.categoriesSummary
+  const { categoriesSummary: transactions, periodTotal } = useSelector(
+    selectTransactionsForPeriod
   );
-  const periodTotal = useSelector(
-    state => state.transaction.transactionsForPeriod.periodTotal
-  );
-
+  console.log(useSelector(selectTransactionsForPeriod));
   const data = {
     labels: transactions.map(item => item.name),
 
     datasets: [
       {
-        data: transactions.map(item => item.total),
+        data: transactions?.map(item => item.total),
         backgroundColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
