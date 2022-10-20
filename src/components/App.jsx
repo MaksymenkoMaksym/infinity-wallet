@@ -12,6 +12,7 @@ import { refreshUser } from 'redux/auth/authOperation';
 import { selectIsLoading } from 'redux/auth/authSelectors';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
+import Loader from './Loader';
 
 export const App = () => {
   const { isLoading } = useSelector(selectIsLoading);
@@ -21,7 +22,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isLoading ? (
-    <p>Loading user data</p>
+    <Loader />
   ) : (
     <Container>
       <Routes>
