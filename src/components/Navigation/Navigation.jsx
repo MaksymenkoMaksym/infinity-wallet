@@ -1,18 +1,15 @@
-import { NavLink } from 'react-router-dom';
-
 import {
-  // NavContainer,
   List,
   ListItem,
   TextItem,
   Icon,
+  StyledLink,
 } from './Navigation.styled';
 import sprite from '../../assets/images/icons.svg';
 import { Mob, Tab } from 'components/MediaWraper/MediaWraper';
 
 const Navigation = () => {
   return (
-    // <NavContainer>
     <nav>
       <List className="nav_list">
         <ListItem>
@@ -51,7 +48,6 @@ const Navigation = () => {
         </ListItem>
       </List>
     </nav>
-    // </NavContainer>
   );
 };
 
