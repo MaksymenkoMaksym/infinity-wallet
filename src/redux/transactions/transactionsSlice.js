@@ -98,15 +98,19 @@ const userInitialState = {
   transactionCategories,
   isLoading: false,
   error: null,
+  isModalAddTransactionOpen: false,
 };
+
 const pendingHandlerAuth = (state, action) => {
   state.isLoading = true;
   state.error = null;
 };
+
 const rejectedHandler = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
+
 const transactionSlice = createSlice({
   name: 'transaction',
 
@@ -160,6 +164,7 @@ const transactionSlice = createSlice({
       state.isLoading = false;
       state.transactionsForPeriod = action.payload;
     },
+
     [getTransactionCategories.fulfilled](state, action) {
       state.error = null;
       state.isLoading = false;
