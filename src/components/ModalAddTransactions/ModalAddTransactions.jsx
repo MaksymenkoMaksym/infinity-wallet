@@ -21,8 +21,11 @@ import {
 } from './ModalAddTransactions.styled';
 import Switch from 'react-switch';
 import { Tab } from 'components/MediaWraper/MediaWraper';
+import { useDispatch } from 'react-redux';
+import { closeModal } from 'redux/transactions/transactionsSlice';
 
 const ModalAddTransactions = () => {
+  const dispatch = useDispatch();
   const [isIncome, setIsIncome] = useState(true);
   const initialValues = {
     category: '',
@@ -35,13 +38,15 @@ const ModalAddTransactions = () => {
   const handleFormSubmit = values => {
     console.log(values);
   };
-  const handleCloseModal = e => {
+
+  const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       // toggleModal();
       // setIsOpen(false);
-      console.log('close on backdrop');
+      dispatch(closeModal());
     }
   };
+
   const options = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
@@ -51,16 +56,22 @@ const ModalAddTransactions = () => {
   //   console.log(value);
   //   setFieldValue('category', value.value);
   // };
+
   const textColor = () => {
     return isIncome
       ? { inc: '#24CCA7', exp: '#E0E0E0' }
       : { inc: '#E0E0E0', exp: '#FF6596' };
   };
+
   return (
-    <Overlay onClick={handleCloseModal}>
+    <Overlay onClick={handleBackdropClick}>
       <Modal>
         <Tab>
-          <CloseBox>
+          <CloseBox
+            onClick={() => {
+              dispatch(closeModal());
+            }}
+          >
             <CloseIcon>
               <use href={`${sprite}#icon-close`}></use>
             </CloseIcon>
@@ -147,7 +158,12 @@ const ModalAddTransactions = () => {
                 <Input type="text" name="comment" />
               </label>
               <Button type="submit">ADD</Button>
-              <CancelButton type="button" onClick={() => {}}>
+              <CancelButton
+                type="button"
+                onClick={() => {
+                  dispatch(closeModal());
+                }}
+              >
                 CANCEL
               </CancelButton>
             </AddForm>
