@@ -11,6 +11,7 @@ import Container from './Container';
 import DiagramPage from 'pages/DiagramPage';
 import { refreshUser } from 'redux/auth/authOperation';
 import { selectIsLoading } from 'redux/auth/authSelectors';
+import Loader from './Loader';
 
 export const App = () => {
   const { isLoading } = useSelector(selectIsLoading);
@@ -20,7 +21,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isLoading ? (
-    <p>Loading user data</p>
+    <Loader />
   ) : (
     <Container>
       <Routes>
