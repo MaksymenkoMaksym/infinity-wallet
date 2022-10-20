@@ -28,7 +28,7 @@ const Chart = ({ dataTransactions }) => {
 
     datasets: [
       {
-        data: dataTransactions.map(item => item.value),
+        data: dataTransactions.map(item => item.total),
         backgroundColor: dataTransactions.map(item => item.color),
         borderWidth: 1,
         hoverOffset: 10,

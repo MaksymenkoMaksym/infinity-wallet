@@ -3,6 +3,7 @@ import SelectButton from 'components/SelectBtn/SelectBtn';
 import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
 import { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
+import useTransaction from 'utility/diagram';
 
 import {
   ColorSpan,
@@ -32,7 +33,7 @@ const Table = () => {
 
   return (
     <>
-      <Chart dataTransactions={diagram} />
+      <Chart dataTransactions={categoriesSummary} />
       <WraperDiv>
         <WraperSelect>
           <SelectButtonMonth hendelSelect={hendelSelectBtn} />
@@ -59,7 +60,7 @@ const Table = () => {
           <ParagraphText style={{ fontWeight: 700, margin: 0 }}>
             Расходы:
           </ParagraphText>
-          <ParagraphTotal>{periodTotal.toFixed(2).slice(1)}</ParagraphTotal>
+          <ParagraphTotal>{expenseSummary.toFixed(2).slice(1)}</ParagraphTotal>
         </TotalDiv>
         <TotalDiv>
           <ParagraphText style={{ fontWeight: 700, margin: 0 }}>
