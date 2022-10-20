@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 280px;
-  //   max-width: 350px;
   height: 80px;
+  //   max-width: 350px;
   //   padding: 0px 20px;
   background-color: ${props => props.theme.colors.background.white};
   border-radius: ${props => props.theme.radii.lg};
@@ -13,8 +13,9 @@ export const Container = styled.div`
 
   ${props => props.theme.breakpoints.tab} {
     width: 336px;
-    // padding: 10px 40px;
     margin: 0;
+
+    // padding: 10px 40px;
     // margin-right: 20px;
   }
   ${props => props.theme.breakpoints.desc} {

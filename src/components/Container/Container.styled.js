@@ -12,7 +12,7 @@ const Container = styled.div`
     max-width: 768px;
   }
   ${props => props.theme.breakpoints.desc} {
-    padding: 0 85px;
+    padding: 0 18px;
     max-width: 1280px;
   }
 `;
