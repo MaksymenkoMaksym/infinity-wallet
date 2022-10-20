@@ -1,14 +1,25 @@
-import { Formik} from 'formik';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { Formik } from 'formik';
+
+import { registerUser } from 'redux/auth/authOperation';
 import * as yup from 'yup';
-import svgIcon from "../../assets/images/icons.svg"
+import svgIcon from '../../assets/images/icons.svg';
 import {
   Input,
   Label,
   Placeholder,
-  IconSvg, Button, ActiveButton, StyledForm
+  IconSvg,
+  Button,
+  ActiveButton,
+  StyledForm,
 } from './RegistrationForm.styled';
 
 export const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const initialValues = {
     email: '',
     password: '',
@@ -23,9 +34,20 @@ export const RegistrationForm = () => {
     firstName: yup.string().required(),
   });
 
-  const handleSubmit = (values, {resetForm}) => {
-    console.log(values);
+  const handleSubmit = (values, { resetForm }) => {
+    if (values.password !== values.confirmPassword) {
+      return alert('password !== confirmPassword');
+    }
+    const user = {
+      username: values.firstName,
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(registerUser(user));
     resetForm();
+  };
+  const navi = () => {
+    navigate('/login');
   };
   return (
     <Formik
@@ -33,7 +55,7 @@ export const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <StyledForm style={{marginTop: "60px"}}>
+      <StyledForm style={{ marginTop: '60px' }}>
         <Label name="email">
           <Input type="email" name="email" placeholder=" " />
           <IconSvg>
@@ -44,33 +66,32 @@ export const RegistrationForm = () => {
 
         <Label name="password">
           <Input type="password" name="password" placeholder=" " />
-          <IconSvg >
+          <IconSvg>
             <use href={svgIcon + `#icon-lock`}></use>
           </IconSvg>
           <Placeholder>Password</Placeholder>
         </Label>
         <Label name="confirmPassword">
           <Input type="password" name="confirmPassword" placeholder=" " />
-          <IconSvg >
-          <use href={svgIcon + `#icon-lock`}></use>
+          <IconSvg>
+            <use href={svgIcon + `#icon-lock`}></use>
           </IconSvg>
-          <Placeholder >Confirm password</Placeholder>
+          <Placeholder>Confirm password</Placeholder>
         </Label>
         <Label name="firstName">
           <Input type="text" name="firstName" placeholder=" " />
-          <IconSvg >
-          <use href={svgIcon + `#icon-account_box`}></use>
+          <IconSvg>
+            <use href={svgIcon + `#icon-account_box`}></use>
           </IconSvg>
           <Placeholder>First name</Placeholder>
         </Label>
-        <ActiveButton
-          type="submit"
-          
-        >
-          REGISTER
-        </ActiveButton>
+        <ActiveButton type="submit">REGISTER</ActiveButton>
         <Button
-          type="submit">
+          type="button"
+          onClick={() => {
+            navi();
+          }}
+        >
           LOG IN
         </Button>
       </StyledForm>
