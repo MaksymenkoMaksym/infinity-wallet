@@ -1,5 +1,3 @@
-import { NavLink } from 'react-router-dom';
-
 import {
   // NavContainer,
   List,
@@ -17,7 +15,7 @@ const Navigation = () => {
     <nav>
       <List className="nav_list">
         <ListItem>
-          <StyledLink to="/home">
+          <StyledLink to="/">
             <>
               <Icon>
                 <use href={`${sprite}#icon-home`}></use>

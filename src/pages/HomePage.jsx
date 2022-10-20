@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import DashboardPage from 'components/DashboardPage';
 
 import { Tab } from 'components/MediaWraper/MediaWraper';
+import Header from 'components/Header';
 
 // import MediaQuery from 'react-responsive';
 // import { useMediaQuery } from 'react-responsive';
@@ -45,6 +46,7 @@ const Column = styled.div``;
 const Home = () => {
   return (
     <>
+      <Header />
       <Wrapper>
         <Container>
           <Column>

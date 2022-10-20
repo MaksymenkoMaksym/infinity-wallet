@@ -1,4 +1,5 @@
 import Currency from 'components/Currency/Currency';
+import Header from 'components/Header';
 import Navigation from 'components/Navigation/Navigation';
 // import Navigation from 'components/Navigation/Navigation';
 import React from 'react';
@@ -14,6 +15,7 @@ const CurrencyPage = () => {
       {/* <Navigation /> */}
       {isMobile && (
         <>
+          <Header />
           <Navigation />
           <Currency />
         </>
