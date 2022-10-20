@@ -22,18 +22,21 @@ export const Body = styled.div`
 `;
 
 export const Backdrop = styled.div`
-  box-sizing: border-box;
-  height: 100%;
-  width: 57%;
-  padding-top: 52px;
-  padding-bottom: 52px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-`;
+
+@media (min-width: 1280px) {
+box-sizing: border-box;
+height: 100%;
+width: 57%;
+padding-top: 52px;
+padding-bottom: 52px;
+display: flex;
+justify-content: center;
+align-items: center;
+background: rgba(255, 255, 255, 0.4);
+backdrop-filter: blur(25px);
+-webkit-backdrop-filter: blur(25px);}
+`
+
 
 export const Section = styled.section`
   box-sizing: border-box;
