@@ -34,16 +34,11 @@ export const RegistrationForm = () => {
     firstName: yup.string().required(),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    if (values.password !== values.confirmPassword) {
+  const handleSubmit = ({firstName: username, email, password, confirmPassword}, { resetForm }) => {
+    if (password !== confirmPassword) {
       return alert('password !== confirmPassword');
     }
-    const user = {
-      username: values.firstName,
-      email: values.email,
-      password: values.password,
-    };
-    dispatch(registerUser(user));
+    dispatch(registerUser({username, email, password}));
     resetForm();
   };
   const navi = () => {
