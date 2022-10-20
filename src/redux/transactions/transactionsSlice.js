@@ -142,6 +142,7 @@ const transactionSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.transactions.push(action.payload);
+      state.isModalAddTransactionOpen = false;
     },
 
     [getAllTransactions.fulfilled](state, action) {

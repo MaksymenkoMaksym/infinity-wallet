@@ -6,6 +6,12 @@ import styled from 'styled-components';
 import DashboardPage from 'components/DashboardPage';
 
 import { Tab } from 'components/MediaWraper/MediaWraper';
+import Header from 'components/Header';
+
+import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
+import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
+import { useSelector } from 'react-redux';
+import { isModalAddTransactionOpen } from 'redux/transactions/transactionsSelectors';
 
 // import MediaQuery from 'react-responsive';
 // import { useMediaQuery } from 'react-responsive';
@@ -43,8 +49,11 @@ const DashboardBox = styled.div`
 const Column = styled.div``;
 
 const Home = () => {
+  const isModalOpen = useSelector(isModalAddTransactionOpen);
+
   return (
     <>
+      <Header />
       <Wrapper>
         <Container>
           <Column>
@@ -60,6 +69,8 @@ const Home = () => {
           <DashboardPage />
         </DashboardBox>
       </Wrapper>
+      <ButtonAddTransactions />
+      {isModalOpen && <ModalAddTransactions />}
     </>
   );
 };

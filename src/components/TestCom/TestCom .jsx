@@ -3,23 +3,17 @@ import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransa
 
 import Navigation from 'components/Navigation/Navigation';
 
-import { RegistrationPage, LoginPage } from '../../pages';
-import ModalLogout from 'components/ModalLogout';
-import DashboardPage from '../DashboardPage';
 import { useSelector } from 'react-redux';
 import { isModalAddTransactionOpen } from 'redux/transactions/transactionsSelectors';
+import Header from 'components/Header';
 const TestCom = () => {
   const isModalOpen = useSelector(isModalAddTransactionOpen);
   return (
     <>
-      <DashboardPage />
+      <Header />
+      <Navigation />
       <ButtonAddTransactions />
       {isModalOpen && <ModalAddTransactions />}
-      <Navigation />
-      <RegistrationPage />
-      <LoginPage />
-      <ModalLogout />
-      <span>spa span </span>
     </>
   );
 };

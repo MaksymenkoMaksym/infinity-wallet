@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Logo from 'components/Logo/Logo';
 
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 import logo from '../../assets/images/icons.svg';
 
 import {
@@ -12,16 +12,13 @@ import {
   ExitIcon,
   HeaderTag,
 } from './Header.styled';
-import { logOutUser } from 'redux/auth/authOperation';
+import Modal from '../ModalLogout';
 import { selectUser } from 'redux/auth/authSelectors';
+import { useState } from 'react';
 
 const Header = () => {
   const { username } = useSelector(selectUser);
-  const dispatch = useDispatch();
-
-  const logOut = () => {
-    dispatch(logOutUser());
-  };
+  const [show, setShow] = useState(false);
 
   return (
     <>
@@ -32,16 +29,12 @@ const Header = () => {
         </StyledLink>
         <UserDiv>
           <UserSpan>{username}</UserSpan>
-          <ExitIcon
-            onClick={() => {
-              logOut();
-            }}
-          >
+          <ExitIcon onClick={() => setShow(true)}>
             <use href={logo + `#icon-exit`}></use>
           </ExitIcon>
         </UserDiv>
       </HeaderTag>
-      <Outlet />
+      <Modal onClose={() => setShow(false)} show={show} title="Exit the App?" />
     </>
   );
 };

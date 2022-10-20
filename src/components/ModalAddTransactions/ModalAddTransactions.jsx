@@ -21,24 +21,53 @@ import {
 } from './ModalAddTransactions.styled';
 import Switch from 'react-switch';
 import { Tab } from 'components/MediaWraper/MediaWraper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
+import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
+import { createTransaction } from 'redux/transactions/transactionsOperation';
 
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
   const [isIncome, setIsIncome] = useState(true);
+  const categories = useSelector(selectTransactionCategories);
+
   const initialValues = {
     category: '',
-    type: 'Income',
+    type: 'INCOME',
     sum: '',
     comment: '',
     date: '',
   };
-
-  const handleFormSubmit = values => {
-    console.log(values);
+  const getOptions = () => {
+    return categories
+      .filter(category => category.type === 'EXPENSE')
+      .map(category => {
+        return { value: category.name, label: category.name };
+      });
   };
-
+  const getCategoryId = values => {
+    // console.log(category);
+    if (values.type === 'INCOME') {
+      return categories.find(elem => elem.type === 'INCOME').id;
+    }
+    return categories.find(elem => elem.name === values.category.value).id;
+  };
+  const handleFormSubmit = values => {
+    const categoryId = getCategoryId(values);
+    // console.log(values);
+    // console.log(getCategoryId(values.category));
+    // console.log(categoryId);
+    // console.log(getOptions());
+    const transaction = {
+      transactionDate: values.date,
+      type: values.type,
+      categoryId,
+      comment: values.comment,
+      amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
+    };
+    // console.log(transaction);
+    dispatch(createTransaction(transaction));
+  };
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       // toggleModal();
@@ -47,15 +76,12 @@ const ModalAddTransactions = () => {
     }
   };
 
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
-  // const selectChange = value => {
-  //   console.log(value);
-  //   setFieldValue('category', value.value);
-  // };
+  const options = getOptions();
+  // const options = [
+  //   { value: 'chocolate', label: 'Chocolate' },
+  //   { value: 'strawberry', label: 'Strawberry' },
+  //   { value: 'vanilla', label: 'Vanilla' },
+  // ];
 
   const textColor = () => {
     return isIncome
@@ -85,10 +111,10 @@ const ModalAddTransactions = () => {
                 <SwitchText inputColor={textColor().inc}>Income</SwitchText>
                 <Switch
                   name="type"
-                  value="Income"
-                  checked={values.type === 'Expense'}
+                  value="INCOME"
+                  checked={values.type === 'EXPENSE'}
                   onChange={(checked, event) => {
-                    setFieldValue('type', checked ? 'Expense' : 'Income');
+                    setFieldValue('type', checked ? 'EXPENSE' : 'INCOME');
                     setIsIncome(prev => !prev);
                     setFieldValue('category', checked ? values.category : '');
                     // console.log(values.type);
@@ -129,6 +155,7 @@ const ModalAddTransactions = () => {
                 <StyledSelect
                   value={values.category}
                   classNamePrefix="Select"
+                  required
                   onChange={data => {
                     // console.log(data.value);
                     setFieldValue('category', data);
@@ -137,15 +164,6 @@ const ModalAddTransactions = () => {
                   placeholder="Select category"
                   options={options}
                 />
-                // <Input as="select" name="category" required>
-                //   <option value="">Select a category</option>
-                //   <option value="dog">Dog</option>
-                //   <option value="cat">Cat</option>
-                //   <option value="hamster">Hamster</option>
-                //   <option value="parrot">Parrot</option>
-                //   <option value="spider">Spider</option>
-                //   <option value="goldfish">Goldfish</option>
-                // </Input>
               )}
               <label>
                 <Input type="text" name="sum" placeholder="0.00" required />

@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
@@ -9,13 +11,13 @@ import {
   ModalFooter,
   ModalButton,
 } from './Modal.styled.js';
+import { logOutUser } from 'redux/auth/authOperation.js';
 
 const Modal = ({ show, onClose, title }) => {
+  const dispatch = useDispatch();
+
   const onLogOut = () => {
-    // dispatch(logoutAction());
-    // token.unset();
-    // navigate('/', { replace: true });
-    console.log(111);
+    dispatch(logOutUser());
   };
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const Modal = ({ show, onClose, title }) => {
   }, [onClose]);
 
   return ReactDOM.createPortal(
-    <CSSTransition in={show} unmountOnExit timeout={{ enter: 400, exit: 800 }}>
+    <CSSTransition in={show} unmountOnExit timeout={{ enter: 300, exit: 300 }}>
       <ModalStyled onClick={onClose}>
         <ModalContent onClick={e => e.stopPropagation()}>
           <ModalTitle>{title}</ModalTitle>
