@@ -28,12 +28,12 @@ import { createTransaction } from 'redux/transactions/transactionsOperation';
 
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
-  const [isIncome, setIsIncome] = useState(true);
+  const [isIncome, setIsIncome] = useState(false);
   const categories = useSelector(selectTransactionCategories);
 
   const initialValues = {
     category: '',
-    type: 'INCOME',
+    type: 'EXPENSE',
     sum: '',
     comment: '',
     date: '',
@@ -111,7 +111,7 @@ const ModalAddTransactions = () => {
                 <SwitchText inputColor={textColor().inc}>Income</SwitchText>
                 <Switch
                   name="type"
-                  value="INCOME"
+                  value={values.type}
                   checked={values.type === 'EXPENSE'}
                   onChange={(checked, event) => {
                     setFieldValue('type', checked ? 'EXPENSE' : 'INCOME');
