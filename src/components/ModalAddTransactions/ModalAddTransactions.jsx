@@ -119,7 +119,7 @@ const ModalAddTransactions = () => {
                     setFieldValue('category', checked ? values.category : '');
                     // console.log(values.type);
                   }}
-                  handleDiameter={40}
+                  handleDiameter={44}
                   offColor="#FF6596"
                   onColor="#24CCA7"
                   offHandleColor="#24CCA7"
