@@ -11,7 +11,7 @@ export const ModalStyled = styled.div`
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.3s ease-in-out;
   pointer-events: none;
   z-index: 100;
 
