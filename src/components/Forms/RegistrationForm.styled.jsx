@@ -87,6 +87,14 @@ export const Button = styled.button`
     letter-spacing: 0.1rem;
     font-size: 18px;
     line-height: 1.5;
+    transition: color 250ms linear, box-shadow 250ms linear, border-color 250ms linear;
+    &:hover,
+    &:focus{
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        color: #24CCA7;
+        border-color: #24CCA7;
+    }
+
     @media (min-width: 768px) {
         width: 300px;
   }
@@ -97,4 +105,12 @@ export const ActiveButton = styled(Button)`
     background-color: #24CCA7;
     border: 1px solid #24CCA7;
     margin-bottom: 40px;
+    transition: background-color 250ms linear, box-shadow 250ms linear, border-color 250ms linear;
+    &:hover,
+    &:focus{
+        color: #ffffff;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        background-color: #4A56E2;
+        border-color: #4A56E2;
+    }
 `
