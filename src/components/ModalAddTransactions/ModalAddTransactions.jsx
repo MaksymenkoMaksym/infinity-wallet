@@ -24,6 +24,7 @@ import { Tab } from 'components/MediaWraper/MediaWraper';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
 import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
+import { createTransaction } from 'redux/transactions/transactionsOperation';
 
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
@@ -38,9 +39,11 @@ const ModalAddTransactions = () => {
     date: '',
   };
   const getOptions = () => {
-    return categories.map(category => {
-      return { value: category.name, label: category.name };
-    });
+    return categories
+      .filter(category => category.type === 'EXPENSE')
+      .map(category => {
+        return { value: category.name, label: category.name };
+      });
   };
   const getCategoryId = values => {
     // console.log(category);
@@ -50,18 +53,20 @@ const ModalAddTransactions = () => {
     return categories.find(elem => elem.name === values.category.value).id;
   };
   const handleFormSubmit = values => {
+    const categoryId = getCategoryId(values);
     // console.log(values);
     // console.log(getCategoryId(values.category));
-    const categoryId = getCategoryId(values);
     // console.log(categoryId);
+    // console.log(getOptions());
     const transaction = {
       transactionDate: values.date,
       type: values.type,
       categoryId,
       comment: values.comment,
-      amount: +values.sum,
+      amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
-    console.log(transaction);
+    // console.log(transaction);
+    dispatch(createTransaction(transaction));
   };
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
@@ -159,15 +164,6 @@ const ModalAddTransactions = () => {
                   placeholder="Select category"
                   options={options}
                 />
-                // <Input as="select" name="category" required>
-                //   <option value="">Select a category</option>
-                //   <option value="dog">Dog</option>
-                //   <option value="cat">Cat</option>
-                //   <option value="hamster">Hamster</option>
-                //   <option value="parrot">Parrot</option>
-                //   <option value="spider">Spider</option>
-                //   <option value="goldfish">Goldfish</option>
-                // </Input>
               )}
               <label>
                 <Input type="text" name="sum" placeholder="0.00" required />
