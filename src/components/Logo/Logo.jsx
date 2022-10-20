@@ -6,15 +6,20 @@ import {
 import logo from '../../assets/images/icons.svg';
 export const Logo = () => {
   return (
-    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-    <StyledLink to={'/home'}>
-      <LogoIcon>
-        <use href={logo + `#icon-logo`}></use>
-      </LogoIcon>
-      <LogoText>Wallet</LogoText>
-    </StyledLink>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <StyledLink to={'/'}>
+        <LogoIcon>
+          <use href={logo + `#icon-logo`}></use>
+        </LogoIcon>
+        <LogoText>Wallet</LogoText>
+      </StyledLink>
     </div>
-   
   );
 };
 

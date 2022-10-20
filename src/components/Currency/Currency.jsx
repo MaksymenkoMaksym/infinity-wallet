@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Table,
-  Tbody,
-  Thead,
-  TdName,
-  TdValue,
-} from './Currency.styled';
+import { Container, Table, Thead, TdName, TdValue } from './Currency.styled';
 
 const Currency = () => {
   return (
@@ -20,7 +13,7 @@ const Currency = () => {
           </tr>
         </Thead>
 
-        <Tbody>
+        <tbody>
           <tr>
             <TdName>USD</TdName>
             <TdValue>38.50</TdValue>
@@ -36,7 +29,7 @@ const Currency = () => {
             <TdValue>20.00</TdValue>
             <TdValue>21.00</TdValue>
           </tr>
-        </Tbody>
+        </tbody>
       </Table>
     </Container>
   );
@@ -51,3 +44,41 @@ const Currency = () => {
 // };
 
 export default Currency;
+
+// import React, { useEffect, useState } from 'react';
+// const fetchCurrency = async () => {
+//   try {
+//     const response = await fetch(
+//       'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11'
+//     );
+//     const rates = response.json();
+//     return rates;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+// function Currency() {
+//   const [currency, setCurrency] = useState([]);
+//   const s = useStyles();
+
+//   useEffect(() => {
+//     // (1) определить в области обратного вызова эффекта
+//     const fetch = async () => {
+//       try {
+//         const data = await fetchCurrency();
+//         const sliced = data.slice(0, -1);
+//         setCurrency([...sliced]);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     };
+
+//     const id = setInterval(() => {
+//       fetch(); // <- (3) вызов в интервале обратного вызова
+//     }, 300000);
+
+//     fetch(); // <- (2) вызываем при монтировании
+
+//     return () => clearInterval(id);
+//   }, []);

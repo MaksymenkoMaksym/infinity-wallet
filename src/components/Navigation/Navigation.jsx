@@ -1,22 +1,19 @@
-import { NavLink } from 'react-router-dom';
-
 import {
-  // NavContainer,
   List,
   ListItem,
   TextItem,
   Icon,
+  StyledLink,
 } from './Navigation.styled';
 import sprite from '../../assets/images/icons.svg';
 import { Mob, Tab } from 'components/MediaWraper/MediaWraper';
 
 const Navigation = () => {
   return (
-    // <NavContainer>
     <nav>
       <List className="nav_list">
         <ListItem>
-          <NavLink to="/home">
+          <StyledLink to="/">
             <>
               <Icon>
                 <use href={`${sprite}#icon-home`}></use>
@@ -25,10 +22,10 @@ const Navigation = () => {
             <Tab>
               <TextItem>Home</TextItem>
             </Tab>
-          </NavLink>
+          </StyledLink>
         </ListItem>
         <ListItem>
-          <NavLink to="/diagram">
+          <StyledLink to="/diagram">
             <>
               <Icon>
                 <use href={`${sprite}#icon-timeline`}></use>
@@ -37,21 +34,20 @@ const Navigation = () => {
             <Tab>
               <TextItem>Statistics</TextItem>
             </Tab>
-          </NavLink>
+          </StyledLink>
         </ListItem>
 
-        <ListItem className="nav_link_currency">
+        <ListItem>
           <Mob>
-            <NavLink to="/currency">
+            <StyledLink to="/currency">
               <Icon>
                 <use href={`${sprite}#icon-currency`}></use>
               </Icon>
-            </NavLink>
+            </StyledLink>
           </Mob>
         </ListItem>
       </List>
     </nav>
-    // </NavContainer>
   );
 };
 
