@@ -98,21 +98,32 @@ const userInitialState = {
   transactionCategories,
   isLoading: false,
   error: null,
+  isModalAddTransactionOpen: false,
 };
+
 const pendingHandlerAuth = (state, action) => {
   state.isLoading = true;
   state.error = null;
 };
+
 const rejectedHandler = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
+
 const transactionSlice = createSlice({
   name: 'transaction',
 
   initialState: userInitialState,
 
-  reducers: {},
+  reducers: {
+    openModal(state, action) {
+      state.isModalAddTransactionOpen = true;
+    },
+    closeModal(state, action) {
+      state.isModalAddTransactionOpen = false;
+    },
+  },
   extraReducers: {
     [createTransaction.pending]: pendingHandlerAuth,
     [getAllTransactions.pending]: pendingHandlerAuth,
@@ -160,6 +171,7 @@ const transactionSlice = createSlice({
       state.isLoading = false;
       state.transactionsForPeriod = action.payload;
     },
+
     [getTransactionCategories.fulfilled](state, action) {
       state.error = null;
       state.isLoading = false;
@@ -168,4 +180,5 @@ const transactionSlice = createSlice({
   },
 });
 
+export const { openModal, closeModal } = transactionSlice.actions;
 export const transactionReducer = transactionSlice.reducer;

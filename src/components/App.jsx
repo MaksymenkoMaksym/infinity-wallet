@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from './Header';
@@ -31,8 +31,9 @@ export const App = () => {
           <Route path="/diagram" element={<DiagramPage />} />
           <Route path="/currency" element={<CurrencyPage />} />
           <Route path="/test" element={<TestCom />} />
-          <Route path="*" element={<p>Not found</p>} />
+          <Route path="*" element={<Navigate to={'/home'} />} />
         </Route>
+        <Route path="*" element={<Navigate to={'/home'} />} />
       </Routes>
     </Container>
   );
