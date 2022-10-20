@@ -1,5 +1,8 @@
+import { useSelector } from 'react-redux';
+
+import { selectTransactions } from 'redux/transactions/transactionsSelectors';
 import { Li, DivItem, PName, PValue } from './DashboardPage.styled';
-import { TransactionSerializer } from './TransactionSerializer';
+// import { TransactionSerializer } from './TransactionSerializer';
 
 const titles = [
   { name: 'Date', value: 'transactionDate' },
@@ -11,6 +14,8 @@ const titles = [
 ];
 
 const MobileDashboard = () => {
+  const TransactionSerializer = useSelector(selectTransactions);
+
   return (
     <>
       {TransactionSerializer.map(item => {
