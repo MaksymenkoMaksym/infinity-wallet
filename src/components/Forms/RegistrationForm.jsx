@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 
 import { registerUser } from 'redux/auth/authOperation';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import svgIcon from '../../assets/images/icons.svg';
 import {
   Input,
@@ -13,7 +13,7 @@ import {
   IconSvg,
   Button,
   ActiveButton,
-  StyledForm,
+  StyledForm, ErrorBox
 } from './RegistrationForm.styled';
 
 export const RegistrationForm = () => {
@@ -27,28 +27,27 @@ export const RegistrationForm = () => {
     firstName: '',
   };
 
-  let schema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.number().required().positive().integer(),
-    confirmPassword: yup.number().required().positive().integer(),
-    firstName: yup.string().required(),
+  let schema = Yup.object().shape({
+    email: Yup.string().email("incorrect email").required("missing email"),
+    password: Yup.string()
+      .min(6, 'password should be 8 chars minimum').max(12, 'password should be 12 chars maximum')
+      .required("missing password"),
+    firstName: Yup.string()
+    .min(1).max(12, 'first name should be 12 chars maximum.')
+    .required("missing first name")
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    if (values.password !== values.confirmPassword) {
+  const handleSubmit = ({firstName: username, email, password, confirmPassword}, { resetForm }) => {
+    if (password !== confirmPassword) {
       return alert('password !== confirmPassword');
     }
-    const user = {
-      username: values.firstName,
-      email: values.email,
-      password: values.password,
-    };
-    dispatch(registerUser(user));
+    dispatch(registerUser({username, email, password}));
     resetForm();
   };
   const navi = () => {
     navigate('/login');
   };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -57,11 +56,12 @@ export const RegistrationForm = () => {
     >
       <StyledForm style={{ marginTop: '60px' }}>
         <Label name="email">
-          <Input type="email" name="email" placeholder=" " />
+          <Input type="text" name="email" placeholder=" " />
           <IconSvg>
             <use href={svgIcon + `#icon-email`}></use>
           </IconSvg>
           <Placeholder>E-mail</Placeholder>
+          <ErrorMessage name="email" component={ErrorBox}/>
         </Label>
 
         <Label name="password">
@@ -70,6 +70,7 @@ export const RegistrationForm = () => {
             <use href={svgIcon + `#icon-lock`}></use>
           </IconSvg>
           <Placeholder>Password</Placeholder>
+          <ErrorMessage name="password" component={ErrorBox}/>
         </Label>
         <Label name="confirmPassword">
           <Input type="password" name="confirmPassword" placeholder=" " />
@@ -77,6 +78,7 @@ export const RegistrationForm = () => {
             <use href={svgIcon + `#icon-lock`}></use>
           </IconSvg>
           <Placeholder>Confirm password</Placeholder>
+          <ErrorMessage name="password" component={ErrorBox}/>
         </Label>
         <Label name="firstName">
           <Input type="text" name="firstName" placeholder=" " />
@@ -84,6 +86,7 @@ export const RegistrationForm = () => {
             <use href={svgIcon + `#icon-account_box`}></use>
           </IconSvg>
           <Placeholder>First name</Placeholder>
+          <ErrorMessage name="firstName" component={ErrorBox}/>
         </Label>
         <ActiveButton type="submit">REGISTER</ActiveButton>
         <Button

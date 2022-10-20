@@ -7,46 +7,56 @@ const UlBoard = styled.ul`
   margin-right: auto;
   background: transparent;
 `;
-const LiTitleMob = styled.li`
+
+//////////////////////////////////for mobile
+const PName = styled.p`
+  margin: 0;
   font-weight: ${props => props.theme.fontWeights.bold};
   font-size: ${props => props.theme.fontSizes.m};
   line-height: ${props => props.theme.lineHeights.main};
   @media (min-width: 768px) {
-    display: none;
+    &:nth-child(1) {
+      width: 60px;
+    }
+    &:nth-child(2) {
+      width: 40px;
+      margin-left: 45px;
+      text-align: center;
+    }
+    &:nth-child(3) {
+      width: 70px;
+      margin-left: 40px;
+    }
+    &:nth-child(4) {
+      width: 120px;
+      margin-left: 68px;
+    }
+    &:nth-child(5) {
+      width: 40px;
+      margin-left: 30px;
+      text-align: right;
+    }
+    &:nth-child(6) {
+      width: 120px;
+      // margin-left: 60px;
+      text-align: right;
+    }
   }
 `;
-const Li = styled.li`
+const PValue = styled.p`
+  margin: 0;
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: ${props => props.theme.fontSizes.s};
   line-height: ${props => props.theme.lineHeights.main};
+  color: ${props =>
+    props.transaction === 'INCOME'
+      ? props.theme.colors.green
+      : props.transaction === 'EXPENSE'
+      ? props.theme.colors.pink
+      : props.theme.colors.black};
 `;
-const UlTitle = styled.ul`
-  display: none;
 
-  @media (min-width: 768px) {
-    display: flex;
-    list-style: none;
-    flex-direction: row;
-    justify-content: space-between;
-
-    width: 704px;
-    height: 58px;
-
-    background: ${props => props.theme.colors.white};
-    border-radius: ${props => props.theme.radii.lg};
-    padding: 0px;
-    align-items: center;
-    font-weight: ${props => props.theme.fontWeights.bold};
-    font-size: ${props => props.theme.fontSizes.m};
-    line-height: ${props => props.theme.lineHeights.main};
-  }
-`;
-const LiTitle = styled.li`
-  display: flex;
-  width: 100px;
-  justify-content: center;
-`;
-const Ul = styled.ul`
+const DivItem = styled.div`
   margin: 0;
   padding: 0;
   display: flex;
@@ -76,47 +86,99 @@ const Ul = styled.ul`
     justify-content: center;
   }
 `;
-const Div = styled.div`
-  font-family: ${props => props.theme.fonts.main};
-  margin-left: auto;
-  margin-right: auto;
-  //   padding-left: 20px;
-  //   padding-right: 20px;
+const Li = styled.li`
+  overflow: hidden;
+  border-radius: ${props => props.theme.radii.sm};
+  padding: 0;
+  margin-bottom: 8px;
   min-width: 280px;
-  max-width: 360px;
-  @media (min-width: 768px) {
-    min-width: 704px;
-    max-width: 715px;
+  background: ${props => props.theme.colors.white};
+    }
+`;
+
+////////////////////////////////////for laptop
+const LiTablet = styled.li`
+  list-style: none;
+`;
+
+const UlTitle = styled.div`
+  display: flex;
+
+  flex-direction: row;
+  justify-content: space-between;
+
+  background: ${props => props.theme.colors.white};
+  border-radius: ${props => props.theme.radii.lg};
+  padding: 15px 20px;
+  align-items: center;
+  font-weight: ${props => props.theme.fontWeights.bold};
+  font-size: ${props => props.theme.fontSizes.m};
+  line-height: ${props => props.theme.lineHeights.main};
+`;
+const DivTablet = styled.div`
+
+ display: flex;
+  justify-content: space-between;
+    align-items: center;
+    
+   padding: 15px 20px;
+  &:not(:last-child){
+      border-bottom: 1px solid #dcdcdf;
+      box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+
+`;
+
+const PList = styled.p`
+  margin: 0;
+  padding: 0;
+  font-weight: ${props => props.theme.fontWeights.normal};
+  font-size: ${props => props.theme.fontSizes.s};
+  line-height: ${props => props.theme.lineHeights.main};
+  &:nth-child(1) {
+    width: 60px;
+  }
+  &:nth-child(2) {
+    width: 40px;
+    margin-left: 45px;
+    text-align: center;
+  }
+  &:nth-child(3) {
+    width: 70px;
+    margin-left: 40px;
+  }
+  &:nth-child(4) {
+    width: 120px;
+    margin-left: 68px;
+  }
+  &:nth-child(5) {
+    width: 40px;
+    margin-left: 30px;
+    text-align: right;
+  }
+  &:nth-child(6) {
+    width: 120px;
+    // margin-left: 60px;
+    text-align: right;
   }
 `;
-const Sum = styled.li`
+
+const Sum = styled.span`
+  margin: 0;
   color: ${props =>
     props.transaction === 'INCOME'
       ? props.theme.colors.green
       : props.theme.colors.pink};
 `;
 
-const UlItems = styled.ul`
-overflow: hidden;
-border-radius: ${props => props.theme.radii.sm};
- padding: 0;
-   margin-bottom: 8px;
-  min-width: 280px;
-   background: transparent;
-  @media (min-width: 768px) {
-   border-radius: ${props => props.theme.radii.none};
-    display: flex;
-    list-style: none;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 704px;
-    margin-bottom: 0;
-    // height: 58px;
-    padding: 15px 0px;
-&:not(:last-child){
-    border-bottom: 1px solid #dcdcdf;
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
-  }
-`;
-
-export { LiTitleMob, Li, LiTitle, Div, Ul, Sum, UlTitle, UlItems, UlBoard };
+export {
+  LiTablet,
+  PName,
+  Li,
+  DivTablet,
+  PValue,
+  DivItem,
+  Sum,
+  PList,
+  UlTitle,
+  UlBoard,
+};

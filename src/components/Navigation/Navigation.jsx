@@ -13,7 +13,7 @@ const Navigation = () => {
     <nav>
       <List className="nav_list">
         <ListItem>
-          <StyledLink to="/">
+          <StyledLink to="/" end>
             <>
               <Icon>
                 <use href={`${sprite}#icon-home`}></use>

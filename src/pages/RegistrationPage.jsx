@@ -1,6 +1,6 @@
 import {RegistrationForm} from '../components/Forms';
-import { Section, Body} from './common.styled';
-import Logo from 'components/Logo/Logo';
+import { Body} from './common.styled';
+
 import { TitleThumb } from 'components/TitleThumb/TitleThumb';
 import { useMediaQuery } from 'react-responsive';
 import { BackdropBox } from 'components/Backdrop/BackDrop';
@@ -20,10 +20,7 @@ const icon = "#frame-2";
     <Body >
         {isTabletOrBigScreen && <TitleThumb icon={icon}/>}
         {isBigScreen && <BackdropBox Form={RegistrationForm}/>}
-        {isTabletOrMobile && <Section>
-                <Logo/>
-                <RegistrationForm/>
-                </Section>}   
+        {isTabletOrMobile && <BackdropBox Form={RegistrationForm}/>}   
 
     </Body>
     
