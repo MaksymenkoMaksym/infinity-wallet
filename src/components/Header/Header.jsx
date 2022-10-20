@@ -1,5 +1,6 @@
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from 'components/Logo/Logo';
-import PropTypes from 'prop-types';
+
 import { Outlet } from 'react-router-dom';
 import logo from '../../assets/images/icons.svg';
 
@@ -11,8 +12,17 @@ import {
   ExitIcon,
   HeaderTag,
 } from './Header.styled';
+import { logOutUser } from 'redux/auth/authOperation';
+import { selectUser } from 'redux/auth/authSelectors';
 
-const Header = ({ name = 'Максим Максименко' }) => {
+const Header = () => {
+  const { username } = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  const logOut = () => {
+    dispatch(logOutUser());
+  };
+
   return (
     <>
       <HeaderTag>
@@ -21,8 +31,12 @@ const Header = ({ name = 'Максим Максименко' }) => {
           <LogoText>TEST</LogoText>
         </StyledLink>
         <UserDiv>
-          <UserSpan>{name}</UserSpan>
-          <ExitIcon>
+          <UserSpan>{username}</UserSpan>
+          <ExitIcon
+            onClick={() => {
+              logOut();
+            }}
+          >
             <use href={logo + `#icon-exit`}></use>
           </ExitIcon>
         </UserDiv>
@@ -30,10 +44,6 @@ const Header = ({ name = 'Максим Максименко' }) => {
       <Outlet />
     </>
   );
-};
-
-Header.propTypes = {
-  name: PropTypes.string,
 };
 
 export default Header;

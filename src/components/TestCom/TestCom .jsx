@@ -4,16 +4,18 @@ import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransa
 import Navigation from 'components/Navigation/Navigation';
 
 import { RegistrationPage, LoginPage } from '../../pages';
-import TestModal from 'components/TestModal';
+import ModalLogout from 'components/ModalLogout';
+import DashboardPage from '../DashboardPage';
 const TestCom = () => {
   return (
     <>
+      <DashboardPage />
       <ButtonAddTransactions />
       <ModalAddTransactions />
       <Navigation />
       <RegistrationPage />
       <LoginPage />
-      <TestModal />
+      <ModalLogout />
       <span>spa span </span>
     </>
   );

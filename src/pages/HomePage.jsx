@@ -3,10 +3,9 @@ import Currency from 'components/Currency/Currency';
 
 import Navigation from 'components/Navigation/Navigation';
 import styled from 'styled-components';
-import MediaQuery from 'react-responsive';
 import DashboardPage from 'components/DashboardPage';
 
-import { Tab, Desc } from 'components/MediaWraper/MediaWraper';
+import { Tab } from 'components/MediaWraper/MediaWraper';
 
 // import MediaQuery from 'react-responsive';
 // import { useMediaQuery } from 'react-responsive';
