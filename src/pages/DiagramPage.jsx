@@ -8,7 +8,7 @@ const DiagramPage = () => {
     <>
       <Navigation />
       <h1>Статистика</h1>
-      <Chart />
+       <Chart />
       <Table />
     </>
   );

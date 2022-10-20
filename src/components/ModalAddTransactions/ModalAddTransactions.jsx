@@ -1,5 +1,6 @@
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import { useState } from 'react';
+// import Select from 'react-select';
 import sprite from '../../assets/images/icons.svg';
 import {
   AddForm,
@@ -16,10 +17,15 @@ import {
   Comment,
   CloseIcon,
   CloseBox,
+  StyledSelect,
 } from './ModalAddTransactions.styled';
 import Switch from 'react-switch';
+import { Tab } from 'components/MediaWraper/MediaWraper';
+import { useDispatch } from 'react-redux';
+import { closeModal } from 'redux/transactions/transactionsSlice';
 
 const ModalAddTransactions = () => {
+  const dispatch = useDispatch();
   const [isIncome, setIsIncome] = useState(true);
   const initialValues = {
     category: '',
@@ -32,29 +38,48 @@ const ModalAddTransactions = () => {
   const handleFormSubmit = values => {
     console.log(values);
   };
-  const handleCloseModal = e => {
+
+  const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       // toggleModal();
       // setIsOpen(false);
-      console.log('close on backdrop');
+      dispatch(closeModal());
     }
   };
+
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ];
+  // const selectChange = value => {
+  //   console.log(value);
+  //   setFieldValue('category', value.value);
+  // };
+
   const textColor = () => {
     return isIncome
       ? { inc: '#24CCA7', exp: '#E0E0E0' }
       : { inc: '#E0E0E0', exp: '#FF6596' };
   };
+
   return (
-    <Overlay onClick={handleCloseModal}>
+    <Overlay onClick={handleBackdropClick}>
       <Modal>
-        <CloseBox>
-          <CloseIcon>
-            <use href={`${sprite}#icon-close`}></use>
-          </CloseIcon>
-        </CloseBox>
+        <Tab>
+          <CloseBox
+            onClick={() => {
+              dispatch(closeModal());
+            }}
+          >
+            <CloseIcon>
+              <use href={`${sprite}#icon-close`}></use>
+            </CloseIcon>
+          </CloseBox>
+        </Tab>
         <Title>Add transaction</Title>
         <Formik initialValues={initialValues} onSubmit={handleFormSubmit}>
-          {({ isSubmitting, values, setFieldValue }) => (
+          {({ values, setFieldValue }) => (
             <AddForm>
               <SwitchLabel htmlFor="small-radius-switch">
                 <SwitchText inputColor={textColor().inc}>Income</SwitchText>
@@ -101,15 +126,26 @@ const ModalAddTransactions = () => {
                 <SwitchText inputColor={textColor().exp}>Expense</SwitchText>
               </SwitchLabel>
               {!isIncome && (
-                <Input as="select" name="category" required>
-                  <option value="">Select a category</option>
-                  <option value="dog">Dog</option>
-                  <option value="cat">Cat</option>
-                  <option value="hamster">Hamster</option>
-                  <option value="parrot">Parrot</option>
-                  <option value="spider">Spider</option>
-                  <option value="goldfish">Goldfish</option>
-                </Input>
+                <StyledSelect
+                  value={values.category}
+                  classNamePrefix="Select"
+                  onChange={data => {
+                    // console.log(data.value);
+                    setFieldValue('category', data);
+                    console.log(values);
+                  }}
+                  placeholder="Select category"
+                  options={options}
+                />
+                // <Input as="select" name="category" required>
+                //   <option value="">Select a category</option>
+                //   <option value="dog">Dog</option>
+                //   <option value="cat">Cat</option>
+                //   <option value="hamster">Hamster</option>
+                //   <option value="parrot">Parrot</option>
+                //   <option value="spider">Spider</option>
+                //   <option value="goldfish">Goldfish</option>
+                // </Input>
               )}
               <label>
                 <Input type="text" name="sum" placeholder="0.00" required />
@@ -122,7 +158,12 @@ const ModalAddTransactions = () => {
                 <Input type="text" name="comment" />
               </label>
               <Button type="submit">ADD</Button>
-              <CancelButton type="button" onClick={() => {}}>
+              <CancelButton
+                type="button"
+                onClick={() => {
+                  dispatch(closeModal());
+                }}
+              >
                 CANCEL
               </CancelButton>
             </AddForm>

@@ -1,5 +1,6 @@
 import { Field, Form } from 'formik';
 import styled from 'styled-components';
+import Select from 'react-select';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -128,4 +129,46 @@ export const CloseIcon = styled.svg`
   width: 16px;
   height: 16px;
   fill: ${p => p.theme.colors.black};
+`;
+
+export const StyledSelect = styled(Select)`
+  .Select__control {
+    height: 40px;
+    width: 280px;
+    /* border: 1px solid #a1a1a1; */
+    border: none;
+    border-bottom: 1px solid grey;
+    border-radius: 0px;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    color: #0080ff;
+  }
+
+  .Select__control:hover {
+    border-color: #a1a1a1;
+  }
+
+  .Select__control--is-focused {
+    box-shadow: 0 0 0 1px black;
+    outline: none;
+  }
+
+  .Select__indicator-separator {
+    display: none;
+  }
+  /* .Select__input-container {
+    color: #ff0000;
+  } */
+  .Select__single-value {
+    color: #ff0000;
+  }
+  .Select__menu {
+    color: #0080ff;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  .Select__value-container {
+    color: #ff0000;
+    background-color: #0080ff;
+  }
 `;
