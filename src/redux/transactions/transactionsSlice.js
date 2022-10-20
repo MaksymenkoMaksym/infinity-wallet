@@ -168,9 +168,9 @@ const transactionSlice = createSlice({
     },
 
     [getTransactionsForPeriod.fulfilled](state, action) {
+      state.transactionsForPeriod = action.payload;
       state.error = null;
       state.isLoading = false;
-      state.transactionsForPeriod = action.payload;
     },
 
     [getTransactionCategories.fulfilled](state, action) {

@@ -9,7 +9,9 @@ import {
   UserSpan,
   StyledLink,
   LogoText,
+  UserBtn,
   ExitIcon,
+  ExitText,
   HeaderTag,
 } from './Header.styled';
 import Modal from '../ModalLogout';
@@ -29,9 +31,12 @@ const Header = () => {
         </StyledLink>
         <UserDiv>
           <UserSpan>{username}</UserSpan>
-          <ExitIcon onClick={() => setShow(true)}>
-            <use href={logo + `#icon-exit`}></use>
-          </ExitIcon>
+          <UserBtn onClick={() => setShow(true)}>
+            <ExitIcon>
+              <use href={logo + `#icon-exit`}></use>
+            </ExitIcon>
+            <ExitText>Exit</ExitText>
+          </UserBtn>
         </UserDiv>
       </HeaderTag>
       <Modal onClose={() => setShow(false)} show={show} title="Exit the App?" />
