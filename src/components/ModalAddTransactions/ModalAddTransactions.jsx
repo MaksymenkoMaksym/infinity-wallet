@@ -21,15 +21,18 @@ import {
 } from './ModalAddTransactions.styled';
 import Switch from 'react-switch';
 import { Tab } from 'components/MediaWraper/MediaWraper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
+import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
 
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
   const [isIncome, setIsIncome] = useState(true);
+  const categories = useSelector(selectTransactionCategories);
+
   const initialValues = {
     category: '',
-    type: 'Income',
+    type: 'INCOME',
     sum: '',
     comment: '',
     date: '',
@@ -37,6 +40,15 @@ const ModalAddTransactions = () => {
 
   const handleFormSubmit = values => {
     console.log(values);
+    console.log(categories);
+    const transaction = {
+      transactionDate: values.date,
+      type: values.type,
+      categoryId: 'string',
+      comment: values.comment,
+      amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
+    };
+    console.log(transaction);
   };
 
   const handleBackdropClick = e => {
@@ -52,10 +64,6 @@ const ModalAddTransactions = () => {
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' },
   ];
-  // const selectChange = value => {
-  //   console.log(value);
-  //   setFieldValue('category', value.value);
-  // };
 
   const textColor = () => {
     return isIncome
@@ -85,10 +93,10 @@ const ModalAddTransactions = () => {
                 <SwitchText inputColor={textColor().inc}>Income</SwitchText>
                 <Switch
                   name="type"
-                  value="Income"
-                  checked={values.type === 'Expense'}
+                  value="INCOME"
+                  checked={values.type === 'EXPENSE'}
                   onChange={(checked, event) => {
-                    setFieldValue('type', checked ? 'Expense' : 'Income');
+                    setFieldValue('type', checked ? 'EXPENSE' : 'INCOME');
                     setIsIncome(prev => !prev);
                     setFieldValue('category', checked ? values.category : '');
                     // console.log(values.type);
