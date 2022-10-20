@@ -46,6 +46,10 @@ export const StyledLink = styled(NavLink)`
   color: inherit;
   fill: #6e78e8;
 
+  &:hover,
+  &:focus {
+    transform: scale(1.1, 1.1);
+  }
   &.active {
     fill: #4a56e2;
     font-family: ${props => props.theme.fonts.secondary};
