@@ -1,5 +1,4 @@
 import {
-  // NavContainer,
   List,
   ListItem,
   TextItem,
@@ -11,7 +10,6 @@ import { Mob, Tab } from 'components/MediaWraper/MediaWraper';
 
 const Navigation = () => {
   return (
-    // <NavContainer>
     <nav>
       <List className="nav_list">
         <ListItem>
@@ -50,7 +48,6 @@ const Navigation = () => {
         </ListItem>
       </List>
     </nav>
-    // </NavContainer>
   );
 };
 
