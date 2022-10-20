@@ -1,11 +1,10 @@
+import SelectButton from 'components/SelectBtn/SelectBtn';
+import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
 import { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import select from '../../assets/images/icons.svg';
 
 import {
   ColorSpan,
-  IconBtn,
   Item,
   ListUl,
   ParagraphHead,
@@ -15,14 +14,10 @@ import {
   TableHead,
   TotalDiv,
   WraperDiv,
-  SelectBtn,
-  SelectText,
+  WraperSelect,
 } from './Table.styled';
 
 const Table = () => {
-  //   const [startYers, setStartYers] = useState(new Date());
-  const [startDate, setStartDate] = useState(new Date());
-  const [isOpen, setIsOpen] = useState(false);
   const [diagram] = useState([
     {
       name: 'Основные расходы',
@@ -76,64 +71,13 @@ const Table = () => {
     totalDiagram += diagram[i].value;
   }
 
-  const handleChange = e => {
-    setIsOpen(!isOpen);
-    setStartDate(e);
-  };
-  const handleClick = e => {
-    e.preventDefault();
-    setIsOpen(!isOpen);
-  };
-
-  function timeConverter(UNIX_timestamp) {
-    const a = new Date(UNIX_timestamp * 1000);
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    // const year = a.getFullYear();
-    const month = months[a.getMonth()];
-
-    return month;
-  }
-
   return (
     <>
       <WraperDiv>
-        <SelectBtn>
-          <SelectText>{timeConverter(startDate)}</SelectText>
-          {isOpen && (
-            <DatePicker
-              selected={startDate}
-              onChange={handleChange}
-              // showYearPicker
-              inline
-              dateFormat="MM/yyyy"
-              showMonthYearPicker
-            />
-          )}
-          <IconBtn onClick={handleClick}>
-            <use href={select + `#icon-select`} />
-          </IconBtn>
-        </SelectBtn>
-        <SelectBtn>
-          <SelectText>Год</SelectText>
-
-          <IconBtn onClick={handleClick}>
-            <use href={select + `#icon-select`} />
-          </IconBtn>
-        </SelectBtn>
-
+        <WraperSelect>
+          <SelectButtonMonth />
+          <SelectButton />
+        </WraperSelect>
         <TableHead>
           <ParagraphHead>Категория</ParagraphHead>
           <ParagraphHead>Сумма</ParagraphHead>
@@ -141,7 +85,7 @@ const Table = () => {
         <ListUl>
           {diagram.map(item => {
             return (
-              <Item>
+              <Item key={item.name}>
                 <ColorSpan style={{ background: item.color }}></ColorSpan>
                 <ParagraphText>{item.name}</ParagraphText>
                 <ParagraphNumber>{item.value.toFixed(2)}</ParagraphNumber>
