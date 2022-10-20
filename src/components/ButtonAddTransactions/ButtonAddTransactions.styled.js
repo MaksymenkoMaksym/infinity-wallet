@@ -12,6 +12,7 @@ export const AddBtn = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
+  z-index: 50;
   @media screen and (min-width: 768px) {
     right: 40px;
     bottom: 40px;

@@ -90,6 +90,7 @@ const ColorSpan = styled.span`
   border-radius: 2px;
   margin-right: 16px;
   margin-left: 12px;
+  background: ${props => props.theme.colors.diagram[props.index]};
   ${props => props.theme.breakpoints.tab} {
     margin-left: ${props => props.theme.space[2]}px;
   }

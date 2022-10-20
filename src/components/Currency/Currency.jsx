@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Table,
-  Tbody,
-  Thead,
-  TdName,
-  TdValue,
-} from './Currency.styled';
+import { Container, Table, Thead, TdName, TdValue } from './Currency.styled';
 
 const Currency = () => {
   return (
