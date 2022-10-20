@@ -9,10 +9,11 @@ import {
   Box,
 } from './SelectBtn.styled';
 
-export default function SelectButton() {
+export default function SelectButton({ hendelSelect }) {
   const [startDate, setStartDate] = useState(new Date());
   const [isOpenYear, setIsOpenYear] = useState(false);
 
+  hendelSelect(timeConverter(startDate));
   const handleChangeYear = e => {
     console.log(e);
     setIsOpenYear(!isOpenYear);
