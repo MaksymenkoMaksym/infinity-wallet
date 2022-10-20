@@ -1,4 +1,6 @@
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { Formik } from 'formik';
 
 import { registerUser } from 'redux/auth/authOperation';
@@ -16,6 +18,8 @@ import {
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const initialValues = {
     email: '',
     password: '',
@@ -41,6 +45,9 @@ export const RegistrationForm = () => {
     };
     dispatch(registerUser(user));
     resetForm();
+  };
+  const navi = () => {
+    navigate('/login');
   };
   return (
     <Formik
@@ -79,7 +86,14 @@ export const RegistrationForm = () => {
           <Placeholder>First name</Placeholder>
         </Label>
         <ActiveButton type="submit">REGISTER</ActiveButton>
-        <Button type="submit">LOG IN</Button>
+        <Button
+          type="button"
+          onClick={() => {
+            navi();
+          }}
+        >
+          LOG IN
+        </Button>
       </StyledForm>
     </Formik>
   );
