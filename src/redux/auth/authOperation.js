@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://wallet.goit.ua/';
 
@@ -49,7 +50,9 @@ export const logOutUser = createAsyncThunk(
       // console.log('logOutUser', response);
       return response.data;
     } catch (error) {
+      toast.error('Something went wrong :(');
       thunkApi.rejectWithValue(error);
+      // console.log(error);
     }
   }
 );

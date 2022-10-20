@@ -4,6 +4,7 @@ import { Doughnut } from 'react-chartjs-2';
 import styled from 'styled-components';
 import { theme } from '../../utility/theme';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { selectTransactionsForPeriod } from 'redux/transactions/transactionsSelectors';
 
 const Div = styled.div`
@@ -18,35 +19,17 @@ const Div = styled.div`
   }
 `;
 
-const Chart = () => {
+const Chart = ({ dataTransactions }) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
+  const { periodTotal } = useSelector(selectTransactionsForPeriod);
 
-  const { categoriesSummary: transactions, periodTotal } = useSelector(
-    selectTransactionsForPeriod
-  );
-  console.log(useSelector(selectTransactionsForPeriod));
   const data = {
-    labels: transactions.map(item => item.name),
+    labels: dataTransactions.map(item => item.name),
 
     datasets: [
       {
-        data: transactions?.map(item => item.total),
-        backgroundColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-        ],
-        // borderColor: [
-        //   'rgba(255, 99, 132, 1)',
-        //   'rgba(54, 162, 235, 1)',
-        //   'rgba(255, 206, 86, 1)',
-        //   'rgba(75, 192, 192, 1)',
-        //   'rgba(153, 102, 255, 1)',
-        //   'rgba(255, 159, 64, 1)',
-        // ],
+        data: dataTransactions.map(item => item.value),
+        backgroundColor: dataTransactions.map(item => item.color),
         borderWidth: 1,
         hoverOffset: 10,
         cutout: '70%',
@@ -55,7 +38,6 @@ const Chart = () => {
   };
 
   const options = {
-    //responsive: false,
     plugins: {
       legend: {
         display: false,
@@ -99,6 +81,16 @@ const Chart = () => {
       />
     </Div>
   );
+};
+
+Chart.propTypes = {
+  dataTransactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      color: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired,
+    })
+  ),
 };
 
 export default Chart;

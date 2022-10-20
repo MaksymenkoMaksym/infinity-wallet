@@ -3,7 +3,6 @@ import SelectButton from 'components/SelectBtn/SelectBtn';
 import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
 import { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import useTransaction from 'utility/diagram';
 
 import {
   ColorSpan,
@@ -20,7 +19,6 @@ import {
 } from './Table.styled';
 
 const Table = () => {
-  // console.log(useTransaction());
   const [diagram] = useState([
     {
       name: 'Основные расходы',
@@ -76,7 +74,7 @@ const Table = () => {
 
   return (
     <>
-      <Chart />
+      <Chart dataTransactions={diagram} />
       <WraperDiv>
         <WraperSelect>
           <SelectButtonMonth />

@@ -8,7 +8,6 @@ import React from 'react';
 import { getTransactionsForPeriod } from 'redux/transactions/transactionsOperation';
 import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelectors';
 import Loader from 'components/Loader';
-import { selectIsLoading } from 'redux/auth/authSelectors';
 
 const DiagramPage = () => {
   const dispatch = useDispatch();
