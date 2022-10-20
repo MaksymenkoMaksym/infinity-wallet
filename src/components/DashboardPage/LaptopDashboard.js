@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import DatePicker from 'react-datepicker';
 
 import {
   Sum,
@@ -8,13 +9,19 @@ import {
   LiTablet,
   PName,
 } from './DashboardPage.styled';
-import { TransactionSerializer } from './TransactionSerializer';
-import { selectTransactions } from '../../redux/transactions/transactionsSelectors';
+// import { TransactionSerializer } from './TransactionSerializer';
+import {
+  selectTransactions,
+  selectTransactionCategories,
+} from '../../redux/transactions/transactionsSelectors';
+
 const LaptopDashboard = () => {
   const transactions = useSelector(selectTransactions);
-  const dispatch = useDispatch();
+  const categories = useSelector(selectTransactionCategories);
+  //   const dispatch = useDispatch();
 
   console.log(transactions);
+
   return (
     <>
       <LiTablet>
@@ -26,15 +33,27 @@ const LaptopDashboard = () => {
           <PName>Sum</PName>
           <PName>Balance</PName>
         </UlTitle>
-        {TransactionSerializer.map(item => {
+        {transactions.map(item => {
           return (
             <DivTablet key={item.id}>
-              <PList>{item.transactionDate}</PList>
+              <PList>
+                {/* <DatePicker
+                  //   selected={new Date()}
+                  dateFormat="dd/MM/yyyy"
+                  value={item.transactionDate}
+                /> */}
+                {item.transactionDate}
+              </PList>
               <PList>{item.type === 'INCOME' ? '+' : '-'}</PList>
-              <PList>{item.categoryId}</PList>
+
+              <PList>
+                {categories.map(cat => cat.id === item.categoryId && cat.name)}
+              </PList>
               <PList>{item.comment}</PList>
               <PList>
-                <Sum transaction={item.type}>{item.amount}</Sum>
+                <Sum transaction={item.type}>
+                  {item.amount < 0 ? item.amount * -1 : item.amount}
+                </Sum>
               </PList>
               <PList>{item.balanceAfter}</PList>
             </DivTablet>
@@ -45,3 +64,4 @@ const LaptopDashboard = () => {
   );
 };
 export default LaptopDashboard;
+// {format(startDate, "dd-MM-yyyy")}
