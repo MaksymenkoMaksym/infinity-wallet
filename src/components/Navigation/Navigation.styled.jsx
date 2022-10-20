@@ -57,7 +57,7 @@ export const StyledLink = styled(NavLink)`
   &.active {
     fill: #4a56e2;
     // box-shadow: 0px 0px 49px 0px rgba(74,86,226,1);
-    background: #4a56e2
+    background: #4a56e2;
     font-family: ${props => props.theme.fonts.secondary};
     // font-weight: 700;
     font-weight: ${props => props.theme.fontWeights.bold};
