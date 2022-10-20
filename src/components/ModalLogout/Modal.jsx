@@ -32,7 +32,7 @@ const Modal = ({ show, onClose, title }) => {
   }, [onClose]);
 
   return ReactDOM.createPortal(
-    <CSSTransition in={show} unmountOnExit timeout={{ enter: 400, exit: 800 }}>
+    <CSSTransition in={show} unmountOnExit timeout={{ enter: 300, exit: 300 }}>
       <ModalStyled onClick={onClose}>
         <ModalContent onClick={e => e.stopPropagation()}>
           <ModalTitle>{title}</ModalTitle>
