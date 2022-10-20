@@ -37,20 +37,32 @@ const ModalAddTransactions = () => {
     comment: '',
     date: '',
   };
-
+  const getOptions = () => {
+    return categories.map(category => {
+      return { value: category.name, label: category.name };
+    });
+  };
+  const getCategoryId = values => {
+    // console.log(category);
+    if (values.type === 'INCOME') {
+      return categories.find(elem => elem.type === 'INCOME').id;
+    }
+    return categories.find(elem => elem.name === values.category.value).id;
+  };
   const handleFormSubmit = values => {
-    console.log(values);
-    console.log(categories);
+    // console.log(values);
+    // console.log(getCategoryId(values.category));
+    const categoryId = getCategoryId(values);
+    // console.log(categoryId);
     const transaction = {
       transactionDate: values.date,
       type: values.type,
-      categoryId: 'string',
+      categoryId,
       comment: values.comment,
       amount: +values.sum,
     };
     console.log(transaction);
   };
-
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       // toggleModal();
@@ -59,11 +71,12 @@ const ModalAddTransactions = () => {
     }
   };
 
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
+  const options = getOptions();
+  // const options = [
+  //   { value: 'chocolate', label: 'Chocolate' },
+  //   { value: 'strawberry', label: 'Strawberry' },
+  //   { value: 'vanilla', label: 'Vanilla' },
+  // ];
 
   const textColor = () => {
     return isIncome
@@ -137,6 +150,7 @@ const ModalAddTransactions = () => {
                 <StyledSelect
                   value={values.category}
                   classNamePrefix="Select"
+                  required
                   onChange={data => {
                     // console.log(data.value);
                     setFieldValue('category', data);
