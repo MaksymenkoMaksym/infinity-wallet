@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { setAuthHeader } from 'redux/auth/authOperation';
 
 axios.defaults.baseURL = 'https://wallet.goit.ua/';
 
@@ -74,6 +75,11 @@ export const deleteTransaction = createAsyncThunk(
 export const getTransactionsForPeriod = createAsyncThunk(
   'transaction/getTransactionsForPeriod',
   async (date, thunkApi) => {
+    const state = thunkApi.getState();
+    const persistedToken = state.auth.token;
+
+    setAuthHeader(persistedToken);
+
     try {
       const response = await axios.get(
         `api/transactions-summary?month=${date.month}&year=${date.year}`
