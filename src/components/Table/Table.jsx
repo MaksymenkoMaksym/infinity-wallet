@@ -1,8 +1,8 @@
+import Chart from 'components/Chart';
 import SelectButton from 'components/SelectBtn/SelectBtn';
 import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
 import { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import Chart from 'components/Chart';
 
 import {
   ColorSpan,

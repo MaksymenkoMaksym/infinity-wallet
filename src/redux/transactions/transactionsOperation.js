@@ -76,7 +76,7 @@ export const getTransactionsForPeriod = createAsyncThunk(
   async (date, thunkApi) => {
     try {
       const response = await axios.get(
-        `api/transactions?month=${date.month}&year=${date.year}`
+        `api/transactions-summary?month=${date.month}&year=${date.year}`
       );
       console.log('get Transactions For Period', response);
       return response.data;
