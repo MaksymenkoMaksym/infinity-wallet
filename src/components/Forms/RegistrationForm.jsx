@@ -69,12 +69,9 @@ export const RegistrationForm = () => {
           <Placeholder>E-mail</Placeholder>
           {formik.touched.email && formik.errors.email ? (<ErrorBox>{formik.errors.email}</ErrorBox>) : null}
         </Label>
-
         <Label name="password">
           <Input type="password" name="password" placeholder=" " {...formik.getFieldProps("password")}/>
-      
-          <IconSvg>
-            
+                <IconSvg>
             <use href={svgIcon + `#icon-lock`}></use>
           </IconSvg>
           <Placeholder>Password</Placeholder>

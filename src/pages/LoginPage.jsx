@@ -9,11 +9,11 @@ export const LoginPage = () => {
     const isBigScreen = useMediaQuery({ minWidth: 1280 })
     const isTabletOrMobile = useMediaQuery({ maxWidth: 1279 })
     const isTabletOrBigScreen = useMediaQuery({minWidth: 768})
-const icon = "#frame-1";
+// const icon = "#frame-1";
     return (
 <>
 <Body >
-    {isTabletOrBigScreen && <TitleThumb icon={icon}/>}
+    {isTabletOrBigScreen && <TitleThumb/>}
     {isBigScreen && <BackdropBox Form ={LoginForm}/>}
     {isTabletOrMobile && <BackdropBox Form ={LoginForm}/>} 
 
