@@ -116,7 +116,14 @@ const transactionSlice = createSlice({
 
   initialState: userInitialState,
 
-  reducers: {},
+  reducers: {
+    openModal(state, action) {
+      state.isModalAddTransactionOpen = true;
+    },
+    closeModal(state, action) {
+      state.isModalAddTransactionOpen = false;
+    },
+  },
   extraReducers: {
     [createTransaction.pending]: pendingHandlerAuth,
     [getAllTransactions.pending]: pendingHandlerAuth,
@@ -173,4 +180,5 @@ const transactionSlice = createSlice({
   },
 });
 
+export const { openModal, closeModal } = transactionSlice.actions;
 export const transactionReducer = transactionSlice.reducer;
