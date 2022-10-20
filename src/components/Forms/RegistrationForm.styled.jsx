@@ -114,3 +114,8 @@ export const ActiveButton = styled(Button)`
         border-color: #4A56E2;
     }
 `
+
+export const ErrorBox = styled.div`
+color: red;
+position: absolute;
+`
