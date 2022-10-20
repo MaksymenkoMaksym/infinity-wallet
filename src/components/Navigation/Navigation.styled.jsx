@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-// export const NavContainer = styled.nav`
-//   // width: 320px;
-//   // margin: 0;
-//   // margin-left: auto;
-//   // margin-right: auto;
-//   // padding: 0;
-//   // padding-bottom: 15px;
-// `;
 export const List = styled.ul`
   // width: 320px;
   display: flex;
@@ -56,10 +48,7 @@ export const StyledLink = styled(NavLink)`
 
   &.active {
     fill: #4a56e2;
-    // box-shadow: 0px 0px 49px 0px rgba(74,86,226,1);
-    background: #4a56e2;
     font-family: ${props => props.theme.fonts.secondary};
-    // font-weight: 700;
     font-weight: ${props => props.theme.fontWeights.bold};
     font-size: ${props => props.theme.fontSizes.m};
     line-height: ${props => props.theme.lineHeights.main};
@@ -72,10 +61,10 @@ export const TextItem = styled.span`
   ${props => props.theme.breakpoints.tab} {
     margin-left: 23px;
 
-    // font-family: ${props => props.theme.fonts.secondary};
+    font-family: ${props => props.theme.fonts.secondary};
     // font-weight: ${props => props.theme.fontWeights.normal};
-    // font-size: ${props => props.theme.fontSizes.m};
-    // line-height: ${props => props.theme.lineHeights.main};
+    font-size: ${props => props.theme.fontSizes.m};
+    line-height: ${props => props.theme.lineHeights.main};
   }
 `;
 
