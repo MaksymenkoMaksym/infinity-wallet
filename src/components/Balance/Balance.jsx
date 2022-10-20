@@ -3,12 +3,12 @@ import { Container, Title, Sum } from './Balance.styled';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { refreshUser } from '../../redux/auth/authOperation';
-import { getBalance } from '../../redux/auth/authSelectors';
+import { selectBalance } from '../../redux/auth/authSelectors';
 import { selectTransactions } from '../../redux/transactions/transactionsSelectors';
 
 const Balance = () => {
   const dispatch = useDispatch();
-  const balance = useSelector(getBalance);
+  const balance = useSelector(selectBalance);
   const transactions = useSelector(selectTransactions);
 
   useEffect(() => {
