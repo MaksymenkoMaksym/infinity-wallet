@@ -2,6 +2,7 @@ import SelectButton from 'components/SelectBtn/SelectBtn';
 import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
 import { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
+import useTransaction from 'utility/diagram';
 
 import {
   ColorSpan,
@@ -18,6 +19,7 @@ import {
 } from './Table.styled';
 
 const Table = () => {
+  console.log(useTransaction());
   const [diagram] = useState([
     {
       name: 'Основные расходы',
@@ -83,10 +85,10 @@ const Table = () => {
           <ParagraphHead>Сумма</ParagraphHead>
         </TableHead>
         <ListUl>
-          {diagram.map(item => {
+          {diagram.map((item, index) => {
             return (
               <Item key={item.name}>
-                <ColorSpan style={{ background: item.color }}></ColorSpan>
+                <ColorSpan index={index}></ColorSpan>
                 <ParagraphText>{item.name}</ParagraphText>
                 <ParagraphNumber>{item.value.toFixed(2)}</ParagraphNumber>
               </Item>
