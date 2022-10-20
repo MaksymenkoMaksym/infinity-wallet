@@ -10,7 +10,6 @@ const DiagramPage = () => {
       <Header />
       <Navigation />
       <h1>Статистика</h1>
-     {/* <Chart />  */}
       <Table />
     </>
   );
