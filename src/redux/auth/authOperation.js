@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://wallet.goit.ua/';
 
-const setAuthHeader = token => {
+export const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
