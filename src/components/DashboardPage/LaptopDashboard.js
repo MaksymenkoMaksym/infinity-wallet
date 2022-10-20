@@ -7,6 +7,7 @@ import {
   PList,
   LiTablet,
   PName,
+  Block,
 } from './DashboardPage.styled';
 
 import {
@@ -29,30 +30,33 @@ const LaptopDashboard = () => {
           <PName>Sum</PName>
           <PName>Balance</PName>
         </UlTitle>
-        {transactions.map(item => {
-          return (
-            <DivTablet key={item.id}>
-              <PList>
-                {format(new Date(item.transactionDate), 'dd.MM.yy')}
-              </PList>
-              <PList>{item.type === 'INCOME' ? '+' : '-'}</PList>
+        <Block>
+          {transactions.map(item => {
+            return (
+              <DivTablet key={item.id}>
+                <PList>
+                  {format(new Date(item.transactionDate), 'dd.MM.yy')}
+                </PList>
+                <PList>{item.type === 'INCOME' ? '+' : '-'}</PList>
 
-              <PList>
-                {categories.map(cat => cat.id === item.categoryId && cat.name)}
-              </PList>
-              <PList>{item.comment}</PList>
-              <PList>
-                <Sum transaction={item.type}>
-                  {item.amount < 0 ? item.amount * -1 : item.amount}
-                </Sum>
-              </PList>
-              <PList>{item.balanceAfter}</PList>
-            </DivTablet>
-          );
-        })}
+                <PList>
+                  {categories.map(
+                    cat => cat.id === item.categoryId && cat.name
+                  )}
+                </PList>
+                <PList>{item.comment}</PList>
+                <PList>
+                  <Sum transaction={item.type}>
+                    {item.amount < 0 ? item.amount * -1 : item.amount}
+                  </Sum>
+                </PList>
+                <PList>{item.balanceAfter}</PList>
+              </DivTablet>
+            );
+          })}
+        </Block>
       </LiTablet>
     </>
   );
 };
 export default LaptopDashboard;
-// {format(startDate, "dd-MM-yyyy")}
