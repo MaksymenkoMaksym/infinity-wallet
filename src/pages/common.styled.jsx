@@ -25,6 +25,7 @@ background-color: #ffffff;
 }`
 
 export const Backdrop = styled.div`
+@media (min-width: 1280px) {
 box-sizing: border-box;
 height: 100%;
 width: 57%;
@@ -35,7 +36,7 @@ justify-content: center;
 align-items: center;
 background: rgba(255, 255, 255, 0.4);
 backdrop-filter: blur(25px);
--webkit-backdrop-filter: blur(25px);
+-webkit-backdrop-filter: blur(25px);}
 `
 
 
