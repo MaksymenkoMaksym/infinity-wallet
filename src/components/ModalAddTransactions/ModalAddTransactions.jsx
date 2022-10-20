@@ -29,10 +29,12 @@ import {
 } from 'redux/transactions/transactionsSelectors';
 import { createTransaction } from 'redux/transactions/transactionsOperation';
 import { useEffect } from 'react';
+import DatePicker from 'react-datepicker';
 
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
   const [isIncome, setIsIncome] = useState(false);
+  // const [startDate, setStartDate] = useState(new Date());
   const categories = useSelector(selectTransactionCategories);
   const isModalOpen = useSelector(isModalAddTransactionOpen);
   const initialValues = {
@@ -40,7 +42,7 @@ const ModalAddTransactions = () => {
     type: 'EXPENSE',
     sum: '',
     comment: '',
-    date: '',
+    date: new Date(),
   };
 
   const getOptions = () => {
@@ -60,13 +62,20 @@ const ModalAddTransactions = () => {
 
   const handleFormSubmit = values => {
     const categoryId = getCategoryId(values);
+    const formatDate =
+      values.date.toLocaleDateString('en-us', { year: 'numeric' }) +
+      '-' +
+      values.date.toLocaleDateString('en-us', { month: '2-digit' }) +
+      '-' +
+      values.date.toLocaleDateString('en-us', { day: '2-digit' });
     const transaction = {
-      transactionDate: values.date,
+      transactionDate: formatDate,
       type: values.type,
       categoryId,
       comment: values.comment,
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
+    // console.log(transaction);
     dispatch(createTransaction(transaction));
   };
 
@@ -83,18 +92,6 @@ const ModalAddTransactions = () => {
   };
   const options = getOptions();
 
-  useEffect(() => {
-    const handleClose = e => {
-      if (e.code === 'Escape') {
-        dispatch(closeModal());
-      }
-    };
-    window.addEventListener('keydown', handleClose);
-    return () => {
-      window.removeEventListener('keydown', handleClose);
-    };
-  }, [isModalOpen, dispatch]);
-
   const customStyles = {
     //випадаючий список
     menu: provided => ({
@@ -105,6 +102,7 @@ const ModalAddTransactions = () => {
       boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
       backdropFilter: 'blur(25px)',
       borderRadius: 20,
+      outlite: 0,
     }),
     // один зі списку
     option: (provided, state) => ({
@@ -131,6 +129,18 @@ const ModalAddTransactions = () => {
       color: '#BDBDBD',
     }),
   };
+
+  useEffect(() => {
+    const handleClose = e => {
+      if (e.code === 'Escape') {
+        dispatch(closeModal());
+      }
+    };
+    window.addEventListener('keydown', handleClose);
+    return () => {
+      window.removeEventListener('keydown', handleClose);
+    };
+  }, [isModalOpen, dispatch]);
 
   return (
     <Overlay onClick={handleBackdropClick}>
@@ -202,21 +212,32 @@ const ModalAddTransactions = () => {
                 <Select
                   value={values.category}
                   styles={customStyles}
-                  required
                   onChange={data => {
                     setFieldValue('category', data);
                     console.log(values);
                   }}
                   placeholder="Select category"
                   options={options}
+                  required
                 />
               )}
               <label>
                 <Input type="text" name="sum" placeholder="0.00" required />
               </label>
-              <label>
+
+              <DatePicker
+                selected={values.date}
+                onChange={date => {
+                  // console.log(date.toLocaleDateString());
+                  setFieldValue('date', date);
+                  // console.log(values.date);
+                }}
+                dateFormat="dd.MM.yyyy"
+              />
+
+              {/* <label>
                 <Input type="date" name="date" required />
-              </label>
+              </label> */}
               <label>
                 <Comment>Comment</Comment>
                 <Input type="text" name="comment" />
