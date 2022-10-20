@@ -1,6 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
-import DatePicker from 'react-datepicker';
-
+import { useSelector } from 'react-redux';
+import { format } from 'date-fns';
 import {
   Sum,
   UlTitle,
@@ -9,7 +8,7 @@ import {
   LiTablet,
   PName,
 } from './DashboardPage.styled';
-// import { TransactionSerializer } from './TransactionSerializer';
+
 import {
   selectTransactions,
   selectTransactionCategories,
@@ -18,9 +17,6 @@ import {
 const LaptopDashboard = () => {
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectTransactionCategories);
-  //   const dispatch = useDispatch();
-
-  console.log(transactions);
 
   return (
     <>
@@ -37,12 +33,7 @@ const LaptopDashboard = () => {
           return (
             <DivTablet key={item.id}>
               <PList>
-                {/* <DatePicker
-                  //   selected={new Date()}
-                  dateFormat="dd/MM/yyyy"
-                  value={item.transactionDate}
-                /> */}
-                {item.transactionDate}
+                {format(new Date(item.transactionDate), 'dd.MM.yy')}
               </PList>
               <PList>{item.type === 'INCOME' ? '+' : '-'}</PList>
 
