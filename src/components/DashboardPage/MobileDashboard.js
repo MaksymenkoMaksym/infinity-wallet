@@ -15,7 +15,6 @@ import {
 const MobileDashboard = () => {
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectTransactionCategories);
-
   return (
     <>
       {transactions.map(item => {
