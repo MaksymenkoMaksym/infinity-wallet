@@ -46,7 +46,7 @@ const ModalAddTransactions = () => {
       type: values.type,
       categoryId: 'string',
       comment: values.comment,
-      amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
+      amount: +values.sum,
     };
     console.log(transaction);
   };
