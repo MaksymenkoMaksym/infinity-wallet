@@ -9,8 +9,6 @@ const Currency = () => {
     const fetch = async () => {
       try {
         const data = await fetchCurrency();
-        // console.log(data);
-        // const sliced = data.slice(0, -1);
         setCurrency([...data]);
       } catch (error) {
         console.log(error);

@@ -1,6 +1,6 @@
 // import VioletSpotTab from '../../assets/images/bg-bottom-md.png';
 import VioletSpotDesc from '../../assets/images/bg-bottom-lg.png';
-import PinkSpotTab from '../../assets/images/bg-top-md.png';
+// import PinkSpotTab from '../../assets/images/bg-top-md.png';
 import PinkSpotDesc from '../../assets/images/bg-top-lg.png';
 const { default: styled } = require('styled-components');
 
