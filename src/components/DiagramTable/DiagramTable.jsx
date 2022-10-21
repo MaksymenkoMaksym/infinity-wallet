@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-import Header from 'components/Header';
 import HeroBar from 'components/HeroBar';
 import Table from 'components/Table';
 import Loader from 'components/Loader';
+import Container from 'components/Container';
 import { Wrapper, DiagramBox } from './DiagramTable.styled';
 
 import { getTransactionsForPeriod } from 'redux/transactions/transactionsOperation';
@@ -20,15 +20,14 @@ const DiagramTable = () => {
     dispatch(getTransactionsForPeriod(date));
   }, [dispatch, date]);
   return (
-    <>
-      <Header />
+    <Container>
       <Wrapper>
         <HeroBar />
         <DiagramBox>
           {isLoading ? <Loader /> : <Table setDate={setDate} />}
         </DiagramBox>
       </Wrapper>
-    </>
+    </Container>
   );
 };
 

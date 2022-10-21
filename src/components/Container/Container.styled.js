@@ -1,8 +1,7 @@
-import BlurImg from '../../assets/images/rectangle.png';
 import styled from 'styled-components';
+import BlurImg from '../../assets/images/rectangle.png';
 
 const Container = styled.div`
-  outline: 1px solid red;
   padding: 0 ${props => props.theme.space[2]}px;
   margin: 0 auto;
   max-width: 320px;

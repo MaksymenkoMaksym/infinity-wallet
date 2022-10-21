@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Header from 'components/Header';
 import HeroBar from 'components/HeroBar';
 import DashboardPage from 'components/DashboardPage';
+import Container from 'components/Container';
 
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
@@ -23,17 +23,16 @@ const HomeTable = () => {
     dispatch(getAllTransactions());
   }, [dispatch]);
   return (
-    <>
-      <Header />
+    <Container>
       <Wrapper>
         <HeroBar />
         <DashboardBox>
           <DashboardPage />
         </DashboardBox>
+        <ButtonAddTransactions />
+        {isModalOpen && <ModalAddTransactions />}
       </Wrapper>
-      <ButtonAddTransactions />
-      {isModalOpen && <ModalAddTransactions />}
-    </>
+    </Container>
   );
 };
 

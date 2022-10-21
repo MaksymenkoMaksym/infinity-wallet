@@ -6,7 +6,6 @@ import TestCom from './TestCom/TestCom ';
 import CurrencyPage from 'pages/CurrencyPage';
 import { RegistrationPage } from 'pages';
 import Home from 'pages/HomePage';
-import Container from './Container';
 import DiagramPage from 'pages/DiagramPage';
 import { refreshUser } from 'redux/auth/authOperation';
 import { selectIsLoading, selectToken } from 'redux/auth/authSelectors';
@@ -28,51 +27,41 @@ export const App = () => {
   ) : (
     <>
       {isLoggedIn && <Header />}
-      <Container>
-        <Routes>
-          <Route
-            path="/"
-            element={<PrivateRoute redirectTo="/login" component={<Home />} />}
-          />
-          <Route
-            path="/test"
-            element={
-              <PrivateRoute redirectTo="/login" component={<TestCom />} />
-            }
-          />
-          <Route
-            path="/diagram"
-            element={
-              <PrivateRoute redirectTo="/login" component={<DiagramPage />} />
-            }
-          />
-          <Route
-            path="/currency"
-            element={
-              <PrivateRoute redirectTo="/login" component={<CurrencyPage />} />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                redirectTo="/"
-                component={<RegistrationPage />}
-              />
-            }
-          />
-          <Route
-            path="/registration"
-            element={
-              <RestrictedRoute
-                redirectTo="/"
-                component={<RegistrationPage />}
-              />
-            }
-          />
-          <Route path="*" element={<Navigate to={'/'} />} />
-        </Routes>
-      </Container>
+      <Routes>
+        <Route
+          path="/"
+          element={<PrivateRoute redirectTo="/login" component={<Home />} />}
+        />
+        <Route
+          path="/test"
+          element={<PrivateRoute redirectTo="/login" component={<TestCom />} />}
+        />
+        <Route
+          path="/diagram"
+          element={
+            <PrivateRoute redirectTo="/login" component={<DiagramPage />} />
+          }
+        />
+        <Route
+          path="/currency"
+          element={
+            <PrivateRoute redirectTo="/login" component={<CurrencyPage />} />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
+          }
+        />
+        <Route
+          path="/registration"
+          element={
+            <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
+          }
+        />
+        <Route path="*" element={<Navigate to={'/'} />} />
+      </Routes>
     </>
   );
 };

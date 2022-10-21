@@ -1,6 +1,6 @@
 import { Section, Backdrop } from '../pages/common.styled';
 import Logo from 'components/Logo/Logo';
-import { RegistrationForm } from '../components/Forms';
+import { RegistrationForm } from '../components/Form';
 import { Body } from './common.styled';
 import { TitleThumb } from 'components/TitleThumb/TitleThumb';
 import { useMediaQuery } from 'react-responsive';
