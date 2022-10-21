@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
-// import Select from 'react-select';
+import Select from 'react-select';
 import sprite from '../../assets/images/icons.svg';
 import {
   AddForm,
@@ -17,27 +17,39 @@ import {
   Comment,
   CloseIcon,
   CloseBox,
-  StyledSelect,
+  DateIcon,
+  // StyledSelect,
+  DataPickerWrapper,
+  DateSumWrap,
+  SumInput,
+  CommentLabel,
 } from './ModalAddTransactions.styled';
 import Switch from 'react-switch';
 import { Tab } from 'components/MediaWraper/MediaWraper';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
-import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
+import {
+  isModalAddTransactionOpen,
+  selectTransactionCategories,
+} from 'redux/transactions/transactionsSelectors';
 import { createTransaction } from 'redux/transactions/transactionsOperation';
+import { useEffect } from 'react';
+import DatePicker from 'react-datepicker';
 
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
   const [isIncome, setIsIncome] = useState(false);
+  // const [startDate, setStartDate] = useState(new Date());
   const categories = useSelector(selectTransactionCategories);
-
+  const isModalOpen = useSelector(isModalAddTransactionOpen);
   const initialValues = {
     category: '',
     type: 'EXPENSE',
     sum: '',
     comment: '',
-    date: '',
+    date: new Date(),
   };
+
   const getOptions = () => {
     return categories
       .filter(category => category.type === 'EXPENSE')
@@ -45,49 +57,107 @@ const ModalAddTransactions = () => {
         return { value: category.name, label: category.name };
       });
   };
+
   const getCategoryId = values => {
-    // console.log(category);
     if (values.type === 'INCOME') {
       return categories.find(elem => elem.type === 'INCOME').id;
     }
     return categories.find(elem => elem.name === values.category.value).id;
   };
+
   const handleFormSubmit = values => {
     const categoryId = getCategoryId(values);
-    // console.log(values);
-    // console.log(getCategoryId(values.category));
-    // console.log(categoryId);
-    // console.log(getOptions());
+    const formatDate =
+      values.date.toLocaleDateString('en-us', { year: 'numeric' }) +
+      '-' +
+      values.date.toLocaleDateString('en-us', { month: '2-digit' }) +
+      '-' +
+      values.date.toLocaleDateString('en-us', { day: '2-digit' });
     const transaction = {
-      transactionDate: values.date,
+      transactionDate: formatDate,
       type: values.type,
       categoryId,
       comment: values.comment,
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
-    // console.log(transaction);
+    console.log(transaction);
     dispatch(createTransaction(transaction));
   };
+
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      // toggleModal();
-      // setIsOpen(false);
       dispatch(closeModal());
     }
   };
 
-  const options = getOptions();
-  // const options = [
-  //   { value: 'chocolate', label: 'Chocolate' },
-  //   { value: 'strawberry', label: 'Strawberry' },
-  //   { value: 'vanilla', label: 'Vanilla' },
-  // ];
-
-  const textColor = () => {
+  const switchTextColor = () => {
     return isIncome
       ? { inc: '#24CCA7', exp: '#E0E0E0' }
       : { inc: '#E0E0E0', exp: '#FF6596' };
   };
+  const options = getOptions();
+
+  const customStyles = {
+    //випадаючий список
+    menu: provided => ({
+      //значення по дефолту
+      ...provided,
+      overflow: 'hidden',
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+      backdropFilter: 'blur(25px)',
+      borderRadius: 20,
+      outline: 0,
+      // paddingLeft: '20px',
+    }),
+    // один зі списку
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px dotted pink',
+
+      color: state.isFocused ? '#FF6596' : '#000000',
+      padding: 20,
+      backgroundColor: state.isFocused ? 'white' : null,
+      cursor: 'pointer',
+    }),
+    //пошуковий рядок
+    control: (provided, state) => ({
+      ...provided,
+      width: '100%',
+      border: 0,
+      borderColor: state.isFocused ? 'transparent' : null,
+      borderBottom: '1px solid   #E0E0E0',
+      borderRadius: 0,
+      backgroundColor: 'transparent',
+    }),
+    placeholder: provided => ({
+      ...provided,
+      color: '#BDBDBD',
+    }),
+    container: (provided, state) => ({
+      ...provided,
+      width: '100%',
+    }),
+    indicatorSeparator: (provided, state) => ({
+      ...provided,
+      display: 'none',
+    }),
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    const handleClose = e => {
+      if (e.code === 'Escape') {
+        dispatch(closeModal());
+      }
+    };
+    window.addEventListener('keydown', handleClose);
+    return () => {
+      window.removeEventListener('keydown', handleClose);
+      document.body.style.overflow = 'auto';
+    };
+  }, [isModalOpen, dispatch]);
 
   return (
     <Overlay onClick={handleBackdropClick}>
@@ -108,7 +178,9 @@ const ModalAddTransactions = () => {
           {({ values, setFieldValue }) => (
             <AddForm>
               <SwitchLabel htmlFor="small-radius-switch">
-                <SwitchText inputColor={textColor().inc}>Income</SwitchText>
+                <SwitchText inputColor={switchTextColor().inc}>
+                  Income
+                </SwitchText>
                 <Switch
                   name="type"
                   value={values.type}
@@ -119,7 +191,7 @@ const ModalAddTransactions = () => {
                     setFieldValue('category', checked ? values.category : '');
                     // console.log(values.type);
                   }}
-                  handleDiameter={40}
+                  handleDiameter={44}
                   offColor="#FF6596"
                   onColor="#24CCA7"
                   offHandleColor="#24CCA7"
@@ -149,32 +221,53 @@ const ModalAddTransactions = () => {
                   className="react-switch"
                   id="small-radius-switch"
                 />
-                <SwitchText inputColor={textColor().exp}>Expense</SwitchText>
+                <SwitchText inputColor={switchTextColor().exp}>
+                  Expense
+                </SwitchText>
               </SwitchLabel>
               {!isIncome && (
-                <StyledSelect
+                <Select
                   value={values.category}
-                  classNamePrefix="Select"
-                  required
+                  styles={customStyles}
                   onChange={data => {
-                    // console.log(data.value);
                     setFieldValue('category', data);
-                    console.log(values);
+                    // console.log(values);
                   }}
                   placeholder="Select category"
                   options={options}
+                  required
                 />
               )}
-              <label>
-                <Input type="text" name="sum" placeholder="0.00" required />
-              </label>
-              <label>
-                <Input type="date" name="date" required />
-              </label>
-              <label>
+              <DateSumWrap>
+                <div>
+                  <label>
+                    <SumInput
+                      type="text"
+                      name="sum"
+                      placeholder="0.00"
+                      required
+                    />
+                  </label>
+                </div>
+                <DataPickerWrapper>
+                  <DatePicker
+                    name="date"
+                    required
+                    selected={values.date}
+                    onChange={date => {
+                      setFieldValue('date', date);
+                    }}
+                    dateFormat="dd.MM.yyyy"
+                  />
+                  <DateIcon>
+                    <use href={`${sprite}#icon-date_range`}></use>
+                  </DateIcon>
+                </DataPickerWrapper>
+              </DateSumWrap>
+              <CommentLabel>
                 <Comment>Comment</Comment>
                 <Input type="text" name="comment" />
-              </label>
+              </CommentLabel>
               <Button type="submit">ADD</Button>
               <CancelButton
                 type="button"

@@ -5,11 +5,18 @@ const HeaderTag = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 15px 0;
+  max-width: 320px;
+  padding: 15px 20px;
+  margin: 0 auto;
 
-  @media (min-width: 768px) {
-    padding: 20px 0;
+  ${props => props.theme.breakpoints.tab} {
+    padding: 20px 32px;
+    max-width: 768px;
+  }
+
+  ${props => props.theme.breakpoints.desc} {
+    padding: 20px 16px;
+    max-width: 1280px;
   }
 `;
 
@@ -19,7 +26,7 @@ const LogoIcon = styled.svg`
   height: 30px;
   margin-right: 16px;
 
-  @media (min-width: 768px) {
+  ${props => props.theme.breakpoints.tab} {
     width: 40px;
     height: 40px;
     margin-right: 20px;
@@ -34,7 +41,7 @@ const LogoText = styled.span`
   font-size: ${props => props.theme.fontSizes.m};
   line-height: ${props => props.theme.lineHeights.main};
 
-  @media (min-width: 768px) {
+  ${props => props.theme.breakpoints.tab} {
     font-size: 30px;
   }
 `;
@@ -51,7 +58,7 @@ const UserDiv = styled.div`
   justify-content: space-between;
   height: 24px;
 
-  @media (min-width: 768px) {
+  ${props => props.theme.breakpoints.tab} {
     height: 30px;
   }
 `;
@@ -67,7 +74,7 @@ const UserSpan = styled.span`
   max-width: 80px;
   max-height: 24px;
 
-  @media (min-width: 768px) {
+  ${props => props.theme.breakpoints.tab} {
     margin-right: 12px;
   }
 `;
@@ -87,7 +94,7 @@ const UserBtn = styled.button`
   padding: 0;
   cursor: pointer;
 
-  @media (min-width: 768px) {
+  ${props => props.theme.breakpoints.tab} {
     padding-left: 12px;
     border-left: 1px solid ${props => props.theme.colors.gray};
   }
@@ -102,7 +109,7 @@ const ExitIcon = styled.svg`
 const ExitText = styled.span`
   display: none;
 
-  @media (min-width: 768px) {
+  ${props => props.theme.breakpoints.tab} {
     display: inline-block;
     color: ${props => props.theme.colors.gray};
     font-family: ${props => props.theme.fonts.main};

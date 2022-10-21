@@ -1,6 +1,5 @@
 import { Field, Form } from 'formik';
 import styled from 'styled-components';
-import Select from 'react-select';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -10,10 +9,10 @@ export const Overlay = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.25);
   z-index: 1200;
   margin-top: 60px;
+  overflow-y: auto;
   @media screen and (min-width: 768px) {
     margin-top: 0;
     padding-top: 60px;
@@ -26,12 +25,12 @@ export const Modal = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  /* height: 100vh; */
+  height: 100%;
   background-color: ${p => p.theme.colors.background.white};
   padding: 20px;
   @media screen and (min-width: 768px) {
     width: 540px;
-    /* height: auto; */
+    height: auto;
     min-height: 400px;
     max-height: 700px;
     padding: 40px 80px;
@@ -44,11 +43,10 @@ export const AddForm = styled(Form)`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  gap: 40px;
-  /* width: 280px;
+  width: 280px;
   @media screen and (min-width: 768px) {
     width: 394px;
-  } */
+  }
 `;
 
 export const Title = styled.h2`
@@ -64,7 +62,7 @@ export const Button = styled.button`
   width: 300px;
   height: 50px;
   padding: 0;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   color: ${p => p.theme.colors.white};
   background-color: ${p => p.theme.colors.green};
   border: 1px solid ${p => p.theme.colors.green};
@@ -91,25 +89,41 @@ export const SwitchIcon = styled.svg`
 `;
 
 export const Input = styled(Field)`
-  width: 280px;
+  width: 100%;
   height: 32px;
   border: none;
-  border-bottom: 1px solid ${p => p.theme.colors.gray};
   outline: none;
+  /* padding-left: 20px; */
+  border-bottom: 1px solid ${p => p.theme.colors.grayIcon};
+  color: ${p => p.theme.colors.black};
+  font-family: ${p => p.theme.fonts.main};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  /* margin-bottom: 40px; */
+  &:hover {
+    border-bottom: 1px solid ${p => p.theme.colors.gray};
+  }
+  &:focus {
+    border-bottom: 1px solid ${p => p.theme.colors.gray};
+  }
 `;
 export const SwitchLabel = styled.label`
   display: flex;
   gap: 20px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
 `;
 export const SwitchText = styled.span`
   color: ${p => p.inputColor};
+
   font-family: ${p => p.theme.fonts.main};
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.s};
 `;
 export const Comment = styled.p`
+  margin: 0;
+  padding-left: 20px;
   color: ${p => p.theme.colors.gray};
   font-family: ${p => p.theme.fonts.main};
   font-weight: ${p => p.theme.fontWeights.normal};
@@ -131,44 +145,75 @@ export const CloseIcon = styled.svg`
   fill: ${p => p.theme.colors.black};
 `;
 
-export const StyledSelect = styled(Select)`
-  .Select__control {
-    height: 40px;
-    width: 280px;
-    /* border: 1px solid #a1a1a1; */
+export const DataPickerWrapper = styled.label`
+  width: 280px;
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid ${p => p.theme.colors.grayIcon};
+  padding-bottom: 5px;
+  @media screen and (min-width: 768px) {
+    width: 181px;
+  }
+  &:hover {
+    border-bottom: 1px solid ${p => p.theme.colors.gray};
+  }
+  &:focus {
+    border-bottom: 1px solid ${p => p.theme.colors.gray};
+  }
+  & .react-datepicker {
+    font-family: ${p => p.theme.fonts.main};
+    font-weight: ${p => p.theme.fontWeights.normal};
+  }
+  & input {
     border: none;
-    border-bottom: 1px solid grey;
-    border-radius: 0px;
-    cursor: pointer;
-    background-color: transparent;
+    color: red;
+    width: 100%;
     outline: none;
-    color: #0080ff;
+    /* padding-left: 20px; */
+    color: ${p => p.theme.colors.black};
+    font-family: ${p => p.theme.fonts.main};
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes.m};
   }
+  & .react-datepicker__day {
+    color: ${p => p.theme.colors.black};
+    font-family: ${p => p.theme.fonts.main};
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes.s};
+  }
+  & .react-datepicker__day--selected {
+    color: white;
+  }
+  & .react-datepicker__day--keyboard-selected {
+    color: white;
+  }
+`;
+export const DateIcon = styled.svg`
+  display: block;
+  width: 24px;
+  height: 24px;
+`;
+export const DateSumWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 40px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+export const SumInput = styled(Input)`
+  margin-bottom: 40px;
 
-  .Select__control:hover {
-    border-color: #a1a1a1;
+  @media screen and (min-width: 768px) {
+    width: 181px;
+    margin-bottom: 0px;
   }
-
-  .Select__control--is-focused {
-    box-shadow: 0 0 0 1px black;
-    outline: none;
-  }
-
-  .Select__indicator-separator {
-    display: none;
-  }
-  /* .Select__input-container {
-    color: #ff0000;
-  } */
-  .Select__single-value {
-    color: #ff0000;
-  }
-  .Select__menu {
-    color: #0080ff;
-    background-color: rgba(255, 255, 255, 0.7);
-  }
-  .Select__value-container {
-    color: #ff0000;
-    background-color: #0080ff;
-  }
+`;
+export const CommentLabel = styled.label`
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
 `;
