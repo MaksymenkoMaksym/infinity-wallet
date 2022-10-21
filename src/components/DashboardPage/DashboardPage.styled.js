@@ -1,15 +1,18 @@
 import styled from 'styled-components';
-// import { useMediaPredicate } from 'react-media-hook';
+
 const UlBoard = styled.ul`
   margin: 0;
   padding: 0;
   margin-left: auto;
   margin-right: auto;
   background: transparent;
+  @media (min-width: 768px) {
+    margin-bottom: 47px;
 `;
 
 //////////////////////////////////for mobile
-const PName = styled.p`
+
+const PName = styled.span`
   margin: 0;
   font-weight: ${props => props.theme.fontWeights.bold};
   font-size: ${props => props.theme.fontSizes.m};
@@ -97,8 +100,20 @@ const Li = styled.li`
 `;
 
 ////////////////////////////////////for laptop
+
+const Block = styled.div`
+  // margin-top: 60px;
+  // overflow: scroll;
+  overflow-y: scroll;
+  height: 650px;
+  @media (min-width: 1280px) {
+    height: 500px;
+  }
+`;
+
 const LiTablet = styled.li`
   list-style: none;
+  position: reletive;
 `;
 
 const UlTitle = styled.div`
@@ -114,13 +129,15 @@ const UlTitle = styled.div`
   font-weight: ${props => props.theme.fontWeights.bold};
   font-size: ${props => props.theme.fontSizes.m};
   line-height: ${props => props.theme.lineHeights.main};
+
+  position: sticky;
 `;
 const DivTablet = styled.div`
 
  display: flex;
   justify-content: space-between;
     align-items: center;
-    
+  
    padding: 15px 20px;
   &:not(:last-child){
       border-bottom: 1px solid #dcdcdf;
@@ -181,4 +198,5 @@ export {
   PList,
   UlTitle,
   UlBoard,
+  Block,
 };
