@@ -6,6 +6,8 @@ import { theme } from '../../utility/theme';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectTransactionsForPeriod } from 'redux/transactions/transactionsSelectors';
+import useTransaction from 'utility/diagram';
+import { cssTransition } from 'react-toastify';
 
 const Div = styled.div`
   width: 294px;
@@ -89,6 +91,7 @@ const getOptions = transactions => {
 const Chart = ({ dataTransactions }) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const { periodTotal } = useSelector(selectTransactionsForPeriod);
+  const { expenseSummary, incomeSummary } = useTransaction();
 
   const data = getData(dataTransactions);
   const options = getOptions(dataTransactions);
@@ -105,10 +108,20 @@ const Chart = ({ dataTransactions }) => {
         ctx.restore();
         ctx.font = `${fontWeight} ${fontSize} ${mainFont}`;
         ctx.textBaseline = 'center';
-        const text = '₴ ' + periodTotal.toFixed(2),
+        const text = 'Difference: ₴ ' + periodTotal.toFixed(2),
           textX = Math.round((width - ctx.measureText(text).width) / 2),
           textY = height / 2;
         ctx.fillText(text, textX, textY);
+
+        const textExp = `Expenses: ₴ ${expenseSummary.toFixed(2)}`,
+          textExpX = Math.round((width - ctx.measureText(textExp).width) / 2),
+          textExpY = height / 1.67;
+
+        ctx.fillText(textExp, textExpX, textExpY);
+        const textInc = `Income: ₴ ${incomeSummary.toFixed(2)}`,
+          textIncX = Math.round((width - ctx.measureText(textInc).width) / 2),
+          textIncY = height / 2.5;
+        ctx.fillText(textInc, textIncX, textIncY);
         ctx.save();
       },
     },
