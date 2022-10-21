@@ -68,7 +68,7 @@ export const RegistrationForm = () => {
   };
 
   const onSubmit = (
-    { email, password, confirmPassword: username },
+    { email, password, firstName: username },
     { resetForm }
   ) => {
     location
