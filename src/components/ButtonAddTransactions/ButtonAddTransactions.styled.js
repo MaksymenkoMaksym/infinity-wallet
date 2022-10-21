@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 
 export const AddBtn = styled.button`
-  position: absolute;
+  position: ${props => (props.icon === 'plus' ? 'fixed' : 'initial')};
   bottom: 20px;
   right: 20px;
   width: 44px;
   height: 44px;
-  background-color: ${p => p.theme.colors.green};
+  background-color: ${p => {
+    switch (p.icon) {
+      case 'edit':
+        return p.theme.colors.black;
+      case 'delete':
+        return p.theme.colors.pink;
+      default:
+        return p.theme.colors.green;
+    }
+  }};
   border-radius: ${p => p.theme.radii.round};
   display: flex;
   justify-content: center;

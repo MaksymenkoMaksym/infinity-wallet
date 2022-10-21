@@ -10,6 +10,7 @@ import {
   PName,
   Block,
 } from './DashboardPage.styled';
+
 import { selectTransactionCategories } from '../../redux/transactions/transactionsSelectors';
 import useSortedTtransactions from 'utility/sortedTtransactions';
 
