@@ -1,27 +1,28 @@
-import { UlBoard } from './DashboardPage.styled';
+import { useSelector } from 'react-redux';
 import { Mob, Tab } from 'components/MediaWraper/MediaWraper';
 import MobileDashboard from './MobileDashboard';
 import LaptopDashboard from './LaptopDashboard';
-import { selectTransactions } from '../../redux/transactions/transactionsSelectors';
-import { useSelector } from 'react-redux';
+import Loader from 'components/Loader';
 
+import { UlBoard } from './DashboardPage.styled';
+import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelectors';
 const DashboardPage = () => {
-  const transactions = useSelector(selectTransactions);
-  console.log(transactions);
+  const isLoadingTransaction = useSelector(selectIsLoadingTransaction);
   return (
-    // {transactions.length ===0 ?
-    //   <div>
-    //   </div>
-    // :
-    <UlBoard>
-      <Mob>
-        <MobileDashboard />
-      </Mob>
-      <Tab>
-        <LaptopDashboard />
-      </Tab>
-    </UlBoard>
-    // }
+    <>
+      {isLoadingTransaction ? (
+        <Loader />
+      ) : (
+        <UlBoard>
+          <Mob>
+            <MobileDashboard />
+          </Mob>
+          <Tab>
+            <LaptopDashboard />
+          </Tab>
+        </UlBoard>
+      )}
+    </>
   );
 };
 

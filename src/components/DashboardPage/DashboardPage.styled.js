@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+///////home
 
 const UlBoard = styled.ul`
   margin: 0;
@@ -8,6 +9,7 @@ const UlBoard = styled.ul`
   background: transparent;
   @media (min-width: 768px) {
     margin-bottom: 47px;
+  }
 `;
 
 //////////////////////////////////for mobile
@@ -76,7 +78,7 @@ const DivItem = styled.div`
   border-bottom: 1px solid #dcdcdf;
   align-items: baseline;
 
-  &: last-child {
+  &:last-child {
     border-bottom: ${props => props.theme.borders.none};
   }
 
@@ -96,7 +98,6 @@ const Li = styled.li`
   margin-bottom: 8px;
   min-width: 280px;
   background: ${props => props.theme.colors.white};
-    }
 `;
 
 ////////////////////////////////////for laptop
@@ -133,16 +134,15 @@ const UlTitle = styled.div`
   position: sticky;
 `;
 const DivTablet = styled.div`
-
- display: flex;
+  display: flex;
   justify-content: space-between;
-    align-items: center;
-  
-   padding: 15px 20px;
-  &:not(:last-child){
-      border-bottom: 1px solid #dcdcdf;
-      box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  align-items: center;
 
+  padding: 15px 20px;
+  &:not(:last-child) {
+    border-bottom: 1px solid #dcdcdf;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  }
 `;
 
 const PList = styled.p`

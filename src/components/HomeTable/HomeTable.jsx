@@ -14,6 +14,7 @@ import {
 } from 'redux/transactions/transactionsOperation';
 
 import { Wrapper, DashboardBox } from './HomeTable.styled';
+import { openModal } from 'redux/transactions/transactionsSlice';
 
 const HomeTable = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ const HomeTable = () => {
     dispatch(getTransactionCategories());
     dispatch(getAllTransactions());
   }, [dispatch]);
+  const onClickOpenModalAction = () => {
+    dispatch(openModal());
+  };
   return (
     <Container>
       <Wrapper>
@@ -29,7 +33,10 @@ const HomeTable = () => {
         <DashboardBox>
           <DashboardPage />
         </DashboardBox>
-        <ButtonAddTransactions />
+        <ButtonAddTransactions
+          onClickAction={onClickOpenModalAction}
+          icon="plus"
+        />
         {isModalOpen && <ModalAddTransactions />}
       </Wrapper>
     </Container>

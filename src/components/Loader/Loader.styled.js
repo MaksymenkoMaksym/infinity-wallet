@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LoaderStyled = styled.div`
-  position: fixed;
+  position: ${p => (p.box ? 'relative' : 'fixed')};
   top: 0;
   left: 0;
   display: flex;
