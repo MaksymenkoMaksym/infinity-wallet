@@ -6,7 +6,6 @@ import TestCom from './TestCom/TestCom ';
 import CurrencyPage from 'pages/CurrencyPage';
 import { RegistrationPage } from 'pages';
 import Home from 'pages/HomePage';
-import Container from './Container';
 import DiagramPage from 'pages/DiagramPage';
 import { refreshUser } from 'redux/auth/authOperation';
 import { selectIsLoading, selectToken } from 'redux/auth/authSelectors';
@@ -28,29 +27,38 @@ export const App = () => {
   ) : (
     <>
       {isLoggedIn && <Header />}
-      {/* <Container> */}
       <Routes>
         <Route
           path="/"
-          element={<PrivateRoute redirectTo="/login" component={<Home />} />}
+          element={
+            <PrivateRoute redirectTo="/auth/login" component={<Home />} />
+          }
         />
         <Route
           path="/test"
-          element={<PrivateRoute redirectTo="/login" component={<TestCom />} />}
+          element={
+            <PrivateRoute redirectTo="/auth/login" component={<TestCom />} />
+          }
         />
         <Route
           path="/diagram"
           element={
-            <PrivateRoute redirectTo="/login" component={<DiagramPage />} />
+            <PrivateRoute
+              redirectTo="/auth/login"
+              component={<DiagramPage />}
+            />
           }
         />
         <Route
           path="/currency"
           element={
-            <PrivateRoute redirectTo="/login" component={<CurrencyPage />} />
+            <PrivateRoute
+              redirectTo="/auth/login"
+              component={<CurrencyPage />}
+            />
           }
         />
-        <Route
+        {/* <Route
           path="/login"
           element={
             <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
@@ -61,10 +69,16 @@ export const App = () => {
           element={
             <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
           }
+          /> */}
+        <Route
+          path="/auth/:authType"
+          element={
+            <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
+          }
         />
+
         <Route path="*" element={<Navigate to={'/'} />} />
       </Routes>
-      {/* </Container> */}
     </>
   );
 };

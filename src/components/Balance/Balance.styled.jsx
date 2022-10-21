@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 280px;
   height: 80px;
-  //   max-width: 350px;
-  //   padding: 0px 20px;
   background-color: ${props => props.theme.colors.background.white};
   border-radius: ${props => props.theme.radii.lg};
   margin-bottom: 0px;
@@ -14,9 +12,6 @@ export const Container = styled.div`
   ${props => props.theme.breakpoints.tab} {
     width: 336px;
     margin: 0;
-
-    // padding: 10px 40px;
-    // margin-right: 20px;
   }
   ${props => props.theme.breakpoints.desc} {
     width: 395px;
@@ -34,8 +29,7 @@ export const Title = styled.p`
   margin: 0;
   padding-top: 8px;
   padding-left: 32px;
-  // margin-bottom: 12px;
-
+  
   ${props => props.theme.breakpoints.tab} {
     padding-left: 40px;
   }
