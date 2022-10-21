@@ -1,20 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
-import TestCom from './TestCom/TestCom ';
-import CurrencyPage from 'pages/CurrencyPage';
-import { RegistrationPage } from 'pages';
-import Home from 'pages/HomePage';
-import DiagramPage from 'pages/DiagramPage';
-import { refreshUser } from 'redux/auth/authOperation';
-import { selectIsLoading, selectToken } from 'redux/auth/authSelectors';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
-import Header from './Header';
+
+import { refreshUser } from 'redux/auth/authOperation';
+import { selectIsLoading, selectToken } from 'redux/auth/authSelectors';
+
 import Loader from './Loader';
+
+import Header from './Header';
+// import Home from 'pages/HomePage';
+// import TestCom from './TestCom/TestCom ';
+// import DiagramPage from 'pages/DiagramPage';
+// import CurrencyPage from 'pages/CurrencyPage';
+// import { RegistrationPage } from 'pages';
+const Home = lazy(() => import('pages/HomePage'));
+const TestCom = lazy(() => import('./TestCom/TestCom '));
+const DiagramPage = lazy(() => import('pages/DiagramPage'));
+const CurrencyPage = lazy(() => import('pages/CurrencyPage'));
+const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 
 export const App = () => {
   const { isLoading } = useSelector(selectIsLoading);
@@ -27,7 +33,7 @@ export const App = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
+    <Suspense fallback={<Loader />}>
       {isLoggedIn && <Header />}
       <Routes>
         <Route
@@ -81,7 +87,6 @@ export const App = () => {
 
         <Route path="*" element={<Navigate to={'/'} />} />
       </Routes>
-      <ToastContainer />
-    </>
+    </Suspense>
   );
 };
