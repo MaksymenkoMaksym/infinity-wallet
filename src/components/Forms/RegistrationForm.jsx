@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation} from 'react-router-dom';
-
 import { useFormik} from 'formik';
+import { registerUser, loginUser} from 'redux/auth/authOperation';
 
-import { registerUser } from 'redux/auth/authOperation';
 import * as Yup from 'yup';
 import svgIcon from '../../assets/images/icons.svg';
 import {
@@ -20,7 +19,7 @@ export const RegistrationForm = () => {
   const {pathname} = useLocation() 
 
   const FormDefine = () => {
-    const formFields = [ "email", "password", "confirmPassword", "firstName" ]
+    const formFields = ["email", "password", "confirmPassword", "firstName"]
     switch (pathname) {
         case '/login':
             return [...formFields.slice(0, 2)];
@@ -49,12 +48,14 @@ const buttonText = location ? "LOG IN" : "REGISTER"
     .min(1).max(12, 'first name should be 12 chars maximum.')
     .required("missing first name")
   });
-
-  const onSubmit = ({firstName: username, email, password, confirmPassword}, { resetForm }) => {
-
-    dispatch(registerUser({username, email, password}));
-    resetForm();
-  };
+  
+  // const onSubmit = ({firstName: username, email, password}, { resetForm }) => {
+  //   // dispatch(loginUser(values));
+  //   console.log(username, email, password)
+  //   // dispatch(loginUser({email, password}));
+  //   // dispatch(location ? loginUser({email, password}) : registerUser({username, email, password}));
+  //   resetForm();
+  // };
  
   const navi = () => {
     navigate(location ? '/login' : '/registration');
@@ -79,16 +80,24 @@ const buttonText = location ? "LOG IN" : "REGISTER"
         firstName: '',
       },
       validationSchema,
-      onSubmit,
+      onSubmit: values => {
+        console.log(values)
+      },
       validateOnChange: false,
       validateOnBlur: false,
     })
-
+    console.log(formik.values)
+const handleSubmit = (event) => {
+  event.preventDefault()
+  const values = {email: formik.values.email, password: formik.values.password}
+  console.log(values)
+   dispatch(loginUser(values));
+  }
     return (
-      <StyledForm style={{ marginTop: '60px' }} onSubmit={formik.handleSubmit}>
+      <StyledForm style={{ marginTop: '60px' }} onSubmit={handleSubmit}>
 
 {FormDefine().map(item => {
-  return ( <Label name="email" key = {item}>
+  return ( <Label name={item} key = {item}>
   <Input type={typeVar(item)} name={item} placeholder=" " {...formik.getFieldProps(item)}/>
   <IconSvg >
     <use href={svgIcon + `#icon-${item}`}></use>
