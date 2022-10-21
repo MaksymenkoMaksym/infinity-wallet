@@ -107,7 +107,8 @@ const ModalAddTransactions = () => {
       boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
       backdropFilter: 'blur(25px)',
       borderRadius: 20,
-      outlite: 0,
+      outline: 0,
+      // width: '100%',
     }),
     // один зі списку
     option: (provided, state) => ({
@@ -122,7 +123,7 @@ const ModalAddTransactions = () => {
     //пошуковий рядок
     control: (provided, state) => ({
       ...provided,
-      width: 280,
+      width: '100%',
       border: 0,
       borderColor: state.isFocused ? 'transparent' : null,
       borderBottom: '1px solid   #E0E0E0',
@@ -133,9 +134,15 @@ const ModalAddTransactions = () => {
       ...provided,
       color: '#BDBDBD',
     }),
+    container: (provided, state) => ({
+      ...provided,
+      width: '100%',
+    }),
   };
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
     const handleClose = e => {
       if (e.code === 'Escape') {
         dispatch(closeModal());
@@ -144,6 +151,7 @@ const ModalAddTransactions = () => {
     window.addEventListener('keydown', handleClose);
     return () => {
       window.removeEventListener('keydown', handleClose);
+      document.body.style.overflow = 'auto';
     };
   }, [isModalOpen, dispatch]);
 
@@ -250,9 +258,6 @@ const ModalAddTransactions = () => {
                   </DateIcon>
                 </DataPickerWrapper>
               </DateSumWrap>
-              {/* <label>
-                <Input type="date" name="date" required />
-              </label> */}
               <CommentLabel>
                 <Comment>Comment</Comment>
                 <Input type="text" name="comment" />

@@ -30,6 +30,7 @@ export const Modal = styled.div`
   padding: 20px;
   @media screen and (min-width: 768px) {
     width: 540px;
+    height: auto;
     min-height: 400px;
     max-height: 700px;
     padding: 40px 80px;
