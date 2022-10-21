@@ -17,7 +17,7 @@ import {
   ActiveButton,
   StyledForm,
   ErrorBox, ErrorSvg
-} from './RegistrationForm.styled';
+} from './Form.styled';
 
 export const RegistrationForm = () => {
   const { pathname } = useLocation();
