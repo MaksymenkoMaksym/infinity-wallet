@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import TestCom from './TestCom/TestCom ';
 import CurrencyPage from 'pages/CurrencyPage';
 import { RegistrationPage } from 'pages';
@@ -79,6 +81,7 @@ export const App = () => {
 
         <Route path="*" element={<Navigate to={'/'} />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };
