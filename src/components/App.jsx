@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import TestCom from './TestCom/TestCom ';
 import CurrencyPage from 'pages/CurrencyPage';
-import { LoginPage, RegistrationPage } from 'pages';
+import { RegistrationPage } from 'pages';
 import Home from 'pages/HomePage';
 import Container from './Container';
 import DiagramPage from 'pages/DiagramPage';
@@ -55,7 +55,10 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <RestrictedRoute redirectTo="/" component={<LoginPage />} />
+              <RestrictedRoute
+                redirectTo="/"
+                component={<RegistrationPage />}
+              />
             }
           />
           <Route
