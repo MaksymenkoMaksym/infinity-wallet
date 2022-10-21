@@ -1,9 +1,6 @@
 import Chart from 'components/Chart';
 import SelectButton from 'components/SelectBtn/SelectBtn';
 import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import 'react-datepicker/dist/react-datepicker.css';
 import useTransaction from 'utility/diagram';
 
@@ -20,52 +17,18 @@ import {
   WraperDiv,
   WraperSelect,
 } from './Table.styled';
-import { getTransactionsForPeriod } from 'redux/transactions/transactionsOperation';
-import { useMemo } from 'react';
 
-const Table = () => {
-  const [selectMonth, setSelectMonth] = useState('');
-  const [selectYear, setSelectYear] = useState('');
-  const dispatch = useDispatch();
-  const {
-    categoriesSummary,
-    expenseSummary,
-    incomeSummary,
-    // month,
-    periodTotal,
-    // year,
-  } = useTransaction();
+const Table = ({ setDate }) => {
+  const { categoriesSummary, expenseSummary, incomeSummary, month, year } =
+    useTransaction();
 
-  const data = {
-    month: selectMonth,
-    year: selectYear,
-  };
-
-  /////////////////
-
-  const hendelSelectYear = e => {
-    // console.log('year', e);
-    setSelectYear(e);
-  };
-
-  const hendelSelectMonth = e => {
-    // console.log('month', e);
-    setSelectMonth(e);
-  };
-
-  useEffect(() => {
-    console.log('data', data);
-
-    // dispatch(getTransactionsForPeriod(data));
-  }, [data, dispatch]);
-  ///////////////////////////
   return (
     <>
       <Chart dataTransactions={categoriesSummary} />
       <WraperDiv>
         <WraperSelect>
-          <SelectButtonMonth hendelSelect={hendelSelectMonth} />
-          <SelectButton hendelSelect={hendelSelectYear} />
+          <SelectButtonMonth month={month} setDate={setDate} />
+          <SelectButton year={year} setDate={setDate} />
         </WraperSelect>
         <TableHead>
           <ParagraphHead>Категория</ParagraphHead>
@@ -88,7 +51,7 @@ const Table = () => {
           <ParagraphText style={{ fontWeight: 700, margin: 0 }}>
             Расходы:
           </ParagraphText>
-          <ParagraphTotal>{expenseSummary.toFixed(2).slice(1)}</ParagraphTotal>
+          <ParagraphTotal>{expenseSummary.toFixed(2)}</ParagraphTotal>
         </TotalDiv>
         <TotalDiv>
           <ParagraphText style={{ fontWeight: 700, margin: 0 }}>

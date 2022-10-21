@@ -9,15 +9,14 @@ import {
   Box,
 } from './SelectBtn.styled';
 
-export default function SelectButton({ hendelSelect, year }) {
-  const [startDate, setStartDate] = useState(new Date());
+export default function SelectButton({ hendelSelect, year, setDate }) {
   const [isOpenYear, setIsOpenYear] = useState(false);
 
-  hendelSelect(timeConverter(startDate));
   const handleChangeYear = e => {
-    console.log(e);
+    const year = e.getYear();
+    console.log(year);
+    setDate(prevDate => ({ ...prevDate, year }));
     setIsOpenYear(!isOpenYear);
-    setStartDate(e);
   };
 
   const handleClick = e => {
@@ -25,16 +24,10 @@ export default function SelectButton({ hendelSelect, year }) {
     setIsOpenYear(!isOpenYear);
   };
 
-  function timeConverter(UNIX_timestamp) {
-    const a = new Date(UNIX_timestamp + 1);
-    const year = a.getFullYear();
-    return year;
-  }
-
   return (
     <Box>
       <SelectBtn>
-        <SelectText>{timeConverter(startDate)}</SelectText>
+        <SelectText>{year}</SelectText>
         <IconBtn onClick={handleClick}>
           <use href={select + `#icon-select`} />
         </IconBtn>
@@ -42,7 +35,7 @@ export default function SelectButton({ hendelSelect, year }) {
       <WraperPicker>
         {isOpenYear && (
           <DatePicker
-            selected={startDate}
+            selected={new Date()}
             onChange={handleChangeYear}
             showYearPicker
             inline

@@ -8,16 +8,27 @@ import {
   WraperPicker,
   Box,
 } from './SelectBtn.styled';
-export default function SelectButtonMonth({ hendelSelect, month }) {
-  const [startDate, setStartDate] = useState(new Date());
+const monthsString = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+export default function SelectButtonMonth({ hendelSelect, month, setDate }) {
   const [isOpenMonth, setIsOpenMonth] = useState(false);
 
-  hendelSelect(startDate.getUTCMonth(+1));
-
   const handleChangeMonth = e => {
-    console.log(e);
+    const month = e.getMonth() + 1;
+    setDate(prevDate => ({ ...prevDate, month }));
     setIsOpenMonth(!isOpenMonth);
-    setStartDate(e);
   };
 
   const handleClick = e => {
@@ -25,31 +36,10 @@ export default function SelectButtonMonth({ hendelSelect, month }) {
     setIsOpenMonth(!isOpenMonth);
   };
 
-  function timeConverter(UNIX_timestamp) {
-    const a = new Date(UNIX_timestamp + 1);
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-
-    const month = months[a.getMonth()];
-    return month;
-  }
-
   return (
     <Box>
       <SelectBtn>
-        <SelectText>{timeConverter(startDate)}</SelectText>
+        <SelectText>{monthsString[month - 1]}</SelectText>
         <IconBtn onClick={handleClick}>
           <use href={select + `#icon-select`} />
         </IconBtn>
@@ -57,7 +47,7 @@ export default function SelectButtonMonth({ hendelSelect, month }) {
       <WraperPicker>
         {isOpenMonth && (
           <DatePicker
-            selected={startDate}
+            selected={new Date()}
             onChange={handleChangeMonth}
             inline
             dateFormat="MM/yyyy"
