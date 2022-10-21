@@ -15,9 +15,9 @@ import { selectTransactionCategories } from '../../redux/transactions/transactio
 import useSortedTtransactions from 'utility/sortedTtransactions';
 
 const LaptopDashboard = () => {
-  //   const transactions = useSortedTtransactions();
+  const transactions = useSortedTtransactions();
   const categories = useSelector(selectTransactionCategories);
-  const transactions = '';
+
   return (
     <>
       {transactions ? (

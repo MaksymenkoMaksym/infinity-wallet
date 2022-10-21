@@ -16,11 +16,11 @@ import { deleteTransaction } from 'redux/transactions/transactionsOperation';
 import { addModalData } from 'redux/transactions/transactionsSlice';
 
 const MobileDashboard = () => {
-  // const transactions = useSortedTtransactions();
+  const transactions = useSortedTtransactions();
   const categories = useSelector(selectTransactionCategories);
   //edit btn & delete btn func
   const dispatch = useDispatch();
-  const transactions = '';
+
   const deleteActionBtn = id => {
     dispatch(deleteTransaction(id));
   };
