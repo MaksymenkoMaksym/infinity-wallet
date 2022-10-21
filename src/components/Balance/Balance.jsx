@@ -18,8 +18,7 @@ const Balance = () => {
   return (
     <Container>
       <Title>YOUR BALANCE</Title>
-      {/* <Sum>&#8372; 24000.00</Sum> */}
-      <Sum>&#8372; {balance}</Sum>
+      <Sum>&#8372; {balance.toFixed(2)}</Sum>
     </Container>
   );
 };
