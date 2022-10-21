@@ -43,6 +43,7 @@ export const AddForm = styled(Form)`
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  width: 280px;
   @media screen and (min-width: 768px) {
     width: 394px;
   }
@@ -88,10 +89,11 @@ export const SwitchIcon = styled.svg`
 `;
 
 export const Input = styled(Field)`
-  width: 280px;
+  width: 100%;
   height: 32px;
   border: none;
   outline: none;
+  /* padding-left: 20px; */
   border-bottom: 1px solid ${p => p.theme.colors.grayIcon};
   color: ${p => p.theme.colors.black};
   font-family: ${p => p.theme.fonts.main};
@@ -121,6 +123,7 @@ export const SwitchText = styled.span`
 `;
 export const Comment = styled.p`
   margin: 0;
+  padding-left: 20px;
   color: ${p => p.theme.colors.gray};
   font-family: ${p => p.theme.fonts.main};
   font-weight: ${p => p.theme.fontWeights.normal};
@@ -166,6 +169,7 @@ export const DataPickerWrapper = styled.label`
     color: red;
     width: 100%;
     outline: none;
+    /* padding-left: 20px; */
     color: ${p => p.theme.colors.black};
     font-family: ${p => p.theme.fonts.main};
     font-weight: ${p => p.theme.fontWeights.normal};
@@ -194,7 +198,6 @@ export const DateSumWrap = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 40px;
-  /* gap: 40px; */
   @media screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
@@ -212,4 +215,5 @@ export const SumInput = styled(Input)`
 export const CommentLabel = styled.label`
   margin-top: 40px;
   margin-bottom: 40px;
+  width: 100%;
 `;

@@ -108,7 +108,7 @@ const ModalAddTransactions = () => {
       backdropFilter: 'blur(25px)',
       borderRadius: 20,
       outline: 0,
-      // width: '100%',
+      // paddingLeft: '20px',
     }),
     // один зі списку
     option: (provided, state) => ({
