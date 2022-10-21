@@ -32,7 +32,7 @@ const SelectBtn = styled.div`
   }
 `;
 
-const SelectText = styled.span`
+const SelectText = styled.div`
   margin-left: 20px;
   font-family: 'Circe';
   font-style: normal;
