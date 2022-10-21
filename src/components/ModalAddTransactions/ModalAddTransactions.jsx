@@ -138,6 +138,10 @@ const ModalAddTransactions = () => {
       ...provided,
       width: '100%',
     }),
+    indicatorSeparator: (provided, state) => ({
+      ...provided,
+      display: 'none',
+    }),
   };
 
   useEffect(() => {
@@ -235,14 +239,16 @@ const ModalAddTransactions = () => {
                 />
               )}
               <DateSumWrap>
-                <label>
-                  <SumInput
-                    type="text"
-                    name="sum"
-                    placeholder="0.00"
-                    required
-                  />
-                </label>
+                <div>
+                  <label>
+                    <SumInput
+                      type="text"
+                      name="sum"
+                      placeholder="0.00"
+                      required
+                    />
+                  </label>
+                </div>
                 <DataPickerWrapper>
                   <DatePicker
                     name="date"
