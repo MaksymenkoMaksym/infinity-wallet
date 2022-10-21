@@ -9,7 +9,7 @@ export const getTransactionCategories = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const response = await axios.get('api/transaction-categories');
-      console.log('getTransactionCategories', response);
+      // console.log('getTransactionCategories', response);
 
       return response.data;
     } catch (error) {
@@ -24,7 +24,7 @@ export const createTransaction = createAsyncThunk(
   async (transaction, thunkApi) => {
     try {
       const response = await axios.post('/api/transactions', transaction);
-      console.log('createTransaction', response.data);
+      // console.log('createTransaction', response.data);
       return response.data;
     } catch (error) {
       thunkApi.rejectWithValue(error);
@@ -88,7 +88,7 @@ export const getTransactionsForPeriod = createAsyncThunk(
       const response = await axios.get(
         `api/transactions-summary?month=${date.month}&year=${date.year}`
       );
-      console.log('get Transactions For Period', response);
+      // console.log('get Transactions For Period', response);
       return response.data;
     } catch (error) {
       thunkApi.rejectWithValue(error);

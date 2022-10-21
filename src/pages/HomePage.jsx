@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Balance from 'components/Balance/Balance';
 import Currency from 'components/Currency/Currency';
 
@@ -10,12 +13,15 @@ import Header from 'components/Header';
 
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
-import { useSelector } from 'react-redux';
 import { isModalAddTransactionOpen } from 'redux/transactions/transactionsSelectors';
 
 import PinkSpot from '../assets/images/Ellipse-2.png';
 
 import VioletSpot from '../assets/images/Ellipse-1.png';
+import {
+  getAllTransactions,
+  getTransactionCategories,
+} from 'redux/transactions/transactionsOperation';
 // import MediaQuery from 'react-responsive';
 // import { useMediaQuery } from 'react-responsive';
 // import { redirect } from 'react-router-dom';
@@ -87,8 +93,12 @@ const DashboardBox = styled.div`
 const Column = styled.div``;
 
 const Home = () => {
+  const dispatch = useDispatch();
   const isModalOpen = useSelector(isModalAddTransactionOpen);
-
+  useEffect(() => {
+    dispatch(getTransactionCategories());
+    dispatch(getAllTransactions());
+  }, [dispatch]);
   return (
     <>
       <Header />

@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
+import { useFormik} from 'formik';
+import { registerUser, loginUser} from 'redux/auth/authOperation';
 
-import { Formik, ErrorMessage } from 'formik';
-
-import { registerUser } from 'redux/auth/authOperation';
 import * as Yup from 'yup';
 import svgIcon from '../../assets/images/icons.svg';
 import {
@@ -17,87 +16,107 @@ import {
 } from './RegistrationForm.styled';
 
 export const RegistrationForm = () => {
+  const {pathname} = useLocation() 
+
+  const FormDefine = () => {
+    const formFields = ["email", "password", "confirmPassword", "firstName"]
+    switch (pathname) {
+        case '/login':
+            return [...formFields.slice(0, 2)];
+    
+        default:
+           return [...formFields];
+    }
+        }
+
+const location = FormDefine().length === 4;
+const buttonTextActive = location ? "REGISTER" : "LOG IN";
+const buttonText = location ? "LOG IN" : "REGISTER"
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const initialValues = {
-    email: '',
-    password: '',
-    confirmPassword: '',
-    firstName: '',
-  };
-
-  let schema = Yup.object().shape({
+  let validationSchema = Yup.object().shape({
     email: Yup.string().email("incorrect email").required("missing email"),
     password: Yup.string()
       .min(6, 'password should be 8 chars minimum').max(12, 'password should be 12 chars maximum')
       .required("missing password"),
+    confirmPassword: Yup.string()
+      .min(6, 'password should be 8 chars minimum').max(12, 'password should be 12 chars maximum')
+      .required("missing confirm password"),
     firstName: Yup.string()
     .min(1).max(12, 'first name should be 12 chars maximum.')
     .required("missing first name")
   });
-
-  const handleSubmit = ({firstName: username, email, password, confirmPassword}, { resetForm }) => {
-    if (password !== confirmPassword) {
-      return alert('password !== confirmPassword');
-    }
-    dispatch(registerUser({username, email, password}));
-    resetForm();
-  };
+  
+  // const onSubmit = ({firstName: username, email, password}, { resetForm }) => {
+  //   // dispatch(loginUser(values));
+  //   console.log(username, email, password)
+  //   // dispatch(loginUser({email, password}));
+  //   // dispatch(location ? loginUser({email, password}) : registerUser({username, email, password}));
+  //   resetForm();
+  // };
+ 
   const navi = () => {
-    navigate('/login');
+    navigate(location ? '/login' : '/registration');
   };
 
-  return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={schema}
-    >
-      <StyledForm style={{ marginTop: '60px' }}>
-        <Label name="email">
-          <Input type="text" name="email" placeholder=" " />
-          <IconSvg>
-            <use href={svgIcon + `#icon-email`}></use>
-          </IconSvg>
-          <Placeholder>E-mail</Placeholder>
-          <ErrorMessage name="email" component={ErrorBox}/>
-        </Label>
+  const typeVar = name => {
+    switch (name) {
+      case "password":
+      case "confirmPassword":
+        return "password"
+      default:
+        return "text";
+    }
+  }
 
-        <Label name="password">
-          <Input type="password" name="password" placeholder=" " />
-          <IconSvg>
-            <use href={svgIcon + `#icon-lock`}></use>
-          </IconSvg>
-          <Placeholder>Password</Placeholder>
-          <ErrorMessage name="password" component={ErrorBox}/>
-        </Label>
-        <Label name="confirmPassword">
-          <Input type="password" name="confirmPassword" placeholder=" " />
-          <IconSvg>
-            <use href={svgIcon + `#icon-lock`}></use>
-          </IconSvg>
-          <Placeholder>Confirm password</Placeholder>
-          <ErrorMessage name="password" component={ErrorBox}/>
-        </Label>
-        <Label name="firstName">
-          <Input type="text" name="firstName" placeholder=" " />
-          <IconSvg>
-            <use href={svgIcon + `#icon-account_box`}></use>
-          </IconSvg>
-          <Placeholder>First name</Placeholder>
-          <ErrorMessage name="firstName" component={ErrorBox}/>
-        </Label>
-        <ActiveButton type="submit">REGISTER</ActiveButton>
+
+    const formik = useFormik({
+      initialValues: {
+        email: '',
+        password: '',
+        confirmPassword: '',
+        firstName: '',
+      },
+      validationSchema,
+      onSubmit: values => {
+        console.log(values)
+      },
+      validateOnChange: false,
+      validateOnBlur: false,
+    })
+    console.log(formik.values)
+const handleSubmit = (event) => {
+  event.preventDefault()
+  const values = {email: formik.values.email, password: formik.values.password}
+  console.log(values)
+   dispatch(loginUser(values));
+  }
+    return (
+      <StyledForm style={{ marginTop: '60px' }} onSubmit={handleSubmit}>
+
+{FormDefine().map(item => {
+  return ( <Label name={item} key = {item}>
+  <Input type={typeVar(item)} name={item} placeholder=" " {...formik.getFieldProps(item)}/>
+  <IconSvg >
+    <use href={svgIcon + `#icon-${item}`}></use>
+  </IconSvg>
+  <Placeholder>{item}</Placeholder>
+  {formik.touched[item] && formik.errors[item] ? (<ErrorBox>{formik.errors[item]}</ErrorBox>) : null}
+</Label>)
+})}
+
+        <ActiveButton type="submit">{buttonTextActive}</ActiveButton>
         <Button
           type="button"
           onClick={() => {
             navi();
           }}
         >
-          LOG IN
+          {buttonText}
         </Button>
       </StyledForm>
-    </Formik>
+
   );
 };
