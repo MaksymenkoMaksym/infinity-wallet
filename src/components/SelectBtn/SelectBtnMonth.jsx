@@ -22,7 +22,7 @@ const monthsString = [
   'November',
   'December',
 ];
-export default function SelectButtonMonth({ hendelSelect, month, setDate }) {
+export default function SelectButtonMonth({ month, setDate }) {
   const [isOpenMonth, setIsOpenMonth] = useState(false);
 
   const handleChangeMonth = e => {
@@ -38,9 +38,9 @@ export default function SelectButtonMonth({ hendelSelect, month, setDate }) {
 
   return (
     <Box>
-      <SelectBtn>
+      <SelectBtn onClick={handleClick}>
         <SelectText>{monthsString[month - 1]}</SelectText>
-        <IconBtn onClick={handleClick}>
+        <IconBtn>
           <use href={select + `#icon-select`} />
         </IconBtn>
       </SelectBtn>
@@ -52,8 +52,6 @@ export default function SelectButtonMonth({ hendelSelect, month, setDate }) {
             inline
             dateFormat="MM/yyyy"
             showMonthYearPicker
-            showFullMonthYearPicker
-            // calendarContainer={CalendarContainer}
           />
         )}
       </WraperPicker>

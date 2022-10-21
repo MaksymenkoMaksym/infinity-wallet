@@ -26,9 +26,9 @@ export default function SelectButton({ year, setDate }) {
 
   return (
     <Box>
-      <SelectBtn>
+      <SelectBtn onClick={handleClick}>
         <SelectText>{year}</SelectText>
-        <IconBtn onClick={handleClick}>
+        <IconBtn>
           <use href={select + `#icon-select`} />
         </IconBtn>
       </SelectBtn>
@@ -40,7 +40,6 @@ export default function SelectButton({ year, setDate }) {
             showYearPicker
             inline
             dateFormat="yyyy"
-            // calendarContainer={CalendarContainer}
           />
         )}
       </WraperPicker>
