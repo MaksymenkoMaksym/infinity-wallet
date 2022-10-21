@@ -64,6 +64,7 @@ const ModalAddTransactions = () => {
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
     console.log(transaction);
+    // TODO ресет значений по умолчанию
     dispatch(createTransaction(transaction));
   };
   const formik = useFormik({
@@ -115,7 +116,6 @@ const ModalAddTransactions = () => {
   return (
     <Overlay onClick={handleBackdropClick}>
       <Modal>
-        {/* <HeaderBox> {isMobileScreen && <Header />}</HeaderBox> */}
         <Tab>
           <CloseBox
             onClick={() => {
@@ -128,14 +128,6 @@ const ModalAddTransactions = () => {
           </CloseBox>
         </Tab>
         <Title>Add transaction</Title>
-        {/* <Formik
-          initialValues={initialValues}
-          onSubmit={handleFormSubmit}
-          validationSchema={validationSchemaAddTransaction}
-          validateOnChange={false}
-          validateOnBlur={false}
-        >
-          {({ values, setFieldValue }) => ( */}
         <AddForm onSubmit={formik.handleSubmit}>
           <ModalAddSwitch
             values={formik.values}
@@ -156,7 +148,6 @@ const ModalAddTransactions = () => {
                   type="number"
                   name="sum"
                   placeholder="0.00"
-                  // required
                   {...formik.getFieldProps('sum')}
                 />
                 {formik.touched.sum && formik.errors.sum ? (
@@ -190,8 +181,6 @@ const ModalAddTransactions = () => {
             CANCEL
           </CancelButton>
         </AddForm>
-        {/* )}
-        </Formik> */}
       </Modal>
     </Overlay>
   );
