@@ -1,4 +1,4 @@
-import { ErrorMessage, Formik, useFormik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import sprite from '../../assets/images/icons.svg';
 import {
   AddForm,
@@ -45,8 +45,23 @@ const ModalAddTransactions = () => {
     comment: '',
     date: new Date(),
   };
+
+  const getOptions = () => {
+    return categories
+      .filter(category => category.type === 'EXPENSE')
+      .map(category => {
+        return { value: category.name, label: category.name };
+      });
+  };
+
+  const getCategoryId = values => {
+    if (values.type === 'INCOME') {
+      return categories.find(elem => elem.type === 'INCOME').id;
+    }
+    return categories.find(elem => elem.name === values.category.value).id;
+  };
+
   const handleFormSubmit = values => {
-    console.log(values);
     const categoryId = getCategoryId(values);
 
     const formatDate =
@@ -65,28 +80,6 @@ const ModalAddTransactions = () => {
     };
     console.log(transaction);
     dispatch(createTransaction(transaction));
-  };
-  const formik = useFormik({
-    initialValues,
-    validationSchema: validationSchemaAddTransaction,
-    onSubmit: handleFormSubmit,
-    validateOnBlur: false,
-    validateOnChange: false,
-  });
-
-  const getOptions = () => {
-    return categories
-      .filter(category => category.type === 'EXPENSE')
-      .map(category => {
-        return { value: category.name, label: category.name };
-      });
-  };
-
-  const getCategoryId = values => {
-    if (values.type === 'INCOME') {
-      return categories.find(elem => elem.type === 'INCOME').id;
-    }
-    return categories.find(elem => elem.name === values.category.value).id;
   };
 
   const handleBackdropClick = e => {
@@ -128,70 +121,56 @@ const ModalAddTransactions = () => {
           </CloseBox>
         </Tab>
         <Title>Add transaction</Title>
-        {/* <Formik
+        <Formik
           initialValues={initialValues}
           onSubmit={handleFormSubmit}
           validationSchema={validationSchemaAddTransaction}
           validateOnChange={false}
           validateOnBlur={false}
         >
-          {({ values, setFieldValue }) => ( */}
-        <AddForm onSubmit={formik.handleSubmit}>
-          <ModalAddSwitch
-            values={formik.values}
-            setFieldValue={formik.setFieldValue}
-          />
-
-          {!isIncome && (
-            <ModalAddSelect
-              options={options}
-              values={formik.values}
-              setFieldValue={formik.setFieldValue}
-            />
-          )}
-          <DateSumWrap>
-            <div>
-              <label>
-                <SumInput
-                  type="number"
-                  name="sum"
-                  placeholder="0.00"
-                  // required
-                  {...formik.getFieldProps('sum')}
+          {({ values, setFieldValue }) => (
+            <AddForm>
+              <ModalAddSwitch values={values} setFieldValue={setFieldValue} />
+              {!isIncome && (
+                <ModalAddSelect
+                  options={options}
+                  values={values}
+                  setFieldValue={setFieldValue}
                 />
-                {formik.touched.sum && formik.errors.sum ? (
-                  <p>{formik.errors.sum}</p>
-                ) : null}
-              </label>
-            </div>
-            <ModalAddDatePicker
-              values={formik.values}
-              setFieldValue={formik.setFieldValue}
-            />
-          </DateSumWrap>
-          <CommentLabel>
-            <Comment>Comment</Comment>
-            <Input
-              type="text"
-              name="comment"
-              {...formik.getFieldProps('comment')}
-            />
-            {formik.touched.comment && formik.errors.comment ? (
-              <p>{formik.errors.comment}</p>
-            ) : null}
-          </CommentLabel>
-          <Button type="submit">ADD</Button>
-          <CancelButton
-            type="button"
-            onClick={() => {
-              dispatch(closeModal());
-            }}
-          >
-            CANCEL
-          </CancelButton>
-        </AddForm>
-        {/* )}
-        </Formik> */}
+              )}
+              <DateSumWrap>
+                <div>
+                  <label>
+                    <SumInput
+                      type="number"
+                      name="sum"
+                      placeholder="0.00"
+                      required
+                    />
+                    <ErrorMessage name="sum" />
+                  </label>
+                </div>
+                <ModalAddDatePicker
+                  values={values}
+                  setFieldValue={setFieldValue}
+                />
+              </DateSumWrap>
+              <CommentLabel>
+                <Comment>Comment</Comment>
+                <Input type="text" name="comment" />
+              </CommentLabel>
+              <Button type="submit">ADD</Button>
+              <CancelButton
+                type="button"
+                onClick={() => {
+                  dispatch(closeModal());
+                }}
+              >
+                CANCEL
+              </CancelButton>
+            </AddForm>
+          )}
+        </Formik>
       </Modal>
     </Overlay>
   );

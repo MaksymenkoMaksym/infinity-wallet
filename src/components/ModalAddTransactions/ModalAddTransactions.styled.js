@@ -1,4 +1,4 @@
-import { Field, Form } from 'formik';
+// import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const Overlay = styled.div`
@@ -38,7 +38,7 @@ export const Modal = styled.div`
   }
 `;
 
-export const AddForm = styled(Form)`
+export const AddForm = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -88,7 +88,7 @@ export const SwitchIcon = styled.svg`
   fill: ${p => p.theme.colors.white};
 `;
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   width: 100%;
   height: 32px;
   border: none;
