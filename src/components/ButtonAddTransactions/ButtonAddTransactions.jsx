@@ -1,19 +1,16 @@
 import { AddBtn, Icon } from './ButtonAddTransactions.styled';
 import sprite from '../../assets/images/icons.svg';
-import { useDispatch } from 'react-redux';
-import { openModal } from 'redux/transactions/transactionsSlice';
 
-const ButtonAddTransactions = () => {
-  const dispatch = useDispatch();
-
+const ButtonAddTransactions = ({ onClickAction, icon }) => {
   return (
     <AddBtn
       onClick={() => {
-        dispatch(openModal());
+        onClickAction();
       }}
+      icon={icon}
     >
       <Icon>
-        <use href={`${sprite}#icon-plus`}></use>
+        <use href={`${sprite}#icon-${icon}`}></use>
       </Icon>
     </AddBtn>
   );

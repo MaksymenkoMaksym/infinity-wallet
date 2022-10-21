@@ -4,24 +4,26 @@ import MobileDashboard from './MobileDashboard';
 import LaptopDashboard from './LaptopDashboard';
 import { selectTransactions } from '../../redux/transactions/transactionsSelectors';
 import { useSelector } from 'react-redux';
+import Loader from 'components/Loader';
 
 const DashboardPage = () => {
   const transactions = useSelector(selectTransactions);
   console.log(transactions);
   return (
-    // {transactions.length ===0 ?
-    //   <div>
-    //   </div>
-    // :
-    <UlBoard>
-      <Mob>
-        <MobileDashboard />
-      </Mob>
-      <Tab>
-        <LaptopDashboard />
-      </Tab>
-    </UlBoard>
-    // }
+    <>
+      {transactions.length === 0 ? (
+        <Loader />
+      ) : (
+        <UlBoard>
+          <Mob>
+            <MobileDashboard />
+          </Mob>
+          <Tab>
+            <LaptopDashboard />
+          </Tab>
+        </UlBoard>
+      )}
+    </>
   );
 };
 
