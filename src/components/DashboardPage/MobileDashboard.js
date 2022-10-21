@@ -59,13 +59,15 @@ const MobileDashboard = () => {
             <DivItem transaction={item.type}>
               <PName> Sum</PName>
               <PValue transaction={item.type}>
-                {item.amount < 0 ? item.amount * -1 : item.amount}
+                {item.amount < 0
+                  ? item.amount.toFixed(2) * -1
+                  : item.amount.toFixed(2)}
               </PValue>
             </DivItem>
 
             <DivItem transaction={item.type}>
               <PName> Balance</PName>
-              <PValue>{item.balanceAfter}</PValue>
+              <PValue>{item.balanceAfter.toFixed(2)}</PValue>
             </DivItem>
             <div style={{ display: 'flex', justifyContent: 'space-around' }}>
               <ButtonAddTransactions

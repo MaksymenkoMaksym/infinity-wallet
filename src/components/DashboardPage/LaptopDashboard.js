@@ -46,10 +46,12 @@ const LaptopDashboard = () => {
                 <PList>{item.comment}</PList>
                 <PList>
                   <Sum transaction={item.type}>
-                    {item.amount < 0 ? item.amount * -1 : item.amount}
+                    {item.amount < 0
+                      ? item.amount.toFixed(2) * -1
+                      : item.amount.toFixed(2)}
                   </Sum>
                 </PList>
-                <PList>{item.balanceAfter}</PList>
+                <PList>{item.balanceAfter.toFixed(2)}</PList>
               </DivTablet>
             );
           })}
