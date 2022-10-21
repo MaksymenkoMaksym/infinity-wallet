@@ -1,9 +1,14 @@
-import { RegistrationWrapper } from "components/RegistrationWrapper/RegistrationWrapper";
+import { RegistrationWrapper } from "components/RegistrationWrapper";
+import Logo from "../components/Logo/Logo";
+import { Form } from "components/Form";
 
 
 export const RegistrationPage = () => {
         return (
-            <RegistrationWrapper/>
+            <RegistrationWrapper>
+                <Logo />
+                <Form />
+            </RegistrationWrapper>
         )
 
 };
