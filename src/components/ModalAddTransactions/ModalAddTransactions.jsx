@@ -17,7 +17,10 @@ import {
   Comment,
   CloseIcon,
   CloseBox,
+  DateIcon,
   // StyledSelect,
+  DataPickerWrapper,
+  DateSumWrap,
 } from './ModalAddTransactions.styled';
 import Switch from 'react-switch';
 import { Tab } from 'components/MediaWraper/MediaWraper';
@@ -75,7 +78,7 @@ const ModalAddTransactions = () => {
       comment: values.comment,
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
-    // console.log(transaction);
+    console.log(transaction);
     dispatch(createTransaction(transaction));
   };
 
@@ -214,27 +217,32 @@ const ModalAddTransactions = () => {
                   styles={customStyles}
                   onChange={data => {
                     setFieldValue('category', data);
-                    console.log(values);
+                    // console.log(values);
                   }}
                   placeholder="Select category"
                   options={options}
                   required
                 />
               )}
-              <label>
-                <Input type="text" name="sum" placeholder="0.00" required />
-              </label>
-
-              <DatePicker
-                selected={values.date}
-                onChange={date => {
-                  // console.log(date.toLocaleDateString());
-                  setFieldValue('date', date);
-                  // console.log(values.date);
-                }}
-                dateFormat="dd.MM.yyyy"
-              />
-
+              <DateSumWrap>
+                <label>
+                  <Input type="text" name="sum" placeholder="0.00" required />
+                </label>
+                <DataPickerWrapper>
+                  <DatePicker
+                    name="date"
+                    required
+                    selected={values.date}
+                    onChange={date => {
+                      setFieldValue('date', date);
+                    }}
+                    dateFormat="dd.MM.yyyy"
+                  />
+                  <DateIcon>
+                    <use href={`${sprite}#icon-date_range`}></use>
+                  </DateIcon>
+                </DataPickerWrapper>
+              </DateSumWrap>
               {/* <label>
                 <Input type="date" name="date" required />
               </label> */}
