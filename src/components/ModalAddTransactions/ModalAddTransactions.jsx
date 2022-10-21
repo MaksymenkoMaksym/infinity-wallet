@@ -21,6 +21,8 @@ import {
   // StyledSelect,
   DataPickerWrapper,
   DateSumWrap,
+  SumInput,
+  CommentLabel,
 } from './ModalAddTransactions.styled';
 import Switch from 'react-switch';
 import { Tab } from 'components/MediaWraper/MediaWraper';
@@ -226,7 +228,12 @@ const ModalAddTransactions = () => {
               )}
               <DateSumWrap>
                 <label>
-                  <Input type="text" name="sum" placeholder="0.00" required />
+                  <SumInput
+                    type="text"
+                    name="sum"
+                    placeholder="0.00"
+                    required
+                  />
                 </label>
                 <DataPickerWrapper>
                   <DatePicker
@@ -246,10 +253,10 @@ const ModalAddTransactions = () => {
               {/* <label>
                 <Input type="date" name="date" required />
               </label> */}
-              <label>
+              <CommentLabel>
                 <Comment>Comment</Comment>
                 <Input type="text" name="comment" />
-              </label>
+              </CommentLabel>
               <Button type="submit">ADD</Button>
               <CancelButton
                 type="button"

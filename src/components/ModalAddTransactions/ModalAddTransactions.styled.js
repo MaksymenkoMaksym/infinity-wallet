@@ -12,6 +12,7 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.25);
   z-index: 1200;
   margin-top: 60px;
+  overflow-y: auto;
   @media screen and (min-width: 768px) {
     margin-top: 0;
     padding-top: 60px;
@@ -41,7 +42,9 @@ export const AddForm = styled(Form)`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  /* gap: 40px; */
+  @media screen and (min-width: 768px) {
+    width: 394px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -57,7 +60,7 @@ export const Button = styled.button`
   width: 300px;
   height: 50px;
   padding: 0;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   color: ${p => p.theme.colors.white};
   background-color: ${p => p.theme.colors.green};
   border: 1px solid ${p => p.theme.colors.green};
@@ -93,7 +96,7 @@ export const Input = styled(Field)`
   font-family: ${p => p.theme.fonts.main};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.m};
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   &:hover {
     border-bottom: 1px solid ${p => p.theme.colors.gray};
   }
@@ -116,6 +119,7 @@ export const SwitchText = styled.span`
   font-size: ${p => p.theme.fontSizes.s};
 `;
 export const Comment = styled.p`
+  margin: 0;
   color: ${p => p.theme.colors.gray};
   font-family: ${p => p.theme.fonts.main};
   font-weight: ${p => p.theme.fontWeights.normal};
@@ -143,6 +147,9 @@ export const DataPickerWrapper = styled.label`
   gap: 20px;
   border-bottom: 1px solid ${p => p.theme.colors.grayIcon};
   padding-bottom: 5px;
+  @media screen and (min-width: 768px) {
+    width: 181px;
+  }
   &:hover {
     border-bottom: 1px solid ${p => p.theme.colors.gray};
   }
@@ -186,9 +193,22 @@ export const DateSumWrap = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 40px;
-  margin-bottom: 40px;
   /* gap: 40px; */
   @media screen and (min-width: 768px) {
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
+`;
+export const SumInput = styled(Input)`
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    width: 181px;
+    margin-bottom: 0px;
+  }
+`;
+export const CommentLabel = styled.label`
+  margin-top: 40px;
+  margin-bottom: 40px;
 `;
