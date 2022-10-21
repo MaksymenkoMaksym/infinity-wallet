@@ -36,17 +36,16 @@ width: 24px;
 height: 24px;
 fill: currentColor;
 position: absolute;
-top: -7px;
+top: -3px;
 left: 10px;
 transition:  color 250ms linear;
 `
 
 export const Input = styled.input`
-/* width: 100%; */
 box-sizing: border-box;
-height: 20px;
+height: 24px;
 font-size: 18px;
-
+padding-bottom: 5px;
 padding-left: 50px;
 border: none;
 border-bottom: 1px solid #E0E0E0;
@@ -117,4 +116,6 @@ export const ActiveButton = styled(Button)`
 export const ErrorBox = styled.div`
 color: red;
 position: absolute;
+font-size: 14px;
+margin-left: 10px;
 `
