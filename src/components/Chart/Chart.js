@@ -21,28 +21,48 @@ const Div = styled.div`
     padding-right: 32px;
   }
 `;
+const getData = transactions => {
+  const tdata = transactions.filter(item => item.total !== 0);
+  const data =
+    tdata.length !== 0
+      ? {
+          labels: tdata.map(item =>
+            item.name !== 'Income' ? item.name : null
+          ),
+
+          datasets: [
+            {
+              data: tdata.map(item =>
+                item.name !== 'Income' ? item.total : null
+              ),
+              backgroundColor: theme.colors.diagram,
+              borderWidth: 1,
+              hoverOffset: 10,
+              cutout: '70%',
+            },
+          ],
+        }
+      : {
+          labels: false,
+
+          datasets: [
+            {
+              data: [1],
+              backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+              borderWidth: 1,
+              hoverOffset: 10,
+              cutout: '70%',
+            },
+          ],
+        };
+  return data;
+};
 
 const Chart = ({ dataTransactions }) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const { periodTotal } = useSelector(selectTransactionsForPeriod);
 
-  const data = {
-    labels: dataTransactions.map(item =>
-      item.name !== 'Income' ? item.name : null
-    ),
-
-    datasets: [
-      {
-        data: dataTransactions.map(item =>
-          item.name !== 'Income' ? item.total : null
-        ),
-        backgroundColor: theme.colors.diagram,
-        borderWidth: 1,
-        hoverOffset: 10,
-        cutout: '70%',
-      },
-    ],
-  };
+  const data = getData(dataTransactions);
 
   const options = {
     plugins: {
