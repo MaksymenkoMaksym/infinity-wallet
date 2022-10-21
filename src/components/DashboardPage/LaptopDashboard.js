@@ -1,5 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { format } from 'date-fns';
 import {
@@ -11,18 +10,12 @@ import {
   PName,
   Block,
 } from './DashboardPage.styled';
-import { getAllTransactions } from '../../redux/transactions/transactionsOperation';
 import { selectTransactionCategories } from '../../redux/transactions/transactionsSelectors';
 import useSortedTtransactions from 'utility/sortedTtransactions';
 
 const LaptopDashboard = () => {
   const transactions = useSortedTtransactions();
   const categories = useSelector(selectTransactionCategories);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllTransactions());
-  }, [dispatch]);
 
   return (
     <>
@@ -52,10 +45,12 @@ const LaptopDashboard = () => {
                 <PList>{item.comment}</PList>
                 <PList>
                   <Sum transaction={item.type}>
-                    {item.amount < 0 ? item.amount * -1 : item.amount}
+                    {item.amount < 0
+                      ? item.amount.toFixed(2) * -1
+                      : item.amount.toFixed(2)}
                   </Sum>
                 </PList>
-                <PList>{item.balanceAfter}</PList>
+                <PList>{item.balanceAfter.toFixed(2)}</PList>
               </DivTablet>
             );
           })}
