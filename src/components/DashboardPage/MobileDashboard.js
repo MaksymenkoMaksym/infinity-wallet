@@ -9,6 +9,7 @@ import {
   PValue,
   // Sum
 } from './DashboardPage.styled';
+import EmptyTransactions from 'components/EmptyTransactions';
 import useSortedTtransactions from 'utility/sortedTtransactions';
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { deleteTransaction } from 'redux/transactions/transactionsOperation';
@@ -29,63 +30,69 @@ const MobileDashboard = () => {
 
   return (
     <>
-      {transactions.map(item => {
-        return (
-          <Li key={item.id}>
-            <DivItem transaction={item.type}>
-              <PName> Date</PName>
-              <PValue>
-                {format(new Date(item.transactionDate), 'dd.MM.yy')}
-              </PValue>
-            </DivItem>
+      {transactions ? (
+        transactions.map(item => {
+          return (
+            <Li key={item.id}>
+              <DivItem transaction={item.type}>
+                <PName> Date</PName>
+                <PValue>
+                  {format(new Date(item.transactionDate), 'dd.MM.yy')}
+                </PValue>
+              </DivItem>
 
-            <DivItem transaction={item.type}>
-              <PName> Type</PName>
-              <PValue>{item.type === 'INCOME' ? '+' : '-'}</PValue>
-            </DivItem>
+              <DivItem transaction={item.type}>
+                <PName> Type</PName>
+                <PValue>{item.type === 'INCOME' ? '+' : '-'}</PValue>
+              </DivItem>
 
-            <DivItem transaction={item.type}>
-              <PName> Category</PName>
-              <PValue>
-                {categories.map(cat => cat.id === item.categoryId && cat.name)}
-              </PValue>
-            </DivItem>
+              <DivItem transaction={item.type}>
+                <PName> Category</PName>
+                <PValue>
+                  {categories.map(
+                    cat => cat.id === item.categoryId && cat.name
+                  )}
+                </PValue>
+              </DivItem>
 
-            <DivItem transaction={item.type}>
-              <PName> Comment</PName>
-              <PValue> {item.comment}</PValue>
-            </DivItem>
+              <DivItem transaction={item.type}>
+                <PName> Comment</PName>
+                <PValue> {item.comment}</PValue>
+              </DivItem>
 
-            <DivItem transaction={item.type}>
-              <PName> Sum</PName>
-              <PValue transaction={item.type}>
-                {item.amount < 0
-                  ? item.amount.toFixed(2) * -1
-                  : item.amount.toFixed(2)}
-              </PValue>
-            </DivItem>
+              <DivItem transaction={item.type}>
+                <PName> Sum</PName>
+                <PValue transaction={item.type}>
+                  {item.amount < 0
+                    ? item.amount.toFixed(2) * -1
+                    : item.amount.toFixed(2)}
+                </PValue>
+              </DivItem>
 
-            <DivItem transaction={item.type}>
-              <PName> Balance</PName>
-              <PValue>{item.balanceAfter.toFixed(2)}</PValue>
-            </DivItem>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <ButtonAddTransactions
-                icon="delete"
-                onClickAction={() => {
-                  deleteActionBtn(item.id);
-                }}
-              />
-              <ButtonAddTransactions
-                icon="edit"
-                onClickAction={() => {
-                  editActionBtn(item);
-                }}
-              />
-            </div>
-          </Li>
-        );
-      })}
+              <DivItem transaction={item.type}>
+                <PName> Balance</PName>
+                <PValue>{item.balanceAfter.toFixed(2)}</PValue>
+              </DivItem>
+              <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                <ButtonAddTransactions
+                  icon="delete"
+                  onClickAction={() => {
+                    deleteActionBtn(item.id);
+                  }}
+                />
+                <ButtonAddTransactions
+                  icon="edit"
+                  onClickAction={() => {
+                    editActionBtn(item);
+                  }}
+                />
+              </div>
+            </Li>
+          );
+        })
+      ) : (
+        <EmptyTransactions />
+      )}
     </>
   );
 };
