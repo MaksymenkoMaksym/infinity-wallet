@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { registerUser, loginUser } from 'redux/auth/authOperation';
+import {ProgressString} from "../ProgressString"
 import {
   validationSchemaLogin,
   validationSchemaRegister,
@@ -120,7 +121,7 @@ export const Form = () => {
                   <use href={svgIcon + `#icon-cancel-circle`}></use>
                 </ErrorSvg>
               </ErrorBox>
-            ) : null}
+            ) : (<ProgressString/>)}
           </Label>
         );
       })}
