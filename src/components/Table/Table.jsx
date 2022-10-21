@@ -31,8 +31,8 @@ const Table = ({ setDate }) => {
           <SelectButton year={year} setDate={setDate} />
         </WraperSelect>
         <TableHead>
-          <ParagraphHead>Категория</ParagraphHead>
-          <ParagraphHead>Сумма</ParagraphHead>
+          <ParagraphHead>Categories</ParagraphHead>
+          <ParagraphHead>Sum</ParagraphHead>
         </TableHead>
         <ListUl>
           {categoriesSummary.map((item, index) => {
@@ -45,17 +45,18 @@ const Table = ({ setDate }) => {
                 </Item>
               );
             }
+            return null;
           })}
         </ListUl>
         <TotalDiv>
           <ParagraphText style={{ fontWeight: 700, margin: 0 }}>
-            Расходы:
+            Expenses:
           </ParagraphText>
           <ParagraphTotal>{expenseSummary.toFixed(2)}</ParagraphTotal>
         </TotalDiv>
         <TotalDiv>
           <ParagraphText style={{ fontWeight: 700, margin: 0 }}>
-            Доходы:
+            Income:
           </ParagraphText>
           <ParagraphTotal income>{incomeSummary.toFixed(2)}</ParagraphTotal>
         </TotalDiv>
