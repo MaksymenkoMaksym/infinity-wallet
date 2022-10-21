@@ -6,12 +6,17 @@ import Table from 'components/Table';
 import Loader from 'components/Loader';
 import Container from 'components/Container';
 import { Wrapper, DiagramBox } from './DiagramTable.styled';
+import { useMediaQuery } from 'react-responsive';
 
 import { getTransactionsForPeriod } from 'redux/transactions/transactionsOperation';
 import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelectors';
 import timeConverter from 'utility/timeConvertor';
+import Navigation from 'components/Navigation';
 
 const DiagramTable = () => {
+  const isMobileScreen = useMediaQuery({ maxWidth: 767 });
+  const isTabletOrBigScreen = useMediaQuery({ minWidth: 768 });
+
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoadingTransaction);
   const defaultDate = timeConverter();
@@ -22,7 +27,8 @@ const DiagramTable = () => {
   return (
     <Container>
       <Wrapper>
-        <HeroBar />
+        {isMobileScreen && <Navigation />}
+        {isTabletOrBigScreen && <HeroBar />}
         <DiagramBox>
           {isLoading ? <Loader /> : <Table setDate={setDate} />}
         </DiagramBox>
