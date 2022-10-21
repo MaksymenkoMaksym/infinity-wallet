@@ -27,6 +27,10 @@ const SelectBtn = styled.div`
   margin-bottom: 20px;
   align-items: center;
   justify-content: flex-start;
+  &:hover {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  }
   ${props => props.theme.breakpoints.tab} {
     width: 165px;
   }
@@ -46,11 +50,10 @@ const Box = styled.div`
   position: relative;
 `;
 const WraperPicker = styled.div`
-  .react-datepicker {
+  & .react-datepicker {
     z-index: 1000;
     position: absolute;
     top: 50px;
-    padding: 30px;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(25px);
@@ -58,6 +61,22 @@ const WraperPicker = styled.div`
     ${props => props.theme.breakpoints.tab} {
       padding: 0;
     }
+  }
+  & .react-datepicker__year-wrapper {
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  & .react-datepicker__header {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+  }
+  & .react-datepicker__month {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 280px;
   }
 `;
 
