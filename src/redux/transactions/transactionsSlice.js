@@ -99,6 +99,7 @@ const userInitialState = {
   isLoading: false,
   error: null,
   isModalAddTransactionOpen: false,
+  modalIsIncome: false,
 };
 
 const pendingHandlerAuth = (state, action) => {
@@ -122,6 +123,9 @@ const transactionSlice = createSlice({
     },
     closeModal(state, action) {
       state.isModalAddTransactionOpen = false;
+    },
+    setIsIncome(state, action) {
+      state.modalIsIncome = action.payload;
     },
   },
   extraReducers: {
@@ -183,5 +187,5 @@ const transactionSlice = createSlice({
   },
 });
 
-export const { openModal, closeModal } = transactionSlice.actions;
+export const { openModal, closeModal, setIsIncome } = transactionSlice.actions;
 export const transactionReducer = transactionSlice.reducer;

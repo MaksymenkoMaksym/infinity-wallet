@@ -1,6 +1,4 @@
-import { Formik } from 'formik';
-import { useState } from 'react';
-import Select from 'react-select';
+import { ErrorMessage, Formik } from 'formik';
 import sprite from '../../assets/images/icons.svg';
 import {
   AddForm,
@@ -9,39 +7,37 @@ import {
   Title,
   Button,
   CancelButton,
-  SwitchIcon,
-  IconBox,
   Input,
-  SwitchLabel,
-  SwitchText,
   Comment,
   CloseIcon,
   CloseBox,
-  DateIcon,
-  // StyledSelect,
-  DataPickerWrapper,
   DateSumWrap,
   SumInput,
   CommentLabel,
 } from './ModalAddTransactions.styled';
-import Switch from 'react-switch';
 import { Tab } from 'components/MediaWraper/MediaWraper';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
 import {
   isModalAddTransactionOpen,
+  modalIsIncome,
   selectTransactionCategories,
 } from 'redux/transactions/transactionsSelectors';
 import { createTransaction } from 'redux/transactions/transactionsOperation';
 import { useEffect } from 'react';
-import DatePicker from 'react-datepicker';
+// import Header from 'components/Header';
+// import { useMediaQuery } from 'react-responsive';
+import ModalAddSwitch from 'components/ModalAddSwitch/ModalAddSwitch';
+import ModalAddSelect from 'components/ModalAddSelect/ModalAddSelect';
+import ModalAddDatePicker from 'components/ModalAddDatePicker/ModalAddDatePicker';
+import { validationSchemaAddTransaction } from 'utility/validationSchema';
 
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
-  const [isIncome, setIsIncome] = useState(false);
-  // const [startDate, setStartDate] = useState(new Date());
+  const isIncome = useSelector(modalIsIncome);
   const categories = useSelector(selectTransactionCategories);
   const isModalOpen = useSelector(isModalAddTransactionOpen);
+  // const isMobileScreen = useMediaQuery({ maxWidth: 767 });
   const initialValues = {
     category: '',
     type: 'EXPENSE',
@@ -90,59 +86,7 @@ const ModalAddTransactions = () => {
     }
   };
 
-  const switchTextColor = () => {
-    return isIncome
-      ? { inc: '#24CCA7', exp: '#E0E0E0' }
-      : { inc: '#E0E0E0', exp: '#FF6596' };
-  };
   const options = getOptions();
-
-  const customStyles = {
-    //випадаючий список
-    menu: provided => ({
-      //значення по дефолту
-      ...provided,
-      overflow: 'hidden',
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-      backdropFilter: 'blur(25px)',
-      borderRadius: 20,
-      outline: 0,
-      // paddingLeft: '20px',
-    }),
-    // один зі списку
-    option: (provided, state) => ({
-      ...provided,
-      borderBottom: '1px dotted pink',
-
-      color: state.isFocused ? '#FF6596' : '#000000',
-      padding: 20,
-      backgroundColor: state.isFocused ? 'white' : null,
-      cursor: 'pointer',
-    }),
-    //пошуковий рядок
-    control: (provided, state) => ({
-      ...provided,
-      width: '100%',
-      border: 0,
-      borderColor: state.isFocused ? 'transparent' : null,
-      borderBottom: '1px solid   #E0E0E0',
-      borderRadius: 0,
-      backgroundColor: 'transparent',
-    }),
-    placeholder: provided => ({
-      ...provided,
-      color: '#BDBDBD',
-    }),
-    container: (provided, state) => ({
-      ...provided,
-      width: '100%',
-    }),
-    indicatorSeparator: (provided, state) => ({
-      ...provided,
-      display: 'none',
-    }),
-  };
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -162,6 +106,7 @@ const ModalAddTransactions = () => {
   return (
     <Overlay onClick={handleBackdropClick}>
       <Modal>
+        {/* <HeaderBox> {isMobileScreen && <Header />}</HeaderBox> */}
         <Tab>
           <CloseBox
             onClick={() => {
@@ -174,95 +119,39 @@ const ModalAddTransactions = () => {
           </CloseBox>
         </Tab>
         <Title>Add transaction</Title>
-        <Formik initialValues={initialValues} onSubmit={handleFormSubmit}>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleFormSubmit}
+          validationSchema={validationSchemaAddTransaction}
+          validateOnChange={false}
+          validateOnBlur={false}
+        >
           {({ values, setFieldValue }) => (
             <AddForm>
-              <SwitchLabel htmlFor="small-radius-switch">
-                <SwitchText inputColor={switchTextColor().inc}>
-                  Income
-                </SwitchText>
-                <Switch
-                  name="type"
-                  value={values.type}
-                  checked={values.type === 'EXPENSE'}
-                  onChange={(checked, event) => {
-                    setFieldValue('type', checked ? 'EXPENSE' : 'INCOME');
-                    setIsIncome(prev => !prev);
-                    setFieldValue('category', checked ? values.category : '');
-                    // console.log(values.type);
-                  }}
-                  handleDiameter={44}
-                  offColor="#FF6596"
-                  onColor="#24CCA7"
-                  offHandleColor="#24CCA7"
-                  onHandleColor="#FF6596"
-                  height={40}
-                  width={80}
-                  // borderRadius={6}
-                  border=""
-                  boxShadow="0px 0px 1px 2px #BDBDBD"
-                  activeBoxShadow="0px 0px 1px 2px #BDBDBD"
-                  uncheckedIcon={<div></div>}
-                  uncheckedHandleIcon={
-                    <IconBox>
-                      <SwitchIcon>
-                        <use href={`${sprite}#icon-plus`}></use>
-                      </SwitchIcon>
-                    </IconBox>
-                  }
-                  checkedIcon={<div></div>}
-                  checkedHandleIcon={
-                    <IconBox>
-                      <SwitchIcon>
-                        <use href={`${sprite}#icon-minus`}></use>
-                      </SwitchIcon>
-                    </IconBox>
-                  }
-                  className="react-switch"
-                  id="small-radius-switch"
-                />
-                <SwitchText inputColor={switchTextColor().exp}>
-                  Expense
-                </SwitchText>
-              </SwitchLabel>
+              <ModalAddSwitch values={values} setFieldValue={setFieldValue} />
               {!isIncome && (
-                <Select
-                  value={values.category}
-                  styles={customStyles}
-                  onChange={data => {
-                    setFieldValue('category', data);
-                    // console.log(values);
-                  }}
-                  placeholder="Select category"
+                <ModalAddSelect
                   options={options}
-                  required
+                  values={values}
+                  setFieldValue={setFieldValue}
                 />
               )}
               <DateSumWrap>
                 <div>
                   <label>
                     <SumInput
-                      type="text"
+                      type="number"
                       name="sum"
                       placeholder="0.00"
                       required
                     />
+                    <ErrorMessage name="sum" />
                   </label>
                 </div>
-                <DataPickerWrapper>
-                  <DatePicker
-                    name="date"
-                    required
-                    selected={values.date}
-                    onChange={date => {
-                      setFieldValue('date', date);
-                    }}
-                    dateFormat="dd.MM.yyyy"
-                  />
-                  <DateIcon>
-                    <use href={`${sprite}#icon-date_range`}></use>
-                  </DateIcon>
-                </DataPickerWrapper>
+                <ModalAddDatePicker
+                  values={values}
+                  setFieldValue={setFieldValue}
+                />
               </DateSumWrap>
               <CommentLabel>
                 <Comment>Comment</Comment>
