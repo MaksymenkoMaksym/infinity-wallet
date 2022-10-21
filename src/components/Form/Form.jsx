@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { registerUser, loginUser } from 'redux/auth/authOperation';
 import {ProgressString} from "../ProgressString"
@@ -17,16 +17,20 @@ import {
   Button,
   ActiveButton,
   StyledForm,
-  ErrorBox, ErrorSvg
+  ErrorBox,
+  ErrorSvg,
 } from './Form.styled';
 
+
 export const Form = () => {
+
   const { pathname } = useLocation();
+  const { authType } = useParams();
 
   const FormDefine = () => {
     const formFields = ['email', 'password', 'confirmPassword', 'firstName'];
-    switch (pathname) {
-      case '/login':
+    switch (authType) {
+      case 'login':
         return [...formFields.slice(0, 2)];
 
       default:
@@ -55,7 +59,7 @@ export const Form = () => {
   const navigate = useNavigate();
 
   const navi = () => {
-    navigate(location ? '/login' : '/registration');
+    navigate(authType === 'login' ? '/auth/registration' : '/auth/login');
   };
 
   const typeVar = name => {
@@ -133,3 +137,5 @@ export const Form = () => {
     </StyledForm>
   );
 };
+
+export default RegistrationForm;
