@@ -1,34 +1,5 @@
 import styled from 'styled-components';
-import { keyframes } from 'styled-components';
 ///////home
-
-const example = keyframes`
- 0% { opacity: 0.3; }
- 30% {  opacity: 0.6 }
- 40% {  opacity: 0.8; }
- 100% { opacity: 1; }
-`;
-const DivTable = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 15px;
-  background: #4a56e2;
-  border-radius: 30px;
-  width: 300px;
-  height: 150px;
-  display: flex;
-
-  color: white;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-weight: ${props => props.theme.fontWeights.bold};
-  font-size: ${props => props.theme.fontSizes.m};
-  line-height: ${props => props.theme.lineHeights.main};
-
-  animation-name: ${example};
-  animation-duration: 4s;
-`;
 
 const UlBoard = styled.ul`
   margin: 0;
@@ -107,7 +78,7 @@ const DivItem = styled.div`
   border-bottom: 1px solid #dcdcdf;
   align-items: baseline;
 
-  &: last-child {
+  &:last-child {
     border-bottom: ${props => props.theme.borders.none};
   }
 
@@ -127,7 +98,6 @@ const Li = styled.li`
   margin-bottom: 8px;
   min-width: 280px;
   background: ${props => props.theme.colors.white};
-    }
 `;
 
 ////////////////////////////////////for laptop
@@ -164,16 +134,15 @@ const UlTitle = styled.div`
   position: sticky;
 `;
 const DivTablet = styled.div`
-
- display: flex;
+  display: flex;
   justify-content: space-between;
-    align-items: center;
-  
-   padding: 15px 20px;
-  &:not(:last-child){
-      border-bottom: 1px solid #dcdcdf;
-      box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  align-items: center;
 
+  padding: 15px 20px;
+  &:not(:last-child) {
+    border-bottom: 1px solid #dcdcdf;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  }
 `;
 
 const PList = styled.p`
@@ -230,5 +199,4 @@ export {
   UlTitle,
   UlBoard,
   Block,
-  DivTable,
 };
