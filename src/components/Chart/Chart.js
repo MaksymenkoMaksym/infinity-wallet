@@ -11,11 +11,14 @@ const Div = styled.div`
   width: 294px;
   height: 294px;
   margin: 0 auto;
+  padding-bottom: 32px;
 
   ${props => props.theme.breakpoints.tab} {
     width: 334px;
     height: 334px;
     margin: 0;
+    padding: 0;
+    padding-right: 32px;
   }
 `;
 
@@ -76,6 +79,7 @@ const Chart = ({ dataTransactions }) => {
 
   return (
     <Div>
+      <h1>Statistics</h1>
       <Doughnut
         data={data}
         options={options}
