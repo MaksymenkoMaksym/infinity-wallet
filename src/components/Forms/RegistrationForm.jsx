@@ -36,27 +36,23 @@ const buttonText = location ? "LOG IN" : "REGISTER"
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let validationSchema = Yup.object().shape({
+const validationSchemaLogin = Yup.object().shape({
     email: Yup.string().email("incorrect email").required("missing email"),
     password: Yup.string()
       .min(6, 'password should be 8 chars minimum').max(12, 'password should be 12 chars maximum')
       .required("missing password"),
+  });
+
+  const validationSchemaRegister = Yup.object().shape({
     confirmPassword: Yup.string()
       .min(6, 'password should be 8 chars minimum').max(12, 'password should be 12 chars maximum')
       .required("missing confirm password"),
     firstName: Yup.string()
     .min(1).max(12, 'first name should be 12 chars maximum.')
     .required("missing first name")
-  });
+  }).concat(validationSchemaLogin)
+
   
-  // const onSubmit = ({firstName: username, email, password}, { resetForm }) => {
-  //   // dispatch(loginUser(values));
-  //   console.log(username, email, password)
-  //   // dispatch(loginUser({email, password}));
-  //   // dispatch(location ? loginUser({email, password}) : registerUser({username, email, password}));
-  //   resetForm();
-  // };
- 
   const navi = () => {
     navigate(location ? '/login' : '/registration');
   };
@@ -71,6 +67,17 @@ const buttonText = location ? "LOG IN" : "REGISTER"
     }
   }
 
+    const onSubmit = ({email, password, confirmPassword: username}, {resetForm}) => {
+        location
+        ? dispatch(registerUser({email, password, username}))
+        : dispatch(loginUser({email, password}));
+         resetForm()
+        }
+
+    const handleClick = () => {
+      navi();
+    formik.resetForm()
+    }
 
     const formik = useFormik({
       initialValues: {
@@ -79,23 +86,17 @@ const buttonText = location ? "LOG IN" : "REGISTER"
         confirmPassword: '',
         firstName: '',
       },
-      validationSchema,
-      onSubmit: values => {
-        console.log(values)
-      },
+      validationSchema: location ? validationSchemaRegister : validationSchemaLogin,
+      onSubmit,
       validateOnChange: false,
       validateOnBlur: false,
     })
-    console.log(formik.values)
-const handleSubmit = (event) => {
-  event.preventDefault()
-  const values = {email: formik.values.email, password: formik.values.password}
-  console.log(values)
-   dispatch(loginUser(values));
-  }
-    return (
-      <StyledForm style={{ marginTop: '60px' }} onSubmit={handleSubmit}>
 
+
+
+
+    return (
+      <StyledForm style={{ marginTop: '60px' }} onSubmit={formik.handleSubmit}>
 {FormDefine().map(item => {
   return ( <Label name={item} key = {item}>
   <Input type={typeVar(item)} name={item} placeholder=" " {...formik.getFieldProps(item)}/>
@@ -110,9 +111,7 @@ const handleSubmit = (event) => {
         <ActiveButton type="submit">{buttonTextActive}</ActiveButton>
         <Button
           type="button"
-          onClick={() => {
-            navi();
-          }}
+          onClick={handleClick}
         >
           {buttonText}
         </Button>
