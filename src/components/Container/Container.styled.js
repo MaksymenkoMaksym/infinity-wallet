@@ -1,4 +1,5 @@
-const { default: styled } = require('styled-components');
+import styled from 'styled-components';
+import BlurImg from '../../assets/images/rectangle.png';
 
 const Container = styled.div`
   padding: 0 ${props => props.theme.space[2]}px;
@@ -13,6 +14,9 @@ const Container = styled.div`
   ${props => props.theme.breakpoints.desc} {
     padding: 0 18px;
     max-width: 1280px;
+    background-image: url(${BlurImg});
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 `;
 
