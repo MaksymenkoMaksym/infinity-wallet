@@ -19,7 +19,7 @@ import {
   ErrorBox, ErrorSvg
 } from './Form.styled';
 
-export const RegistrationForm = () => {
+export const Form = () => {
   const { pathname } = useLocation();
 
   const FormDefine = () => {
