@@ -1,7 +1,6 @@
 import Chart from 'components/Chart';
 import SelectButton from 'components/SelectBtn/SelectBtn';
 import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
-import { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import useTransaction from 'utility/diagram';
 
@@ -19,29 +18,21 @@ import {
   WraperSelect,
 } from './Table.styled';
 
-const Table = () => {
-  const {
-    categoriesSummary,
-    expenseSummary,
-    incomeSummary,
-    month,
-    periodTotal,
-    year,
-  } = useTransaction();
-
-  const hendelSelectBtn = e => {};
+const Table = ({ setDate }) => {
+  const { categoriesSummary, expenseSummary, incomeSummary, month, year } =
+    useTransaction();
 
   return (
     <>
       <Chart dataTransactions={categoriesSummary} />
       <WraperDiv>
         <WraperSelect>
-          <SelectButtonMonth hendelSelect={hendelSelectBtn} />
-          <SelectButton hendelSelect={hendelSelectBtn} />
+          <SelectButtonMonth month={month} setDate={setDate} />
+          <SelectButton year={year} setDate={setDate} />
         </WraperSelect>
         <TableHead>
-          <ParagraphHead>Категория</ParagraphHead>
-          <ParagraphHead>Сумма</ParagraphHead>
+          <ParagraphHead>Categories</ParagraphHead>
+          <ParagraphHead>Sum</ParagraphHead>
         </TableHead>
         <ListUl>
           {categoriesSummary.map((item, index) => {
@@ -54,17 +45,18 @@ const Table = () => {
                 </Item>
               );
             }
+            return null;
           })}
         </ListUl>
         <TotalDiv>
           <ParagraphText style={{ fontWeight: 700, margin: 0 }}>
-            Расходы:
+            Expenses:
           </ParagraphText>
-          <ParagraphTotal>{expenseSummary.toFixed(2).slice(1)}</ParagraphTotal>
+          <ParagraphTotal>{expenseSummary.toFixed(2)}</ParagraphTotal>
         </TotalDiv>
         <TotalDiv>
           <ParagraphText style={{ fontWeight: 700, margin: 0 }}>
-            Доходы:
+            Income:
           </ParagraphText>
           <ParagraphTotal income>{incomeSummary.toFixed(2)}</ParagraphTotal>
         </TotalDiv>

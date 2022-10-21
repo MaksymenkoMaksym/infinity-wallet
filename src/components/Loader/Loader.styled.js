@@ -8,7 +8,6 @@ export const LoaderStyled = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: rgba(0, 0, 0, 0.4);
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 `;
