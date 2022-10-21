@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { registerUser, loginUser } from 'redux/auth/authOperation';
 import {ProgressBar} from "../ProgressBar";
@@ -24,7 +24,6 @@ import {
 
 export const Form = () => {
 
-  const { pathname } = useLocation();
   const { authType } = useParams();
 
   const FormDefine = () => {
@@ -51,7 +50,6 @@ export const Form = () => {
     return newSentence.join('');
   }
 
-  const location = FormDefine().length === 4;
   const buttonTextActive = authType === 'login' ? 'REGISTER' : 'LOG IN';
   const buttonText = authType === 'login' ? 'LOG IN' : 'REGISTER';
 
