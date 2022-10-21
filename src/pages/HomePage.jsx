@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import DashboardPage from 'components/DashboardPage';
 
 import { Tab } from 'components/MediaWraper/MediaWraper';
-import Header from 'components/Header';
 
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
@@ -101,7 +100,6 @@ const Home = () => {
   }, [dispatch]);
   return (
     <>
-      <Header />
       {/* <Wrap> */}
       <Wrapper>
         <Container>

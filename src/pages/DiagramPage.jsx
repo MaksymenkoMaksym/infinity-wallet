@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Header from 'components/Header';
 import Navigation from 'components/Navigation/Navigation';
 import Table from 'components/Table';
 import React from 'react';
@@ -21,7 +20,6 @@ const DiagramPage = () => {
   }, [dispatch]);
   return (
     <>
-      <Header />
       <Navigation />
       <h1>Statistics</h1>
       {isLoading ? <Loader /> : <Table />}
