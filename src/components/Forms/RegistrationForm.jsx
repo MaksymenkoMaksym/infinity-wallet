@@ -29,6 +29,17 @@ export const RegistrationForm = () => {
         return [...formFields];
     }
   };
+  
+  function transformText (string) {
+    let newSentence = [];
+    [...string].map((item, index) => {
+        if (index === 0) {
+            newSentence.push(item.toUpperCase());
+           
+        } else item.toLowerCase() === item ? newSentence.push(item) : newSentence.push(" ", item.toLowerCase())
+    }) 
+    return newSentence.join("")
+}
 
   const location = FormDefine().length === 4;
   const buttonTextActive = location ? 'REGISTER' : 'LOG IN';
@@ -97,7 +108,7 @@ export const RegistrationForm = () => {
             <IconSvg>
               <use href={svgIcon + `#icon-${item}`}></use>
             </IconSvg>
-            <Placeholder>{item}</Placeholder>
+            <Placeholder>{transformText(item)}</Placeholder>
             {formik.touched[item] && formik.errors[item] ? (
               <ErrorBox>{formik.errors[item]}</ErrorBox>
             ) : null}
