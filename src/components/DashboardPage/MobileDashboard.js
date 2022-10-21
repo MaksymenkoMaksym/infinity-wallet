@@ -1,9 +1,6 @@
 import { useSelector } from 'react-redux';
 import { format } from 'date-fns';
-import {
-  selectTransactions,
-  selectTransactionCategories,
-} from 'redux/transactions/transactionsSelectors';
+import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
 import {
   Li,
   DivItem,
@@ -11,9 +8,10 @@ import {
   PValue,
   // Sum
 } from './DashboardPage.styled';
+import useSortedTtransactions from 'utility/sortedTtransactions';
 
 const MobileDashboard = () => {
-  const transactions = useSelector(selectTransactions);
+  const transactions = useSortedTtransactions();
   const categories = useSelector(selectTransactionCategories);
   return (
     <>

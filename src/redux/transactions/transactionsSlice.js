@@ -149,6 +149,8 @@ const transactionSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.transactions = action.payload;
+
+      // state.transactions = sortedTtransactions(action.payload);
     },
 
     [updateTransaction.fulfilled](state, action) {

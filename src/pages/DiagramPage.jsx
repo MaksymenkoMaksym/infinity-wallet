@@ -1,4 +1,4 @@
-import DiagramTable from 'components/DiagramTable';
+import DiagramTable from 'components/DiagramTable/DiagramTable';
 
 const DiagramPage = () => <DiagramTable />;
 
