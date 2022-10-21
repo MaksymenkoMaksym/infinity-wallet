@@ -22,6 +22,16 @@ export const registerUser = createAsyncThunk(
       return response.data;
     } catch (error) {
       thunkApi.rejectWithValue(error);
+      toast.error('An account is already registered with your email', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
   }
 );
@@ -38,6 +48,16 @@ export const loginUser = createAsyncThunk(
       return response.data;
     } catch (error) {
       thunkApi.rejectWithValue(error);
+      toast.error('Login or password is incorrect!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
   }
 );
@@ -50,7 +70,16 @@ export const logOutUser = createAsyncThunk(
       // console.log('logOutUser', response);
       return response.data;
     } catch (error) {
-      toast.error('Something went wrong :(');
+      toast.error('Something went wrong :(', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
       thunkApi.rejectWithValue(error);
       // console.log(error);
     }
@@ -75,6 +104,16 @@ export const refreshUser = createAsyncThunk(
       return response.data;
     } catch (error) {
       thunkApi.rejectWithValue(error);
+      toast.error('Something went wrong :(', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
   }
 );
