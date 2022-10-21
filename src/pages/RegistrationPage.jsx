@@ -5,7 +5,7 @@ import { TitleThumb } from 'components/TitleThumb/TitleThumb';
 import { useMediaQuery } from 'react-responsive';
 import RegistrationForm from 'components/Form/Form';
 
-export const RegistrationPage = () => {
+const RegistrationPage = () => {
   const isTabletOrBigScreen = useMediaQuery({ minWidth: 768 });
 
   return (
@@ -20,3 +20,5 @@ export const RegistrationPage = () => {
     </Body>
   );
 };
+
+export default RegistrationPage;
