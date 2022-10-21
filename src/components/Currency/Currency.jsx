@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelectors';
-
 import { Container, Table, Thead, TdName, TdValue } from './Currency.styled';
 import fetchCurrency from '../../assets/CurrencyApi/fetchCurrency';
 import Loader from 'components/Loader';
 
 const Currency = () => {
   const [currency, setCurrency] = useState([]);
-  const isLoading = useSelector(selectIsLoadingTransaction);
-
+  // const isServerResponse = currency.length === 0;
+  const isServerResponse = true;
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -24,22 +21,23 @@ const Currency = () => {
       fetch();
     }, 300000);
     fetch();
-
     return () => clearInterval(id);
   }, []);
+
   return (
     <Container>
-      <Table>
-        <Thead>
-          <tr>
-            <th>Currency</th>
-            <th>Purchase</th>
-            <th>Sale</th>
-          </tr>
-        </Thead>
-        {isLoading ? (
-          <Loader />
-        ) : (
+      {isServerResponse ? (
+        <Loader box="true" />
+      ) : (
+        <Table>
+          <Thead>
+            <tr>
+              <th>Currency</th>
+              <th>Purchase</th>
+              <th>Sale</th>
+            </tr>
+          </Thead>
+
           <tbody>
             {currency
               ?.filter(element => {
@@ -53,8 +51,8 @@ const Currency = () => {
                 </tr>
               ))}
           </tbody>
-        )}
-      </Table>
+        </Table>
+      )}
     </Container>
   );
 };

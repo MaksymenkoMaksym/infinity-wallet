@@ -7,7 +7,9 @@ import {
 const useTransaction = () => {
   const forPeriod = useSelector(selectTransactionsForPeriod);
   const categories = useSelector(selectTransactionCategories);
-
+  if (forPeriod.length === 0) {
+    return {};
+  }
   let categoriesSummary = categories.map(
     elCat =>
       forPeriod.categoriesSummary.find(el => el.name === elCat.name) ?? {
