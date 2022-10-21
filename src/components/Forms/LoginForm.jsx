@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 
 import * as Yup from 'yup';
 import svgIcon from '../../assets/images/icons.svg';
@@ -12,6 +12,7 @@ import {
   Button,
   ActiveButton,
   StyledForm,
+  ErrorBox
 } from './RegistrationForm.styled';
 import { loginUser } from 'redux/auth/authOperation';
 
@@ -25,18 +26,14 @@ export const LoginForm = () => {
   };
 
   let schema = Yup.object().shape({
-    email: Yup.string().email().required(),
+    email: Yup.string().email("incorrect email").required("missing email"),
     password: Yup.string()
-      .required('No password provided.')
-      .min(8, 'Password is too short - should be 8 chars minimum.')
-      .matches(/^[a-zA-Z0-9]$/, 'Password can only contain Latin letters.'),
+      .min(6, 'password should be 8 chars minimum.').max(12, 'password should be 12 chars maximum.')
+      .required("missing password"),
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    if (!values.password && values.email) {
-      return alert('password || email are empty');
-    }
+
     dispatch(loginUser(values));
     resetForm();
   };
@@ -44,14 +41,21 @@ export const LoginForm = () => {
     navigate('/registration');
   };
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <StyledForm>
+    <Formik 
+    initialValues={initialValues} 
+    onSubmit={handleSubmit}
+    validationSchema={schema}
+    validateOnChange= {false}
+    validateOnBlur = {false}
+    >
+      {props => (<StyledForm >
         <Label name="email">
-          <Input type="email" name="email" placeholder=" " />
+          <Input type="text" name="email" placeholder=" " />
           <IconSvg className="svg">
             <use href={svgIcon + `#icon-email`}></use>
           </IconSvg>
           <Placeholder className="placeholder">E-mail</Placeholder>
+          <ErrorMessage name="email" component={ErrorBox}/>
         </Label>
         <Label name="password">
           <Input type="password" name="password" placeholder=" " />
@@ -59,6 +63,7 @@ export const LoginForm = () => {
             <use href={svgIcon + `#icon-lock`}></use>
           </IconSvg>
           <Placeholder className="placeholder">Password</Placeholder>
+          <ErrorMessage name="password" component={ErrorBox}/>
         </Label>
         <ActiveButton type="submit">LOG IN</ActiveButton>
         <Button
@@ -69,7 +74,7 @@ export const LoginForm = () => {
         >
           REGISTER
         </Button>
-      </StyledForm>
+      </StyledForm>  )}
     </Formik>
   );
 };

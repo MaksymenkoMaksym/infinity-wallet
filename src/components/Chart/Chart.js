@@ -24,12 +24,16 @@ const Chart = ({ dataTransactions }) => {
   const { periodTotal } = useSelector(selectTransactionsForPeriod);
 
   const data = {
-    labels: dataTransactions.map(item => item.name),
+    labels: dataTransactions.map(item =>
+      item.name !== 'Income' ? item.name : null
+    ),
 
     datasets: [
       {
-        data: dataTransactions.map(item => item.value),
-        backgroundColor: dataTransactions.map(item => item.color),
+        data: dataTransactions.map(item =>
+          item.name !== 'Income' ? item.total : null
+        ),
+        backgroundColor: theme.colors.diagram,
         borderWidth: 1,
         hoverOffset: 10,
         cutout: '70%',
@@ -86,9 +90,8 @@ const Chart = ({ dataTransactions }) => {
 Chart.propTypes = {
   dataTransactions: PropTypes.arrayOf(
     PropTypes.shape({
-      color: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      value: PropTypes.number.isRequired,
+      total: PropTypes.number.isRequired,
     })
   ),
 };
