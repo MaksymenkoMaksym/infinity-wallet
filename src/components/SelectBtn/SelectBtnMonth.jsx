@@ -8,11 +8,12 @@ import {
   WraperPicker,
   Box,
 } from './SelectBtn.styled';
-export default function SelectButtonMonth({ hendelSelect }) {
+export default function SelectButtonMonth({ hendelSelect, month }) {
   const [startDate, setStartDate] = useState(new Date());
   const [isOpenMonth, setIsOpenMonth] = useState(false);
 
-  hendelSelect(timeConverter(startDate));
+  hendelSelect(startDate.getUTCMonth(+1));
+
   const handleChangeMonth = e => {
     console.log(e);
     setIsOpenMonth(!isOpenMonth);

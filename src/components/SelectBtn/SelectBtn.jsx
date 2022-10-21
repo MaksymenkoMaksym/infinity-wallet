@@ -9,7 +9,7 @@ import {
   Box,
 } from './SelectBtn.styled';
 
-export default function SelectButton({ hendelSelect }) {
+export default function SelectButton({ hendelSelect, year }) {
   const [startDate, setStartDate] = useState(new Date());
   const [isOpenYear, setIsOpenYear] = useState(false);
 

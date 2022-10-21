@@ -1,7 +1,9 @@
 import Chart from 'components/Chart';
 import SelectButton from 'components/SelectBtn/SelectBtn';
 import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
+import { useEffect } from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import 'react-datepicker/dist/react-datepicker.css';
 import useTransaction from 'utility/diagram';
 
@@ -18,26 +20,52 @@ import {
   WraperDiv,
   WraperSelect,
 } from './Table.styled';
+import { getTransactionsForPeriod } from 'redux/transactions/transactionsOperation';
+import { useMemo } from 'react';
 
 const Table = () => {
+  const [selectMonth, setSelectMonth] = useState('');
+  const [selectYear, setSelectYear] = useState('');
+  const dispatch = useDispatch();
   const {
     categoriesSummary,
     expenseSummary,
     incomeSummary,
-    month,
+    // month,
     periodTotal,
-    year,
+    // year,
   } = useTransaction();
 
-  const hendelSelectBtn = e => {};
+  const data = {
+    month: selectMonth,
+    year: selectYear,
+  };
 
+  /////////////////
+
+  const hendelSelectYear = e => {
+    // console.log('year', e);
+    setSelectYear(e);
+  };
+
+  const hendelSelectMonth = e => {
+    // console.log('month', e);
+    setSelectMonth(e);
+  };
+
+  useEffect(() => {
+    console.log('data', data);
+
+    // dispatch(getTransactionsForPeriod(data));
+  }, [data, dispatch]);
+  ///////////////////////////
   return (
     <>
       <Chart dataTransactions={categoriesSummary} />
       <WraperDiv>
         <WraperSelect>
-          <SelectButtonMonth hendelSelect={hendelSelectBtn} />
-          <SelectButton hendelSelect={hendelSelectBtn} />
+          <SelectButtonMonth hendelSelect={hendelSelectMonth} />
+          <SelectButton hendelSelect={hendelSelectYear} />
         </WraperSelect>
         <TableHead>
           <ParagraphHead>Категория</ParagraphHead>
