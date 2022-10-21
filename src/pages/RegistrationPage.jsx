@@ -5,6 +5,7 @@ import { Form } from "components/Form";
 
 
 
+
 export const RegistrationPage = () => {
         return (
             <RegistrationWrapper>
@@ -13,4 +14,7 @@ export const RegistrationPage = () => {
             </RegistrationWrapper>
         )
 
+
 };
+
+export default RegistrationPage;

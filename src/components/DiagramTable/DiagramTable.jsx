@@ -14,7 +14,6 @@ import timeConverter from 'utility/timeConvertor';
 import Navigation from 'components/Navigation';
 
 const DiagramTable = () => {
-  const isMobileScreen = useMediaQuery({ maxWidth: 767 });
   const isTabletOrBigScreen = useMediaQuery({ minWidth: 768 });
 
   const dispatch = useDispatch();
@@ -27,8 +26,7 @@ const DiagramTable = () => {
   return (
     <Container>
       <Wrapper>
-        {isMobileScreen && <Navigation />}
-        {isTabletOrBigScreen && <HeroBar />}
+        {isTabletOrBigScreen ? <HeroBar /> : <Navigation />}
         <DiagramBox>
           {isLoading ? <Loader /> : <Table setDate={setDate} />}
         </DiagramBox>

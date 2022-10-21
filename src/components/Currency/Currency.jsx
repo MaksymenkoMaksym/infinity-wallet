@@ -5,7 +5,8 @@ import Loader from 'components/Loader';
 
 const Currency = () => {
   const [currency, setCurrency] = useState([]);
-
+  // const isServerResponse = currency.length === 0;
+  const isServerResponse = true;
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -25,17 +26,18 @@ const Currency = () => {
 
   return (
     <Container>
-      <Table>
-        <Thead>
-          <tr>
-            <th>Currency</th>
-            <th>Purchase</th>
-            <th>Sale</th>
-          </tr>
-        </Thead>
-        {currency.length === 0 ? (
-          <Loader />
-        ) : (
+      {isServerResponse ? (
+        <Loader box="true" />
+      ) : (
+        <Table>
+          <Thead>
+            <tr>
+              <th>Currency</th>
+              <th>Purchase</th>
+              <th>Sale</th>
+            </tr>
+          </Thead>
+
           <tbody>
             {currency
               ?.filter(element => {
@@ -49,8 +51,8 @@ const Currency = () => {
                 </tr>
               ))}
           </tbody>
-        )}
-      </Table>
+        </Table>
+      )}
     </Container>
   );
 };
