@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import waveMobile from '../../assets/images/wave-mobile.svg';
 import waveDesktop from '../../assets/images/wave-desktop.svg';
-import rectangle from '../../assets/images/Rectangle.svg';
-import rectangleTab from '../../assets/images/Rectangle-tab.svg';
-import rectangleDesc from '../../assets/images/Rectangle-desc.svg';
 
 export const Table = styled.table`
   margin-left: auto;
@@ -46,21 +43,17 @@ export const Thead = styled.thead`
 
   align-items: center;
   border-bottom: 0px;
-  // background-image: url(${rectangle});
   background: #6e78e8;
-  // opacity: 0.2;
   color: ${props => props.theme.colors.white};
   height: 50px;
 
   ${props => props.theme.breakpoints.tab} {
     padding-top: 17px;
     padding-bottom: 16px;
-    // background-image: url(${rectangleTab});
   }
 
   ${props => props.theme.breakpoints.desc} {
     height: 60px;
-    // background-image: url(${rectangleDesc});
   }
   & th {
     border: none;
@@ -83,9 +76,9 @@ export const TdValue = styled.td`
 
   text-align: center;
   ${props => props.theme.breakpoints.desc} {
-    display: inline-block
+    /* display: inline-block;
     height: 10px;
-    padding: 10px 10px
+    padding: 10px 10px; */
   } ;
 `;
 

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelectors';
 
 import { Container, Table, Thead, TdName, TdValue } from './Currency.styled';
-import fetchCurrency from './fetchCurrency';
+import fetchCurrency from '../../assets/CurrencyApi/fetchCurrency';
 import Loader from 'components/Loader';
 
 const Currency = () => {
