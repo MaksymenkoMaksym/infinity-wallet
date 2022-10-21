@@ -1,6 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
-import DatePicker from 'react-datepicker';
-
+import { useSelector } from 'react-redux';
+import { format } from 'date-fns';
 import {
   Sum,
   UlTitle,
@@ -8,8 +7,9 @@ import {
   PList,
   LiTablet,
   PName,
+  Block,
 } from './DashboardPage.styled';
-// import { TransactionSerializer } from './TransactionSerializer';
+
 import {
   selectTransactions,
   selectTransactionCategories,
@@ -18,9 +18,6 @@ import {
 const LaptopDashboard = () => {
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectTransactionCategories);
-  //   const dispatch = useDispatch();
-
-  console.log(transactions);
 
   return (
     <>
@@ -33,35 +30,33 @@ const LaptopDashboard = () => {
           <PName>Sum</PName>
           <PName>Balance</PName>
         </UlTitle>
-        {transactions.map(item => {
-          return (
-            <DivTablet key={item.id}>
-              <PList>
-                {/* <DatePicker
-                  //   selected={new Date()}
-                  dateFormat="dd/MM/yyyy"
-                  value={item.transactionDate}
-                /> */}
-                {item.transactionDate}
-              </PList>
-              <PList>{item.type === 'INCOME' ? '+' : '-'}</PList>
+        <Block>
+          {transactions.map(item => {
+            return (
+              <DivTablet key={item.id}>
+                <PList>
+                  {format(new Date(item.transactionDate), 'dd.MM.yy')}
+                </PList>
+                <PList>{item.type === 'INCOME' ? '+' : '-'}</PList>
 
-              <PList>
-                {categories.map(cat => cat.id === item.categoryId && cat.name)}
-              </PList>
-              <PList>{item.comment}</PList>
-              <PList>
-                <Sum transaction={item.type}>
-                  {item.amount < 0 ? item.amount * -1 : item.amount}
-                </Sum>
-              </PList>
-              <PList>{item.balanceAfter}</PList>
-            </DivTablet>
-          );
-        })}
+                <PList>
+                  {categories.map(
+                    cat => cat.id === item.categoryId && cat.name
+                  )}
+                </PList>
+                <PList>{item.comment}</PList>
+                <PList>
+                  <Sum transaction={item.type}>
+                    {item.amount < 0 ? item.amount * -1 : item.amount}
+                  </Sum>
+                </PList>
+                <PList>{item.balanceAfter}</PList>
+              </DivTablet>
+            );
+          })}
+        </Block>
       </LiTablet>
     </>
   );
 };
 export default LaptopDashboard;
-// {format(startDate, "dd-MM-yyyy")}

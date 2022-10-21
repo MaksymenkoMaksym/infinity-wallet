@@ -65,7 +65,7 @@ const Chart = ({ dataTransactions }) => {
         ctx.restore();
         ctx.font = `${fontWeight} ${fontSize} ${mainFont}`;
         ctx.textBaseline = 'center';
-        const text = `${periodTotal}`,
+        const text = '₴ ' + periodTotal.toFixed(2),
           textX = Math.round((width - ctx.measureText(text).width) / 2),
           textY = height / 2;
         ctx.fillText(text, textX, textY);

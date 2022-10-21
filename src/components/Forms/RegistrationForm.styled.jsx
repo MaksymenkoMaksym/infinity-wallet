@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Form, Field } from "formik";
 
-export const StyledForm = styled(Form)`
+export const StyledForm = styled.form`
 margin-top: 60px;
 @media (min-width: 768px) {
     display: flex;
@@ -42,7 +41,7 @@ left: 10px;
 transition:  color 250ms linear;
 `
 
-export const Input = styled(Field)`
+export const Input = styled.input`
 /* width: 100%; */
 box-sizing: border-box;
 height: 20px;
