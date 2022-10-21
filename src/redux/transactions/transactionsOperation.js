@@ -37,7 +37,7 @@ export const getAllTransactions = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const response = await axios.get('api/transactions');
-      console.log('getAllTransactions', response);
+      // console.log('getAllTransactions', response);
       return response.data;
     } catch (error) {
       thunkApi.rejectWithValue(error);
