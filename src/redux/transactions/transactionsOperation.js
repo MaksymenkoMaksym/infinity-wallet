@@ -61,10 +61,10 @@ export const updateTransaction = createAsyncThunk(
 
 export const deleteTransaction = createAsyncThunk(
   'transaction/deleteTransaction',
-  async ({ id }, thunkApi) => {
+  async (id, thunkApi) => {
     try {
       const response = await axios.delete(`api/transactions/${id}`);
-      console.log('logOutUser', response);
+      console.log('transaction/deleteTransaction', response);
       return id;
     } catch (error) {
       thunkApi.rejectWithValue(error);

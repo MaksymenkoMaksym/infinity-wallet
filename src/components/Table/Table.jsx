@@ -19,8 +19,13 @@ import {
 } from './Table.styled';
 
 const Table = ({ setDate }) => {
-  const { categoriesSummary, expenseSummary, incomeSummary, month, year } =
-    useTransaction();
+  const {
+    categoriesSummary = [],
+    expenseSummary = 0,
+    incomeSummary = 0,
+    month,
+    year,
+  } = useTransaction();
 
   return (
     <>

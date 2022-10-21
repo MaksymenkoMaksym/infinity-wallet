@@ -1,27 +1,39 @@
-import { UlBoard } from './DashboardPage.styled';
+import { useSelector } from 'react-redux';
 import { Mob, Tab } from 'components/MediaWraper/MediaWraper';
 import MobileDashboard from './MobileDashboard';
 import LaptopDashboard from './LaptopDashboard';
-import { selectTransactions } from '../../redux/transactions/transactionsSelectors';
-import { useSelector } from 'react-redux';
+import Loader from 'components/Loader';
 
+import useSortedTtransactions from 'utility/sortedTtransactions';
+import { DivTable, UlBoard } from './DashboardPage.styled';
+import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelectors';
 const DashboardPage = () => {
-  const transactions = useSelector(selectTransactions);
-  console.log(transactions);
+  const transactions = useSortedTtransactions();
+  const isLoadingTransaction = useSelector(selectIsLoadingTransaction);
+  // <Loader />
   return (
-    // {transactions.length ===0 ?
-    //   <div>
-    //   </div>
-    // :
-    <UlBoard>
-      <Mob>
-        <MobileDashboard />
-      </Mob>
-      <Tab>
-        <LaptopDashboard />
-      </Tab>
-    </UlBoard>
-    // }
+    <>
+      {isLoadingTransaction ? (
+        <Loader />
+      ) : !transactions ? (
+        <DivTable>
+          <p>Welcome!</p>
+          <p>
+            Your transactions will be displayed here, but first add a
+            transaction!
+          </p>
+        </DivTable>
+      ) : (
+        <UlBoard>
+          <Mob>
+            <MobileDashboard />
+          </Mob>
+          <Tab>
+            <LaptopDashboard />
+          </Tab>
+        </UlBoard>
+      )}
+    </>
   );
 };
 
