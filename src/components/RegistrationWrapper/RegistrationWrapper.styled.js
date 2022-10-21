@@ -41,11 +41,15 @@ backdrop-filter: blur(25px);
 export const Section = styled.section`
   box-sizing: border-box;
   padding: 20px;
-
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
   width: 280px;
   margin-right: auto;
   margin-left: auto;
   background-color: #ffffff;
+
   @media (max-width: 767px) {
     height: 100vh;
   }

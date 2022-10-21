@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { registerUser, loginUser } from 'redux/auth/authOperation';
-import {ProgressString} from "../ProgressString"
+import {ProgressBar} from "../ProgressBar";
 import {
   validationSchemaLogin,
   validationSchemaRegister,
@@ -102,6 +102,13 @@ export const Form = () => {
     validateOnBlur: false,
   });
 
+function checkedValue () {
+    if (formik.values.password != 0 && formik.values.confirmPassword != 0 && formik.values.password.slice(0, formik.values.confirmPassword.length) === formik.values.confirmPassword) return true;
+    return false
+      
+  }
+  console.log(checkedValue())
+
   return (
     <StyledForm style={{ marginTop: '60px' }} onSubmit={formik.handleSubmit}>
       {FormDefine().map(item => {
@@ -125,7 +132,7 @@ export const Form = () => {
                   <use href={svgIcon + `#icon-cancel-circle`}></use>
                 </ErrorSvg>
               </ErrorBox>
-            ) : (<ProgressString/>)}
+            ) : (checkedValue() && item === "confirmPassword") && <ProgressBar values = {formik.values}/>}
           </Label>
         );
       })}
@@ -138,4 +145,4 @@ export const Form = () => {
   );
 };
 
-export default RegistrationForm;
+export default Form;
