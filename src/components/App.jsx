@@ -9,13 +9,15 @@ import Home from 'pages/HomePage';
 import Container from './Container';
 import DiagramPage from 'pages/DiagramPage';
 import { refreshUser } from 'redux/auth/authOperation';
-import { selectIsLoading } from 'redux/auth/authSelectors';
+import { selectIsLoading, selectToken } from 'redux/auth/authSelectors';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
+import Header from './Header';
 import Loader from './Loader';
 
 export const App = () => {
   const { isLoading } = useSelector(selectIsLoading);
+  const isLoggedIn = useSelector(selectToken);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
@@ -24,7 +26,9 @@ export const App = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <Container>
+    <>
+      {isLoggedIn && <Header />}
+      {/* <Container> */}
       <Routes>
         <Route
           path="/"
@@ -60,6 +64,7 @@ export const App = () => {
         />
         <Route path="*" element={<Navigate to={'/'} />} />
       </Routes>
-    </Container>
+      {/* </Container> */}
+    </>
   );
 };
