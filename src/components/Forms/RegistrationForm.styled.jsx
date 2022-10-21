@@ -119,3 +119,12 @@ position: absolute;
 font-size: 14px;
 margin-left: 10px;
 `
+
+export const ErrorSvg = styled.svg`
+width: 16px;
+height: 16px;
+fill: red;
+position: absolute;
+top: -25px;
+left: 330px;
+`

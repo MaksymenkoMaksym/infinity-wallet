@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import VioletSpot from '../assets/images/Ellipse-1.png';
-import PinkSpot from '../assets/images/Ellipse-2.png';
+import VioletSpot from '../assets/images/ellipse-1.png';
+import PinkSpot from '../assets/images/ellipse-2.png';
 
 export const Body = styled.div`
   background-color: #ffffff;
