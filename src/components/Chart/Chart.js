@@ -43,8 +43,6 @@ const getData = transactions => {
           ],
         }
       : {
-          labels: false,
-
           datasets: [
             {
               data: [1],
@@ -58,23 +56,42 @@ const getData = transactions => {
   return data;
 };
 
+const getOptions = transactions => {
+  const tData = transactions.filter(item => item.total !== 0);
+  const options =
+    tData.length !== 0
+      ? {
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+          layout: {
+            padding: 7,
+          },
+        }
+      : {
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              enabled: false,
+            },
+          },
+          layout: {
+            padding: 7,
+          },
+        };
+  return options;
+};
+
 const Chart = ({ dataTransactions }) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const { periodTotal } = useSelector(selectTransactionsForPeriod);
 
   const data = getData(dataTransactions);
-
-  const options = {
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    layout: {
-      padding: 7,
-    },
-  };
-
+  const options = getOptions(dataTransactions);
   const fontWeight = theme.fontWeights.bold;
   const fontSize = theme.fontSizes.m;
   const mainFont = theme.fonts.main;
