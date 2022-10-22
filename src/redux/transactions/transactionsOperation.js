@@ -35,7 +35,7 @@ export const createTransaction = createAsyncThunk(
   async (transaction, thunkApi) => {
     try {
       const response = await axios.post('/api/transactions', transaction);
-      // console.log('createTransaction', response.data);
+      console.log('createTransaction', response.data);
       return response.data;
     } catch (error) {
       thunkApi.rejectWithValue(error);

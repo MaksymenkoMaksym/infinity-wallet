@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  createTransaction,
+  // deleteTransaction,
+} from 'redux/transactions/transactionsOperation';
+import {
   refreshUser,
   loginUser,
   logOutUser,
@@ -71,6 +75,9 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.error = null;
       state.isLoading = false;
+    },
+    [createTransaction.fulfilled](state, action) {
+      state.user.balance = action.payload.balanceAfter;
     },
   },
 });

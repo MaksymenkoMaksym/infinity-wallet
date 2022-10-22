@@ -20,13 +20,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
 import {
   isModalAddTransactionOpen,
-  modalIsIncome,
   selectTransactionCategories,
 } from 'redux/transactions/transactionsSelectors';
 import { createTransaction } from 'redux/transactions/transactionsOperation';
 import { useEffect } from 'react';
-// import Header from 'components/Header';
-// import { useMediaQuery } from 'react-responsive';
 import ModalAddSwitch from 'components/ModalAddSwitch/ModalAddSwitch';
 import ModalAddSelect from 'components/ModalAddSelect/ModalAddSelect';
 import ModalAddDatePicker from 'components/ModalAddDatePicker/ModalAddDatePicker';
@@ -34,10 +31,8 @@ import { validationSchemaAddTransaction } from 'utility/validationSchema';
 
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
-  const isIncome = useSelector(modalIsIncome);
   const categories = useSelector(selectTransactionCategories);
   const isModalOpen = useSelector(isModalAddTransactionOpen);
-  // const isMobileScreen = useMediaQuery({ maxWidth: 767 });
   const initialValues = {
     category: '',
     type: 'EXPENSE',
@@ -131,7 +126,7 @@ const ModalAddTransactions = () => {
           {({ values, setFieldValue }) => (
             <AddForm>
               <ModalAddSwitch values={values} setFieldValue={setFieldValue} />
-              {!isIncome && (
+              {values.type === 'EXPENSE' && (
                 <ModalAddSelect
                   options={options}
                   values={values}

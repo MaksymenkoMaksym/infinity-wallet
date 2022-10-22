@@ -18,11 +18,7 @@ import {
 import { Tab } from 'components/MediaWraper/MediaWraper';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
-import {
-  isModalAddTransactionOpen,
-  modalIsIncome,
-  selectTransactionCategories,
-} from 'redux/transactions/transactionsSelectors';
+import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
 import { createTransaction } from 'redux/transactions/transactionsOperation';
 import ModalAddSwitch from 'components/ModalAddSwitch/ModalAddSwitch';
 import ModalAddSelect from 'components/ModalAddSelect/ModalAddSelect';
