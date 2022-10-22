@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectTransactionsForPeriod } from 'redux/transactions/transactionsSelectors';
 import useTransaction from 'utility/diagram';
-import { cssTransition } from 'react-toastify';
+// import { cssTransition } from 'react-toastify';
 
 const Div = styled.div`
   width: 294px;

@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { registerUser, loginUser } from 'redux/auth/authOperation';
-import {ProgressBar} from "../ProgressBar";
+import { ProgressBar } from '../ProgressBar';
 import {
   validationSchemaLogin,
   validationSchemaRegister,
@@ -21,9 +21,7 @@ import {
   ErrorSvg,
 } from './Form.styled';
 
-
 export const Form = () => {
-
   const { authType } = useParams();
 
   const FormDefine = () => {
@@ -92,20 +90,22 @@ export const Form = () => {
       confirmPassword: '',
       firstName: '',
     },
-    validationSchema: authType === 'login'
-      ? validationSchemaLogin
-      : validationSchemaRegister,
+    validationSchema:
+      authType === 'login' ? validationSchemaLogin : validationSchemaRegister,
     onSubmit,
     validateOnChange: false,
     validateOnBlur: false,
   });
-  console.log(formik)
+  console.log(formik);
 
-function checkedOnEmpty () {
-  return formik.values.password != 0 && formik.values.confirmPassword != 0
-}
-function checkedCoincidence () {
-    return formik.values.password.slice(0, formik.values.confirmPassword.length) === formik.values.confirmPassword;
+  function checkedOnEmpty() {
+    return formik.values.password !== 0 && formik.values.confirmPassword !== 0;
+  }
+  function checkedCoincidence() {
+    return (
+      formik.values.password.slice(0, formik.values.confirmPassword.length) ===
+      formik.values.confirmPassword
+    );
   }
 
   return (
@@ -132,7 +132,13 @@ function checkedCoincidence () {
                 </ErrorSvg>
               </ErrorBox>
             ) : null}
-            {(item === "confirmPassword" && checkedOnEmpty()) && (checkedCoincidence() ? <ProgressBar values = {formik.values}/> : <ErrorBox>Your passwords do not match</ErrorBox>)}
+            {item === 'confirmPassword' &&
+              checkedOnEmpty() &&
+              (checkedCoincidence() ? (
+                <ProgressBar values={formik.values} />
+              ) : (
+                <ErrorBox>Your passwords do not match</ErrorBox>
+              ))}
           </Label>
         );
       })}
