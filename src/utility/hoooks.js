@@ -7,12 +7,9 @@ export const useError = () => {
     const transactionError = useSelector(state => state.transaction.error);
 
     useEffect(() => {
-        // if (!authError && !transactionError) return
+        if (!authError && !transactionError) return
         authError && notify(authMessageCreator(authError));
         transactionError && notify(transactionMessageCreator(transactionError))
-        console.log("11234")
-        console.log(authError)
-        console.log(transactionError)
         },[authError, transactionError])
      
 }

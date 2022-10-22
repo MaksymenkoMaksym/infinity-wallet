@@ -38,7 +38,7 @@ export const AuthForm = () => {
 
   const formik = useFormik({
     initialValues: location ? LoginInitValues : RegInitValues,
-    validationSchema: location ? validationSchemaLogin : validationSchemaRegister,
+    validationSchema: (location ? validationSchemaLogin : validationSchemaRegister),
     onSubmit,
     validateOnChange: false,
     validateOnBlur: false,
