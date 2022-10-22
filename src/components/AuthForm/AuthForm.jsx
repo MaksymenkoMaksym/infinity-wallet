@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { loginUser, registerUser } from 'redux/auth/authOperation';
 import { LoginInitValues, RegInitValues, LoginOptions, RegOptions } from 'utility/constants';
@@ -8,6 +8,7 @@ import {
   validationSchemaLogin,
   validationSchemaRegister
 } from 'utility/validationSchema';
+
 
 import svgIcon from '../../assets/images/icons.svg';
 import {
@@ -20,6 +21,7 @@ import {
 export const AuthForm = () => {
   const { authType } = useParams();
   const location = authType === 'login';
+
 
   const buttonTextActive = location ? 'LOG IN' : 'REGISTER';
   const linkText = location ? 'REGISTER' : 'LOG IN';
@@ -38,13 +40,13 @@ export const AuthForm = () => {
 
   const formik = useFormik({
     initialValues: location ? LoginInitValues : RegInitValues,
-    validationSchema:
-    location ? validationSchemaLogin : validationSchemaRegister,
+    validationSchema: location ? validationSchemaLogin : validationSchemaRegister,
     onSubmit,
     validateOnChange: false,
     validateOnBlur: false,
   });
 
+  const{ resetForm, touched, errors} = formik
 
   function checkedOnEmpty() {
     return formik.values.password !== 0 && formik.values.confirmPassword !== 0;
@@ -56,8 +58,8 @@ export const AuthForm = () => {
     );
   }
   useEffect(()=> {
-formik.resetForm()
-  }, [location])
+resetForm()
+  }, [location, resetForm])
 
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
@@ -75,9 +77,9 @@ formik.resetForm()
               <use href={svgIcon + `#icon-${name}`}></use>
             </IconSvg>
             <Placeholder>{label}</Placeholder>
-            {formik.touched[name] && formik.errors[name] ? (
+            {touched[name] && errors[name] ? (
               <ErrorBox>
-                {formik.errors[name]}{' '}
+                {errors[name]}{' '}
                 <ErrorSvg>
                   <use href={svgIcon + `#icon-cancel-circle`}></use>
                 </ErrorSvg>

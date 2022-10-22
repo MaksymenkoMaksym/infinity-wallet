@@ -1,1 +1,0 @@
-export {RegistrationWrapper } from './RegistrationWrapper';
