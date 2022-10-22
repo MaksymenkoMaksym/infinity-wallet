@@ -1,9 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import { ToastContainer } from 'react-toastify';
 import { useError } from 'utility/hoooks';
 
@@ -28,18 +24,11 @@ import { openModal } from 'redux/transactions/transactionsSlice';
 const HomeTable = () => {
   useError();
   const dispatch = useDispatch();
-  const isCategories = useSelector(selectTransactionCategories);
   const isModalOpen = useSelector(isModalAddTransactionOpen);
-
-<<<<<<< Updated upstream
-  isCategories.length === 0 && dispatch(getTransactionCategories());
-  useEffect(() => {
-    // console.log(isCategories);
-=======
   const categories = useSelector(selectTransactionCategories);
+
   useEffect(() => {
     categories.length === 0 && dispatch(getTransactionCategories());
->>>>>>> Stashed changes
     dispatch(getAllTransactions());
   }, [dispatch, categories]);
   const onClickOpenModalAction = () => {

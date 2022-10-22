@@ -12,7 +12,7 @@ import { getTransactionsForPeriod } from 'redux/transactions/transactionsOperati
 import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelectors';
 
 import timeConverter from 'utility/timeConvertor';
-import useIsMobile from 'utility/isMobile';
+import useIsMobile from 'hooks/isMobile';
 
 const DiagramTable = () => {
   const isMobileScreen = useIsMobile();

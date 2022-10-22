@@ -2,7 +2,7 @@ import Chart from 'components/Chart';
 import SelectButton from 'components/SelectBtn/SelectBtn';
 import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
 import 'react-datepicker/dist/react-datepicker.css';
-import useTransaction from 'utility/diagram';
+import useTransaction from 'hooks/diagram';
 
 import {
   ColorSpan,
