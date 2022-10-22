@@ -8,7 +8,7 @@ const HeaderTag = styled.header`
   max-width: 320px;
   padding: 15px 20px;
   margin: 0 auto;
-
+  background-color: ${p => p.theme.colors.white};
   ${props => props.theme.breakpoints.tab} {
     padding: 20px 32px;
     max-width: 768px;

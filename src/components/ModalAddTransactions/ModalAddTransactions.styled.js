@@ -1,4 +1,4 @@
-import { Field, Form } from 'formik';
+// import { Field, Form } from 'formik';
 import styled from 'styled-components';
 
 export const Overlay = styled.div`
@@ -27,7 +27,7 @@ export const Modal = styled.div`
   width: 100vw;
   height: 100%;
   background-color: ${p => p.theme.colors.background.white};
-  padding: 20px;
+  /* padding: 20px; */
   @media screen and (min-width: 768px) {
     width: 540px;
     height: auto;
@@ -38,7 +38,7 @@ export const Modal = styled.div`
   }
 `;
 
-export const AddForm = styled(Form)`
+export const AddForm = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -88,7 +88,7 @@ export const SwitchIcon = styled.svg`
   fill: ${p => p.theme.colors.white};
 `;
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   width: 100%;
   height: 32px;
   border: none;
@@ -145,54 +145,6 @@ export const CloseIcon = styled.svg`
   fill: ${p => p.theme.colors.black};
 `;
 
-export const DataPickerWrapper = styled.label`
-  width: 280px;
-  display: flex;
-  gap: 20px;
-  border-bottom: 1px solid ${p => p.theme.colors.grayIcon};
-  padding-bottom: 5px;
-  @media screen and (min-width: 768px) {
-    width: 181px;
-  }
-  &:hover {
-    border-bottom: 1px solid ${p => p.theme.colors.gray};
-  }
-  &:focus {
-    border-bottom: 1px solid ${p => p.theme.colors.gray};
-  }
-  & .react-datepicker {
-    font-family: ${p => p.theme.fonts.main};
-    font-weight: ${p => p.theme.fontWeights.normal};
-  }
-  & input {
-    border: none;
-    color: red;
-    width: 100%;
-    outline: none;
-    /* padding-left: 20px; */
-    color: ${p => p.theme.colors.black};
-    font-family: ${p => p.theme.fonts.main};
-    font-weight: ${p => p.theme.fontWeights.normal};
-    font-size: ${p => p.theme.fontSizes.m};
-  }
-  & .react-datepicker__day {
-    color: ${p => p.theme.colors.black};
-    font-family: ${p => p.theme.fonts.main};
-    font-weight: ${p => p.theme.fontWeights.normal};
-    font-size: ${p => p.theme.fontSizes.s};
-  }
-  & .react-datepicker__day--selected {
-    color: white;
-  }
-  & .react-datepicker__day--keyboard-selected {
-    color: white;
-  }
-`;
-export const DateIcon = styled.svg`
-  display: block;
-  width: 24px;
-  height: 24px;
-`;
 export const DateSumWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -215,5 +167,8 @@ export const SumInput = styled(Input)`
 export const CommentLabel = styled.label`
   margin-top: 40px;
   margin-bottom: 40px;
+  width: 100%;
+`;
+export const HeaderBox = styled.div`
   width: 100%;
 `;
