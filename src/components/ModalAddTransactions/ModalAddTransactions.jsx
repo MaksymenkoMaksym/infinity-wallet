@@ -25,8 +25,6 @@ import {
 } from 'redux/transactions/transactionsSelectors';
 import { createTransaction } from 'redux/transactions/transactionsOperation';
 import { useEffect } from 'react';
-// import Header from 'components/Header';
-// import { useMediaQuery } from 'react-responsive';
 import ModalAddSwitch from 'components/ModalAddSwitch/ModalAddSwitch';
 import ModalAddSelect from 'components/ModalAddSelect/ModalAddSelect';
 import ModalAddDatePicker from 'components/ModalAddDatePicker/ModalAddDatePicker';
@@ -37,7 +35,6 @@ const ModalAddTransactions = () => {
   const isIncome = useSelector(modalIsIncome);
   const categories = useSelector(selectTransactionCategories);
   const isModalOpen = useSelector(isModalAddTransactionOpen);
-  // const isMobileScreen = useMediaQuery({ maxWidth: 767 });
   const initialValues = {
     category: '',
     type: 'EXPENSE',
@@ -155,10 +152,15 @@ const ModalAddTransactions = () => {
                 ) : null}
               </label>
             </div>
-            <ModalAddDatePicker
-              values={formik.values}
-              setFieldValue={formik.setFieldValue}
-            />
+            <div>
+              <ModalAddDatePicker
+                values={formik.values}
+                setFieldValue={formik.setFieldValue}
+              />
+              {formik.touched.date && formik.errors.date ? (
+                <p>{formik.errors.date}</p>
+              ) : null}
+            </div>
           </DateSumWrap>
           <CommentLabel>
             <Comment>Comment</Comment>
