@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import BlurImg from '../../assets/images/rectangle.png';
-import BlurImgMd from '../../assets/images/rectangle_md.png';
 
 export const Wrapper = styled.div`
   padding: 0 ${props => props.theme.space[2]}px;
