@@ -19,9 +19,9 @@ import {
   StyledForm,
   ErrorBox,
   ErrorSvg,
-} from './Form.styled';
+} from './AuthForm.styled';
 
-export const Form = () => {
+export const AuthForm = () => {
   const { authType } = useParams();
 
   const FormDefine = () => {
@@ -151,4 +151,4 @@ export const Form = () => {
   );
 };
 
-export default Form;
+export default AuthForm;
