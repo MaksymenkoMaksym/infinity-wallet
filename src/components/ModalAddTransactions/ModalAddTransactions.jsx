@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import sprite from '../../assets/images/icons.svg';
 import {
   AddForm,
-  Overlay,
+  // Overlay,
   Modal,
   Title,
   Button,
@@ -18,23 +18,17 @@ import {
 import { Tab } from 'components/MediaWraper/MediaWraper';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
-import {
-  isModalAddTransactionOpen,
-  modalIsIncome,
-  selectTransactionCategories,
-} from 'redux/transactions/transactionsSelectors';
+import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
 import { createTransaction } from 'redux/transactions/transactionsOperation';
-import { useEffect } from 'react';
 import ModalAddSwitch from 'components/ModalAddSwitch/ModalAddSwitch';
 import ModalAddSelect from 'components/ModalAddSelect/ModalAddSelect';
 import ModalAddDatePicker from 'components/ModalAddDatePicker/ModalAddDatePicker';
 import { validationSchemaAddTransaction } from 'utility/validationSchema';
+import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
-  const isIncome = useSelector(modalIsIncome);
   const categories = useSelector(selectTransactionCategories);
-  const isModalOpen = useSelector(isModalAddTransactionOpen);
   const initialValues = {
     category: '',
     type: 'EXPENSE',
@@ -43,7 +37,7 @@ const ModalAddTransactions = () => {
     date: new Date(),
   };
   const handleFormSubmit = values => {
-    console.log(values);
+    console.log('values', values);
     const categoryId = getCategoryId(values);
 
     const formatDate =
@@ -60,7 +54,7 @@ const ModalAddTransactions = () => {
       comment: values.comment,
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
-    console.log(transaction);
+    console.log('transaction', transaction);
     // TODO ресет значений по умолчанию
     dispatch(createTransaction(transaction));
   };
@@ -87,31 +81,10 @@ const ModalAddTransactions = () => {
     return categories.find(elem => elem.name === values.category.value).id;
   };
 
-  const handleBackdropClick = e => {
-    if (e.target === e.currentTarget) {
-      dispatch(closeModal());
-    }
-  };
-
   const options = getOptions();
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-
-    const handleClose = e => {
-      if (e.code === 'Escape') {
-        dispatch(closeModal());
-      }
-    };
-    window.addEventListener('keydown', handleClose);
-    return () => {
-      window.removeEventListener('keydown', handleClose);
-      document.body.style.overflow = 'auto';
-    };
-  }, [isModalOpen, dispatch]);
-
   return (
-    <Overlay onClick={handleBackdropClick}>
+    <ModalOverlay>
       <Modal>
         <Tab>
           <CloseBox
@@ -131,7 +104,7 @@ const ModalAddTransactions = () => {
             setFieldValue={formik.setFieldValue}
           />
 
-          {!isIncome && (
+          {formik.values.type === 'EXPENSE' && (
             <ModalAddSelect
               options={options}
               values={formik.values}
@@ -184,7 +157,7 @@ const ModalAddTransactions = () => {
           </CancelButton>
         </AddForm>
       </Modal>
-    </Overlay>
+    </ModalOverlay>
   );
 };
 
