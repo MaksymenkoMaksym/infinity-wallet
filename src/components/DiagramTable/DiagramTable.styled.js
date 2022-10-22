@@ -1,26 +1,22 @@
 import styled from 'styled-components';
-
 export const Wrapper = styled.div`
+  padding: 0 ${props => props.theme.space[2]}px;
+  margin: 0 auto;
+  max-width: 320px;
+  height: 100%;
+
   ${props => props.theme.breakpoints.tab} {
-    /* overflow: hidden; */
-    /* background-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.4),
-        rgba(255, 255, 255, 0.4)
-      ),
-      url(${'VioletSpot'}), url(${'PinkSpot'});
-    background-repeat: no-repeat, no-repeat;
-    background-position: -133.33px 655px, 380.41px -183px; */
-    /* background-color: rgba(255, 255, 255, 0.4); */
+    padding: 0 ${props => props.theme.space[4]}px;
+    max-width: 768px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   ${props => props.theme.breakpoints.desc} {
+    padding: 0 18px;
+    max-width: 1280px;
     display: flex;
-    /* background-image: url(${'VioletSpot'}), url(${'PinkSpot'});
-    background-repeat: no-repeat, no-repeat;
-    height: 100vh;
-    background-position: -150.33px 305px, 756.41px -143px; */
-    // backdrop-filter: blur(25px);
   }
 `;
 

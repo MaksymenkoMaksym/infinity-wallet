@@ -7,14 +7,14 @@ const CurrencyPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
-    <>
+    <div style={{ backgroundColor: '#f1f2f5', height: '100vh' }}>
       {isMobile && (
         <>
           <Navigation />
           <Currency />
         </>
       )}
-    </>
+    </div>
   );
 };
 
