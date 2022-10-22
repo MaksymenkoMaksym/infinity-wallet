@@ -1,12 +1,13 @@
-import { useSelector } from 'react-redux';
-import {
-  selectTransactionCategories,
-  selectTransactionsForPeriod,
-} from 'redux/transactions/transactionsSelectors';
+// import { useSelector } from 'react-redux';
+// import {
+//   selectTransactionCategories,
+//   selectTransactionsForPeriod,
+// } from 'redux/transactions/transactionsSelectors';
+import { useHookTransaction } from 'hooks';
 
 const useTransaction = () => {
-  const forPeriod = useSelector(selectTransactionsForPeriod);
-  const categories = useSelector(selectTransactionCategories);
+  const { forPeriod } = useHookTransaction();
+  const { categories } = useHookTransaction();
   if (forPeriod.length === 0) {
     return {};
   }
