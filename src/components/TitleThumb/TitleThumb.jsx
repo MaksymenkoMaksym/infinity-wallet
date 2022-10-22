@@ -1,14 +1,14 @@
-import { useLocation} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import svgIcon from "../../assets/images/icons.svg";
 import { PrimarySvg, Box, Title } from "./TitleThumb.styled";
 // import { LoginForm } from "components/Forms";
 
 export const TitleThumb = () => {
-    const location = useLocation() 
+    const { authType } = useParams();
 
     const iconDefine = () => {
-switch (location.pathname) {
-    case '/login':
+switch (authType) {
+    case 'login':
         return "#frame-1";
 
     default:

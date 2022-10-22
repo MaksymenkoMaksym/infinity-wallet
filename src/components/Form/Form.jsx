@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { registerUser, loginUser } from 'redux/auth/authOperation';
+import {ProgressBar} from "../ProgressBar";
 import {
   validationSchemaLogin,
   validationSchemaRegister,
@@ -20,8 +21,9 @@ import {
   ErrorSvg,
 } from './Form.styled';
 
-const RegistrationForm = () => {
-  const { pathname } = useLocation();
+
+export const Form = () => {
+
   const { authType } = useParams();
 
   const FormDefine = () => {
@@ -48,9 +50,8 @@ const RegistrationForm = () => {
     return newSentence.join('');
   }
 
-  const location = FormDefine().length === 4;
-  const buttonTextActive = location ? 'REGISTER' : 'LOG IN';
-  const buttonText = location ? 'LOG IN' : 'REGISTER';
+  const buttonTextActive = authType === 'login' ? 'REGISTER' : 'LOG IN';
+  const buttonText = authType === 'login' ? 'LOG IN' : 'REGISTER';
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ const RegistrationForm = () => {
     { email, password, firstName: username },
     { resetForm }
   ) => {
-    location
+    authType === 'login'
       ? dispatch(registerUser({ email, password, username }))
       : dispatch(loginUser({ email, password }));
     resetForm();
@@ -91,13 +92,21 @@ const RegistrationForm = () => {
       confirmPassword: '',
       firstName: '',
     },
-    validationSchema: location
-      ? validationSchemaRegister
-      : validationSchemaLogin,
+    validationSchema: authType === 'login'
+      ? validationSchemaLogin
+      : validationSchemaRegister,
     onSubmit,
     validateOnChange: false,
     validateOnBlur: false,
   });
+  console.log(formik)
+
+function checkedOnEmpty () {
+  return formik.values.password != 0 && formik.values.confirmPassword != 0
+}
+function checkedCoincidence () {
+    return formik.values.password.slice(0, formik.values.confirmPassword.length) === formik.values.confirmPassword;
+  }
 
   return (
     <StyledForm style={{ marginTop: '60px' }} onSubmit={formik.handleSubmit}>
@@ -123,6 +132,7 @@ const RegistrationForm = () => {
                 </ErrorSvg>
               </ErrorBox>
             ) : null}
+            {(item === "confirmPassword" && checkedOnEmpty()) && (checkedCoincidence() ? <ProgressBar values = {formik.values}/> : <ErrorBox>Your passwords do not match</ErrorBox>)}
           </Label>
         );
       })}
@@ -135,4 +145,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default Form;

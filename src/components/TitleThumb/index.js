@@ -1,0 +1,1 @@
+export { TitleThumb } from "./TitleThumb"
