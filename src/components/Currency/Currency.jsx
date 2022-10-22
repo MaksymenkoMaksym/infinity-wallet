@@ -7,7 +7,7 @@ import {
   ThItem,
   TdList,
 } from './Currency.styled';
-import fetchCurrency from '../../assets/CurrencyApi/fetchCurrency';
+import fetchCurrency from '../../utility/CurrencyApi/fetchCurrency';
 import Loader from 'components/Loader';
 
 const Currency = () => {
@@ -32,7 +32,7 @@ const Currency = () => {
   }, []);
 
   return (
-    <Container>
+    <>
       {isServerResponse ? (
         <Loader box="true" />
       ) : (
@@ -58,7 +58,7 @@ const Currency = () => {
           </TdBox>
         </Container>
       )}
-    </Container>
+    </>
   );
 };
 
