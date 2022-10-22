@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DataPickerWrapper = styled.label`
+export const DatePickerWrapper = styled.label`
   width: 280px;
   display: flex;
   gap: 20px;

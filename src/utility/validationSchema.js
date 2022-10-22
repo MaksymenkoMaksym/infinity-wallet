@@ -25,10 +25,9 @@ export const validationSchemaRegister = Yup.object()
   });
 
 export const validationSchemaAddTransaction = Yup.object().shape({
-  sum: Yup.number().required('Sum required'),
-  email: Yup.string().email('Incorrect email').required('Missing email'),
-  password: Yup.string()
-    .min(6, 'Password should be 6 chars minimum')
-    .max(12, 'Password should be 12 chars maximum')
-    .required('Missing password'),
+  sum: Yup.number().positive().required('Sum required'),
+  date: Yup.date()
+    .min(new Date('1970/01/01'), 'Wrong date!')
+    .max(new Date('9999/12/31'), 'Wrong date!')
+    .required('Date required'),
 });

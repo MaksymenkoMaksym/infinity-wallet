@@ -19,7 +19,7 @@ const EmptyTransactions = () => (
           WALLET
         </Name>
       </NameP>
-      <NameP>Pleace add a transaction!</NameP>
+      <NameP>Please add a transaction!</NameP>
     </Text>
     <Picture />
   </DivTable>
