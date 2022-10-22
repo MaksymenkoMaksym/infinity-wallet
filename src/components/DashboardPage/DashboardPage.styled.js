@@ -7,9 +7,9 @@ const UlBoard = styled.ul`
   margin-left: auto;
   margin-right: auto;
   background: transparent;
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     margin-bottom: 47px;
-  }
+  } */
 `;
 
 //////////////////////////////////for mobile

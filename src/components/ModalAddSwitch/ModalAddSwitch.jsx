@@ -11,10 +11,10 @@ import {
 import { setIsIncome } from 'redux/transactions/transactionsSlice';
 
 const ModalAddSwitch = ({ values, setFieldValue }) => {
-  const isIncome = useSelector(modalIsIncome);
-  const dispatch = useDispatch();
+  // const isIncome = useSelector(modalIsIncome);
+  // const dispatch = useDispatch();
   const switchTextColor = () => {
-    return isIncome
+    return values.type === 'INCOME'
       ? { inc: '#24CCA7', exp: '#E0E0E0' }
       : { inc: '#E0E0E0', exp: '#FF6596' };
   };
@@ -29,7 +29,7 @@ const ModalAddSwitch = ({ values, setFieldValue }) => {
         onChange={(checked, event) => {
           setFieldValue('type', checked ? 'EXPENSE' : 'INCOME');
           //   setIsIncome(prev => !prev);
-          dispatch(setIsIncome(!isIncome));
+          // dispatch(setIsIncome(!isIncome));
           setFieldValue('category', checked ? values.category : '');
         }}
         handleDiameter={44}
