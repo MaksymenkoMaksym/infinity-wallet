@@ -1,8 +1,9 @@
-import { useSelector } from 'react-redux';
-import { selectTransactions } from 'redux/transactions/transactionsSelectors';
+// import { useSelector } from 'react-redux';
+// import { selectTransactions } from 'redux/transactions/transactionsSelectors';
+import { useHookTransaction } from 'hooks';
 
 const useSortedTtransactions = () => {
-  const transactions = useSelector(selectTransactions);
+  const { transactions } = useHookTransaction();
   if (transactions.length === 0) {
     return;
   } else if (transactions.length === 1) {
