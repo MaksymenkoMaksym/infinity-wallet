@@ -48,8 +48,8 @@ export const Form = () => {
     return newSentence.join('');
   }
 
-  const buttonTextActive = authType === 'login' ? 'REGISTER' : 'LOG IN';
-  const buttonText = authType === 'login' ? 'LOG IN' : 'REGISTER';
+  const buttonTextActive = authType === 'login' ? 'LOG IN' : 'REGISTER';
+  const buttonText = authType === 'login' ? 'REGISTER' : 'LOG IN';
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -73,8 +73,8 @@ export const Form = () => {
     { resetForm }
   ) => {
     authType === 'login'
-      ? dispatch(registerUser({ email, password, username }))
-      : dispatch(loginUser({ email, password }));
+      ? dispatch(loginUser({ email, password }))
+      : dispatch(registerUser({ email, password, username }));
     resetForm();
   };
 
