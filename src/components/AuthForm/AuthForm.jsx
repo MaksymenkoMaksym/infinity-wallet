@@ -1,102 +1,50 @@
-import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { registerUser, loginUser } from 'redux/auth/authOperation';
-import { ProgressBar } from '../ProgressBar';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { loginUser, registerUser } from 'redux/auth/authOperation';
+import { LoginInitValues, RegInitValues, LoginOptions, RegOptions } from 'utility/constants';
 import {
   validationSchemaLogin,
-  validationSchemaRegister,
+  validationSchemaRegister
 } from 'utility/validationSchema';
 
 import svgIcon from '../../assets/images/icons.svg';
 import {
-  Input,
+  Link, Button, ErrorBox,
+  ErrorSvg, IconSvg, Input,
   Label,
-  Placeholder,
-  IconSvg,
-  Button,
-  ActiveButton,
-  StyledForm,
-  ErrorBox,
-  ErrorSvg,
+  Placeholder, StyledForm
 } from './AuthForm.styled';
 
 export const AuthForm = () => {
   const { authType } = useParams();
+  const location = authType === 'login';
 
-  const FormDefine = () => {
-    const formFields = ['email', 'password', 'confirmPassword', 'firstName'];
-    switch (authType) {
-      case 'login':
-        return [...formFields.slice(0, 2)];
-
-      default:
-        return [...formFields];
-    }
-  };
-
-  function transformText(string) {
-    let newSentence = [];
-    [...string].forEach((item, index) => {
-      if (index === 0) {
-        newSentence.push(item.toUpperCase());
-      } else
-        item.toLowerCase() === item
-          ? newSentence.push(item)
-          : newSentence.push(' ', item.toLowerCase());
-    });
-    return newSentence.join('');
-  }
-
-  const buttonTextActive = authType === 'login' ? 'LOG IN' : 'REGISTER';
-  const buttonText = authType === 'login' ? 'REGISTER' : 'LOG IN';
+  const buttonTextActive = location ? 'LOG IN' : 'REGISTER';
+  const linkText = location ? 'REGISTER' : 'LOG IN';
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const navi = () => {
-    navigate(authType === 'login' ? '/auth/registration' : '/auth/login');
-  };
-
-  const typeVar = name => {
-    switch (name) {
-      case 'password':
-      case 'confirmPassword':
-        return 'password';
-      default:
-        return 'text';
-    }
-  };
 
   const onSubmit = (
     { email, password, firstName: username },
     { resetForm }
   ) => {
-    authType === 'login'
+    location
       ? dispatch(loginUser({ email, password }))
       : dispatch(registerUser({ email, password, username }));
     resetForm();
   };
 
-  const handleClick = () => {
-    navi();
-    formik.resetForm();
-  };
-
   const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-      confirmPassword: '',
-      firstName: '',
-    },
+    initialValues: location ? LoginInitValues : RegInitValues,
     validationSchema:
-      authType === 'login' ? validationSchemaLogin : validationSchemaRegister,
+    location ? validationSchemaLogin : validationSchemaRegister,
     onSubmit,
     validateOnChange: false,
     validateOnBlur: false,
   });
-  console.log(formik);
+
 
   function checkedOnEmpty() {
     return formik.values.password !== 0 && formik.values.confirmPassword !== 0;
@@ -107,46 +55,49 @@ export const AuthForm = () => {
       formik.values.confirmPassword
     );
   }
+  useEffect(()=> {
+formik.resetForm()
+  }, [location])
 
   return (
-    <StyledForm style={{ marginTop: '60px' }} onSubmit={formik.handleSubmit}>
-      {FormDefine().map(item => {
+    <StyledForm onSubmit={formik.handleSubmit}>
+      {(location ? LoginOptions : RegOptions).map(({name, type, label}) => {
         return (
-          <Label name={item} key={item}>
+          <Label name={name} key={name}>
             <Input
-              type={typeVar(item)}
-              name={item}
+              type={type}
+              name={name}
               placeholder=" "
-              {...formik.getFieldProps(item)}
-              autoComplete="true"
+              {...formik.getFieldProps(name)}
+           
             />
             <IconSvg>
-              <use href={svgIcon + `#icon-${item}`}></use>
+              <use href={svgIcon + `#icon-${name}`}></use>
             </IconSvg>
-            <Placeholder>{transformText(item)}</Placeholder>
-            {formik.touched[item] && formik.errors[item] ? (
+            <Placeholder>{label}</Placeholder>
+            {formik.touched[name] && formik.errors[name] ? (
               <ErrorBox>
-                {formik.errors[item]}{' '}
+                {formik.errors[name]}{' '}
                 <ErrorSvg>
                   <use href={svgIcon + `#icon-cancel-circle`}></use>
                 </ErrorSvg>
               </ErrorBox>
             ) : null}
-            {item === 'confirmPassword' &&
+            {/* {item === 'confirmPassword' &&
               checkedOnEmpty() &&
               (checkedCoincidence() ? (
                 <ProgressBar values={formik.values} />
               ) : (
                 <ErrorBox>Your passwords do not match</ErrorBox>
-              ))}
+              ))} */}
           </Label>
         );
       })}
 
-      <ActiveButton type="submit">{buttonTextActive}</ActiveButton>
-      <Button type="button" onClick={handleClick}>
-        {buttonText}
-      </Button>
+      <Button type="submit">{buttonTextActive}</Button>
+      <Link  to ={location ? '/auth/registration' : '/auth/login'}>
+        {linkText}
+      </Link>
     </StyledForm>
   );
 };
