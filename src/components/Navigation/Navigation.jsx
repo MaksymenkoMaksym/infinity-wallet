@@ -6,12 +6,10 @@ import {
   StyledLink,
 } from './Navigation.styled';
 import sprite from '../../assets/images/icons.svg';
-import { useMediaQuery } from 'react-responsive';
-const useIsMobile = () => useMediaQuery({ maxWidth: 767 });
+import useIsMobile from 'utility/isMobile';
 
 const Navigation = () => {
   const isMobileScreen = useIsMobile();
-  // const isTabletOrBigScreen = useMediaQuery({ minWidth: 768 });
 
   return (
     <nav>
