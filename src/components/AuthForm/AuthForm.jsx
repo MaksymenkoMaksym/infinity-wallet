@@ -9,7 +9,6 @@ import {
   validationSchemaRegister
 } from 'utility/validationSchema';
 
-
 import svgIcon from '../../assets/images/icons.svg';
 import {
   Link, Button, ErrorBox,
@@ -21,7 +20,6 @@ import {
 export const AuthForm = () => {
   const { authType } = useParams();
   const location = authType === 'login';
-
 
   const buttonTextActive = location ? 'LOG IN' : 'REGISTER';
   const linkText = location ? 'REGISTER' : 'LOG IN';
@@ -48,15 +46,15 @@ export const AuthForm = () => {
 
   const{ resetForm, touched, errors} = formik
 
-  function checkedOnEmpty() {
-    return formik.values.password !== 0 && formik.values.confirmPassword !== 0;
-  }
-  function checkedCoincidence() {
-    return (
-      formik.values.password.slice(0, formik.values.confirmPassword.length) ===
-      formik.values.confirmPassword
-    );
-  }
+  // function checkedOnEmpty() {
+  //   return formik.values.password !== 0 && formik.values.confirmPassword !== 0;
+  // }
+  // function checkedCoincidence() {
+  //   return (
+  //     formik.values.password.slice(0, formik.values.confirmPassword.length) ===
+  //     formik.values.confirmPassword
+  //   );
+  // }
   useEffect(()=> {
 resetForm()
   }, [location, resetForm])

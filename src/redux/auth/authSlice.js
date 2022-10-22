@@ -43,6 +43,9 @@ const authSlice = createSlice({
     [refreshUser.pending]: pendingHandlerAuth,
     [registerUser.rejected]: rejectedHandler,
     [loginUser.rejected]: rejectedHandler,
+    // [loginUser.rejected] (state, action) {
+    //     return {...state, isLoading: false, error: action.payload}
+    // },
     [logOutUser.rejected]: rejectedHandler,
     [refreshUser.rejected]: rejectedHandler,
     [registerUser.fulfilled](state, action) {

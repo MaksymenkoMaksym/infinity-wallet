@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { ToastContainer} from 'react-toastify';
+import { useError } from 'utility/hoooks';
 import HeroBar from 'components/HeroBar';
 import DashboardPage from '../DashboardPage/DashboardPage';
 import Container from 'components/Container';
@@ -17,6 +18,7 @@ import { Wrapper, DashboardBox } from './HomeTable.styled';
 import { openModal } from 'redux/transactions/transactionsSlice';
 
 const HomeTable = () => {
+  useError();
   const dispatch = useDispatch();
   const isModalOpen = useSelector(isModalAddTransactionOpen);
   useEffect(() => {
@@ -39,6 +41,7 @@ const HomeTable = () => {
         />
         {isModalOpen && <ModalAddTransactions />}
       </Wrapper>
+      <ToastContainer/>
     </Container>
   );
 };
