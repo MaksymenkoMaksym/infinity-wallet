@@ -1,7 +1,7 @@
 
 import { RegistrationWrapper } from "components/RegistrationWrapper";
 import Logo from "../components/Logo/Logo";
-import { Form } from "components/Form";
+import { AuthForm } from "components/AuthForm";
 
 
 
@@ -10,7 +10,7 @@ export const RegistrationPage = () => {
         return (
             <RegistrationWrapper>
                 <Logo />
-                <Form />
+                <AuthForm />
             </RegistrationWrapper>
         )
 
