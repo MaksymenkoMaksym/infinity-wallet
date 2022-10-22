@@ -21,8 +21,8 @@ const MobileDashboard = () => {
   //edit btn & delete btn func
   const dispatch = useDispatch();
 
-  const deleteActionBtn = item => {
-    dispatch(deleteTransaction(item));
+  const deleteActionBtn = id => {
+    dispatch(deleteTransaction(id));
   };
   const editActionBtn = item => {
     dispatch(addModalData(item));
@@ -77,7 +77,7 @@ const MobileDashboard = () => {
                 <ButtonAddTransactions
                   icon="delete"
                   onClickAction={() => {
-                    deleteActionBtn(item);
+                    deleteActionBtn(item.id);
                   }}
                 />
                 <ButtonAddTransactions
