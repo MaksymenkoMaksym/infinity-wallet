@@ -12,8 +12,8 @@ import Loader from 'components/Loader';
 
 const Currency = () => {
   const [currency, setCurrency] = useState([]);
-  // const isServerResponse = currency.length === 0;
-  const isServerResponse = false;
+  const isServerResponse = currency.length === 0;
+  // const isServerResponse = false;
   useEffect(() => {
     const fetch = async () => {
       try {

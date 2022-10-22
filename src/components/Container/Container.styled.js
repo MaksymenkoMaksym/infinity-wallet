@@ -7,7 +7,7 @@ const Container = styled.div`
   margin: 0 auto;
   max-width: 320px;
   background-color: ${props => props.theme.colors.background.blurTablet};
-  height: 100vh;
+  height: 100%;
   ${props => props.theme.breakpoints.tab} {
     padding: 0 ${props => props.theme.space[4]}px;
     max-width: 768px;
