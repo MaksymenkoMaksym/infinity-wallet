@@ -7,9 +7,6 @@ const UlBoard = styled.ul`
   margin-left: auto;
   margin-right: auto;
   background: transparent;
-  @media (min-width: 768px) {
-    margin-bottom: 47px;
-  }
 `;
 
 //////////////////////////////////for mobile
@@ -114,7 +111,7 @@ const Block = styled.div`
 
 const LiTablet = styled.li`
   list-style: none;
-  position: reletive;
+  // position: reletive;
 `;
 
 const UlTitle = styled.div`

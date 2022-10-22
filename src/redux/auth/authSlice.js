@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  createTransaction,
+  // deleteTransaction,
+} from 'redux/transactions/transactionsOperation';
+import {
   refreshUser,
   loginUser,
   logOutUser,
@@ -43,6 +47,9 @@ const authSlice = createSlice({
     [refreshUser.pending]: pendingHandlerAuth,
     [registerUser.rejected]: rejectedHandler,
     [loginUser.rejected]: rejectedHandler,
+    // [loginUser.rejected] (state, action) {
+    //     return {...state, isLoading: false, error: action.payload}
+    // },
     [logOutUser.rejected]: rejectedHandler,
     [refreshUser.rejected]: rejectedHandler,
     [registerUser.fulfilled](state, action) {
@@ -71,6 +78,9 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.error = null;
       state.isLoading = false;
+    },
+    [createTransaction.fulfilled](state, action) {
+      state.user.balance = action.payload.balanceAfter;
     },
   },
 });

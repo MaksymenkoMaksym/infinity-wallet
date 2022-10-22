@@ -27,46 +27,47 @@ export const App = () => {
   const isLoggedIn = useSelector(selectToken);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+   isLoggedIn && dispatch(refreshUser());
+  }, [dispatch, isLoggedIn]);
 
   return isLoading ? (
     <Loader />
   ) : (
-    <Suspense fallback={<Loader />}>
+    <>
       {isLoggedIn && <Header />}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoute redirectTo="/auth/login" component={<Home />} />
-          }
-        />
-        <Route
-          path="/test"
-          element={
-            <PrivateRoute redirectTo="/auth/login" component={<TestCom />} />
-          }
-        />
-        <Route
-          path="/diagram"
-          element={
-            <PrivateRoute
-              redirectTo="/auth/login"
-              component={<DiagramPage />}
-            />
-          }
-        />
-        <Route
-          path="/currency"
-          element={
-            <PrivateRoute
-              redirectTo="/auth/login"
-              component={<CurrencyPage />}
-            />
-          }
-        />
-        {/* <Route
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute redirectTo="/auth/login" component={<Home />} />
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              <PrivateRoute redirectTo="/auth/login" component={<TestCom />} />
+            }
+          />
+          <Route
+            path="/diagram"
+            element={
+              <PrivateRoute
+                redirectTo="/auth/login"
+                component={<DiagramPage />}
+              />
+            }
+          />
+          <Route
+            path="/currency"
+            element={
+              <PrivateRoute
+                redirectTo="/auth/login"
+                component={<CurrencyPage />}
+              />
+            }
+          />
+          {/* <Route
           path="/login"
           element={
             <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
@@ -78,15 +79,19 @@ export const App = () => {
             <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
           }
           /> */}
-        <Route
-          path="/auth/:authType"
-          element={
-            <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
-          }
-        />
+          <Route
+            path="/auth/:authType"
+            element={
+              <RestrictedRoute
+                redirectTo="/"
+                component={<RegistrationPage />}
+              />
+            }
+          />
 
-        <Route path="*" element={<Navigate to={'/'} />} />
-      </Routes>
-    </Suspense>
+          <Route path="*" element={<Navigate to={'/'} />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 };
