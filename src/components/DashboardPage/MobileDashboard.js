@@ -9,7 +9,7 @@ import {
   PValue,
   // Sum
 } from './DashboardPage.styled';
-import EmptyTransactions from 'components/EmptyTransactions';
+import EmptyTransactions from '../EmptyTransactions/EmptyTransactions';
 import useSortedTtransactions from 'utility/sortedTtransactions';
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { deleteTransaction } from 'redux/transactions/transactionsOperation';
