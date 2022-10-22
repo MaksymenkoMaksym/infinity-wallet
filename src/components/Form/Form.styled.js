@@ -42,6 +42,7 @@ transition:  color 250ms linear;
 `
 
 export const Input = styled.input`
+width: 100%;
 box-sizing: border-box;
 height: 24px;
 font-size: 18px;

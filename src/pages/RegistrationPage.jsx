@@ -1,24 +1,20 @@
-import { Section, Backdrop } from '../pages/common.styled';
-import Logo from 'components/Logo/Logo';
-import { Body } from './common.styled';
-import { TitleThumb } from 'components/TitleThumb/TitleThumb';
-import { useMediaQuery } from 'react-responsive';
-import RegistrationForm from 'components/Form/Form';
 
-const RegistrationPage = () => {
-  const isTabletOrBigScreen = useMediaQuery({ minWidth: 768 });
+import { RegistrationWrapper } from "components/RegistrationWrapper";
+import Logo from "../components/Logo/Logo";
+import { Form } from "components/Form";
 
-  return (
-    <Body>
-      {isTabletOrBigScreen && <TitleThumb />}
-      <Backdrop>
-        <Section>
-          <Logo />
-          <RegistrationForm />
-        </Section>
-      </Backdrop>
-    </Body>
-  );
+
+
+
+export const RegistrationPage = () => {
+        return (
+            <RegistrationWrapper>
+                <Logo />
+                <Form />
+            </RegistrationWrapper>
+        )
+
+
 };
 
 export default RegistrationPage;

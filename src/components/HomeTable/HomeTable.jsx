@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import HeroBar from 'components/HeroBar';
-import DashboardPage from 'components/DashboardPage';
+import DashboardPage from '../DashboardPage/DashboardPage';
 import Container from 'components/Container';
 
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';

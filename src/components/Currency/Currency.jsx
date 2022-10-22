@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Table, Thead, TdName, TdValue } from './Currency.styled';
+import {
+  Container,
+  Thead,
+  TdItem,
+  TdBox,
+  ThItem,
+  TdList,
+} from './Currency.styled';
 import fetchCurrency from '../../assets/CurrencyApi/fetchCurrency';
 import Loader from 'components/Loader';
 
 const Currency = () => {
   const [currency, setCurrency] = useState([]);
   // const isServerResponse = currency.length === 0;
-  const isServerResponse = true;
+  const isServerResponse = false;
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -29,29 +36,27 @@ const Currency = () => {
       {isServerResponse ? (
         <Loader box="true" />
       ) : (
-        <Table>
+        <Container>
           <Thead>
-            <tr>
-              <th>Currency</th>
-              <th>Purchase</th>
-              <th>Sale</th>
-            </tr>
+            <ThItem>Currency</ThItem>
+            <ThItem>Purchase</ThItem>
+            <ThItem>Sale</ThItem>
           </Thead>
 
-          <tbody>
+          <TdBox>
             {currency
               ?.filter(element => {
                 return element.ccy !== 'RUR';
               })
               .map(element => (
-                <tr key={element.ccy}>
-                  <TdName>{element.ccy}</TdName>
-                  <TdValue>{Math.floor(element.buy * 100) / 100}</TdValue>
-                  <TdValue>{Math.floor(element.sale * 100) / 100}</TdValue>
-                </tr>
+                <TdList key={element.ccy}>
+                  <TdItem>{element.ccy}</TdItem>
+                  <TdItem>{Math.floor(element.buy * 100) / 100}</TdItem>
+                  <TdItem>{Math.floor(element.sale * 100) / 100}</TdItem>
+                </TdList>
               ))}
-          </tbody>
-        </Table>
+          </TdBox>
+        </Container>
       )}
     </Container>
   );
