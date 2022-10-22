@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledForm = styled.form`
 margin-top: 60px;
 @media (min-width: 768px) {
+    width: 410px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +18,8 @@ color: #E0E0E0;
 position: relative;
 display: block;
 @media (min-width: 768px) {
-    width: 75%;
+    width: 100%;
+
  
   }
 
@@ -43,6 +45,7 @@ transition:  color 250ms linear;
 
 export const Input = styled.input`
 width: 100%;
+
 box-sizing: border-box;
 height: 24px;
 font-size: 18px;
@@ -68,6 +71,7 @@ transition: border-color 250ms linear;
 }
 
 @media (min-width: 768px) {
+
     width: 100%;
     }
 `
