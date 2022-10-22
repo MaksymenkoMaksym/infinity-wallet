@@ -85,7 +85,7 @@ const transactionSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.transactions = state.transactions.filter(
-        transaction => transaction.id !== action.payload
+        transaction => transaction.id !== action.payload.id
       );
     },
 
