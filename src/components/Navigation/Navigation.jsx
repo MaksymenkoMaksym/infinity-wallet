@@ -7,10 +7,12 @@ import {
 } from './Navigation.styled';
 import sprite from '../../assets/images/icons.svg';
 import { useMediaQuery } from 'react-responsive';
+const useIsMobile = () => useMediaQuery({ maxWidth: 767 });
 
 const Navigation = () => {
-  const isMobileScreen = useMediaQuery({ maxWidth: 767 });
-  const isTabletOrBigScreen = useMediaQuery({ minWidth: 768 });
+  const isMobileScreen = useIsMobile();
+  // const isTabletOrBigScreen = useMediaQuery({ minWidth: 768 });
+
   return (
     <nav>
       <List className="nav_list">
@@ -21,7 +23,7 @@ const Navigation = () => {
                 <use href={`${sprite}#icon-home`}></use>
               </Icon>
             </>
-            {isTabletOrBigScreen && <TextItem>Home</TextItem>}
+            {!isMobileScreen && <TextItem>Home</TextItem>}
           </StyledLink>
         </ListItem>
         <ListItem>
@@ -31,7 +33,7 @@ const Navigation = () => {
                 <use href={`${sprite}#icon-timeline`}></use>
               </Icon>
             </>
-            {isTabletOrBigScreen && <TextItem>Statistics</TextItem>}
+            {!isMobileScreen && <TextItem>Statistics</TextItem>}
           </StyledLink>
         </ListItem>
 

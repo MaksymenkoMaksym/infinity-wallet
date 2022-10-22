@@ -1,8 +1,10 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledForm = styled.form`
 margin-top: 60px;
 @media (min-width: 768px) {
+    width: 410px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,7 +19,8 @@ color: #E0E0E0;
 position: relative;
 display: block;
 @media (min-width: 768px) {
-    width: 75%;
+    width: 100%;
+
  
   }
 
@@ -43,6 +46,7 @@ transition:  color 250ms linear;
 
 export const Input = styled.input`
 width: 100%;
+
 box-sizing: border-box;
 height: 24px;
 font-size: 18px;
@@ -68,16 +72,18 @@ transition: border-color 250ms linear;
 }
 
 @media (min-width: 768px) {
+
     width: 100%;
     }
 `
 
 
 
-export const Button = styled.button`
+export const Link = styled(NavLink)`
     width: 100%;
     height: 50px;
-   
+    outline: none;
+    text-decoration: none;
     padding: 0;
     background-color: #ffffff;
     color: #4A56E2;
@@ -86,6 +92,9 @@ export const Button = styled.button`
     letter-spacing: 0.1rem;
     font-size: 18px;
     line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: color 250ms linear, box-shadow 250ms linear, border-color 250ms linear;
     &:hover,
     &:focus{
@@ -99,10 +108,17 @@ export const Button = styled.button`
   }
 `
 
-export const ActiveButton = styled(Button)`
+export const Button = styled.button`
+    width: 100%;
+    height: 50px;
+    padding: 0;
     color: #ffffff;
     background-color: #24CCA7;
     border: 1px solid #24CCA7;
+    border-radius: 20px;
+    letter-spacing: 0.1rem;
+    font-size: 18px;
+    line-height: 1.5;
     margin-bottom: 40px;
     transition: background-color 250ms linear, box-shadow 250ms linear, border-color 250ms linear;
     &:hover,
@@ -112,6 +128,9 @@ export const ActiveButton = styled(Button)`
         background-color: #4A56E2;
         border-color: #4A56E2;
     }
+    @media (min-width: 768px) {
+        width: 300px;
+  }
 `
 
 export const ErrorBox = styled.div`
@@ -127,5 +146,5 @@ height: 16px;
 fill: red;
 position: absolute;
 top: -25px;
-left: 330px;
+left: 380px;
 `
