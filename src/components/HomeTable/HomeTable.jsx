@@ -1,13 +1,21 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+<<<<<<< Updated upstream
 
+=======
+import { ToastContainer } from 'react-toastify';
+import { useError } from 'utility/hoooks';
+>>>>>>> Stashed changes
 import HeroBar from 'components/HeroBar';
 import DashboardPage from '../DashboardPage/DashboardPage';
 import Container from 'components/Container';
 
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
-import { isModalAddTransactionOpen } from 'redux/transactions/transactionsSelectors';
+import {
+  isModalAddTransactionOpen,
+  selectTransactionCategories,
+} from 'redux/transactions/transactionsSelectors';
 import {
   getAllTransactions,
   getTransactionCategories,
@@ -18,9 +26,12 @@ import { openModal } from 'redux/transactions/transactionsSlice';
 
 const HomeTable = () => {
   const dispatch = useDispatch();
+  const isCategories = useSelector(selectTransactionCategories);
   const isModalOpen = useSelector(isModalAddTransactionOpen);
+
+  isCategories.length === 0 && dispatch(getTransactionCategories());
   useEffect(() => {
-    dispatch(getTransactionCategories());
+    // console.log(isCategories);
     dispatch(getAllTransactions());
   }, [dispatch]);
   const onClickOpenModalAction = () => {
@@ -39,6 +50,10 @@ const HomeTable = () => {
         />
         {isModalOpen && <ModalAddTransactions />}
       </Wrapper>
+<<<<<<< Updated upstream
+=======
+      <ToastContainer />
+>>>>>>> Stashed changes
     </Container>
   );
 };
