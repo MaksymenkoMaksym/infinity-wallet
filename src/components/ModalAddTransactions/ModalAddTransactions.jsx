@@ -40,7 +40,7 @@ const ModalAddTransactions = () => {
     date: new Date(),
   };
   const handleFormSubmit = values => {
-    console.log('values', values);
+    // console.log('values', values);
     const categoryId = getCategoryId(values);
 
     const formatDate =
@@ -57,10 +57,9 @@ const ModalAddTransactions = () => {
       comment: values.comment,
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
-    console.log('transaction', transaction);
-
+    // console.log('transaction', transaction);
     dispatch(createTransaction(transaction));
-    // TODO ресет значений по умолчанию
+    formik.values = { ...initialValues };
   };
   const formik = useFormik({
     initialValues,
