@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
-// import { DeleteBtn } from '../ListButtons/ListButton.styled';
+
 const example = keyframes`
  0% { opacity: 0; }
  30% {  opacity: 0.1 }
@@ -9,20 +9,12 @@ const example = keyframes`
  100% { opacity: 0.5; }
 `;
 
-///////home
-
 const UlBoard = styled.ul`
   margin: 0;
   padding: 0;
   margin-left: auto;
   margin-right: auto;
   background: transparent;
-  //   overflow-y: scroll;
-  //   max-height: 350px;
-  //   @media (min-width: 768px) {
-  //     // overflow-y: scroll;
-  //   }
-  //
 `;
 
 //////////////////////////////////for mobile

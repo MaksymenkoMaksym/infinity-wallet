@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { DivTablet } from '../DashboardPage/DashboardPage.styled';
 
 export const DelBtn = styled.button`
   position: ${props => (props.icon === 'plus' ? 'fixed' : 'initial')};
