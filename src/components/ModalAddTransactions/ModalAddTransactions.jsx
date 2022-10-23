@@ -39,9 +39,14 @@ const ModalAddTransactions = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
   const modalData = useSelector(selectModalData);
-
+  console.log('cat', categories);
   const getCategoryName = id => {
-    return categories.find(elem => elem.id === id).name;
+    console.log(categories.find(elem => elem.id === id).name);
+    // return categories.find(elem => elem.id === id).name;
+    return {
+      value: categories.find(elem => elem.id === id).name,
+      label: categories.find(elem => elem.id === id).name,
+    };
   };
 
   const initialValues = modalData.id
@@ -60,7 +65,7 @@ const ModalAddTransactions = () => {
         date: new Date(),
       };
   const handleFormSubmit = values => {
-    console.log('values', values);
+    // console.log('values', values);
     const categoryId = getCategoryId(values);
 
     const formatDate =
@@ -78,10 +83,10 @@ const ModalAddTransactions = () => {
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
     console.log('transaction', transaction);
-    // TODO ресет значений по умолчанию
     modalData.id
       ? dispatch(updateTransaction({ id: modalData.id, ...transaction }))
       : dispatch(createTransaction(transaction));
+    formik.values = { ...initialValues };
   };
   const formik = useFormik({
     initialValues,
