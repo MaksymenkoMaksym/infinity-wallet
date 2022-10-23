@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { format } from 'date-fns';
 import { Li, DivItem, PName, PValue } from './DashboardPage.styled';
 import EmptyTransactions from '../EmptyTransactions/EmptyTransactions';
-import useSortedTtransactions from 'utility/sortedTtransactions';
+import useSortedTtransactions from 'hooks/sortedTtransactions';
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { deleteTransaction } from 'redux/transactions/transactionsOperation';
 import { addModalData } from 'redux/transactions/transactionsSlice';

@@ -27,8 +27,8 @@ export const App = () => {
   const isLoggedIn = useSelector(selectToken);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+   isLoggedIn && dispatch(refreshUser());
+  }, [dispatch, isLoggedIn]);
 
   return isLoading ? (
     <Loader />

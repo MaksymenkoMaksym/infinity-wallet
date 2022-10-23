@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logOutUser } from 'redux/auth/authOperation';
 import {
   createTransaction,
   deleteTransaction,
@@ -15,7 +16,6 @@ const userInitialState = {
   isLoading: false,
   error: null,
   isModalAddTransactionOpen: false,
-  modalIsIncome: false,
   modalData: {},
 };
 
@@ -40,9 +40,6 @@ const transactionSlice = createSlice({
     },
     closeModal(state, action) {
       state.isModalAddTransactionOpen = false;
-    },
-    setIsIncome(state, action) {
-      state.modalIsIncome = action.payload;
     },
     addModalData(state, action) {
       state.modalData = action.payload;
@@ -104,9 +101,14 @@ const transactionSlice = createSlice({
       state.isLoading = false;
       state.transactionCategories = action.payload;
     },
+
+    [logOutUser.fulfilled](state, action) {
+      state.transactions = [];
+      state.transactionsForPeriod = [];
+      state.transactionCategories = [];
+    },
   },
 });
 
-export const { openModal, closeModal, addModalData, setIsIncome } =
-  transactionSlice.actions;
+export const { openModal, closeModal, addModalData } = transactionSlice.actions;
 export const transactionReducer = transactionSlice.reducer;

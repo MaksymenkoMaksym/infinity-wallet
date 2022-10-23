@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://wallet.goit.ua/';
 
@@ -18,20 +17,9 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await axios.post('/api/auth/sign-up', user);
       setAuthHeader(response.data.token);
-      // console.log('registerUser', response);
       return response.data;
     } catch (error) {
-      thunkApi.rejectWithValue(error);
-      toast.error('An account is already registered with your email', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return thunkApi.rejectWithValue(error.response.status);
     }
   }
 );
@@ -42,22 +30,9 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post('/api/auth/sign-in', user);
       setAuthHeader(response.data.token);
-
-      // console.log('loginUser', response);
-
       return response.data;
     } catch (error) {
-      thunkApi.rejectWithValue(error);
-      toast.error('Login or password is incorrect!', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+        return thunkApi.rejectWithValue(error.response.status);
     }
   }
 );
@@ -70,18 +45,7 @@ export const logOutUser = createAsyncThunk(
       // console.log('logOutUser', response);
       return response.data;
     } catch (error) {
-      toast.error('Something went wrong :(', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-      thunkApi.rejectWithValue(error);
-      // console.log(error);
+      return thunkApi.rejectWithValue(error.response.status);
     }
   }
 );
@@ -94,7 +58,7 @@ export const refreshUser = createAsyncThunk(
     setAuthHeader(persistedToken);
 
     if (persistedToken === null) {
-      return thunkApi.rejectWithValue('Unable to fetch user');
+      return thunkApi.rejectWithValue(null);
     }
 
     try {
@@ -103,17 +67,7 @@ export const refreshUser = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      thunkApi.rejectWithValue(error);
-      toast.error('Something went wrong :(', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return thunkApi.rejectWithValue(error.response.status);
     }
   }
 );

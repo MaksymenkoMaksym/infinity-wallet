@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import { useError } from 'utility/hoooks';
 
 import HeroBar from 'components/HeroBar';
 import DashboardPage from '../DashboardPage/DashboardPage';
@@ -7,7 +9,10 @@ import Container from 'components/Container';
 
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
-import { isModalAddTransactionOpen } from 'redux/transactions/transactionsSelectors';
+import {
+  isModalAddTransactionOpen,
+  selectTransactionCategories,
+} from 'redux/transactions/transactionsSelectors';
 import {
   getAllTransactions,
   getTransactionCategories,
@@ -17,15 +22,20 @@ import { Wrapper, DashboardBox } from './HomeTable.styled';
 import { openModal } from 'redux/transactions/transactionsSlice';
 
 const HomeTable = () => {
+  useError();
   const dispatch = useDispatch();
   const isModalOpen = useSelector(isModalAddTransactionOpen);
+  const categories = useSelector(selectTransactionCategories);
+
   useEffect(() => {
-    dispatch(getTransactionCategories());
+    categories.length === 0 && dispatch(getTransactionCategories());
     dispatch(getAllTransactions());
-  }, [dispatch]);
+  }, [dispatch, categories]);
   const onClickOpenModalAction = () => {
     dispatch(openModal());
+    // console.log(categories);
   };
+
   return (
     <Container>
       <Wrapper>
@@ -39,6 +49,7 @@ const HomeTable = () => {
         />
         {isModalOpen && <ModalAddTransactions />}
       </Wrapper>
+      <ToastContainer />
     </Container>
   );
 };

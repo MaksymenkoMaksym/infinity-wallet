@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setAuthHeader } from 'redux/auth/authOperation';
-import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://wallet.goit.ua/';
 
@@ -14,17 +13,7 @@ export const getTransactionCategories = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      thunkApi.rejectWithValue(error);
-      toast.error('Something went wrong :(', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return thunkApi.rejectWithValue(error.response.status);
     }
   }
 );
@@ -35,20 +24,11 @@ export const createTransaction = createAsyncThunk(
   async (transaction, thunkApi) => {
     try {
       const response = await axios.post('/api/transactions', transaction);
-      // console.log('createTransaction', response.data);
+      console.log('createTransaction', response.data);
       return response.data;
     } catch (error) {
-      thunkApi.rejectWithValue(error);
-      toast.error('Transaction not created :(', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return thunkApi.rejectWithValue(error.response.status);
+
     }
   }
 );
@@ -61,17 +41,7 @@ export const getAllTransactions = createAsyncThunk(
       // console.log('getAllTransactions', response);
       return response.data;
     } catch (error) {
-      thunkApi.rejectWithValue(error);
-      toast.error('There are no one transaction :(', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return thunkApi.rejectWithValue(error.response.status);
     }
   }
 );
@@ -85,17 +55,7 @@ export const updateTransaction = createAsyncThunk(
       console.log('updateTransaction', response);
       return response.data;
     } catch (error) {
-      thunkApi.rejectWithValue(error);
-      toast.error('Transaction not updated :(', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return thunkApi.rejectWithValue(error.response.status);
     }
   }
 );
@@ -108,17 +68,7 @@ export const deleteTransaction = createAsyncThunk(
       console.log('transaction/deleteTransaction', response);
       return id;
     } catch (error) {
-      thunkApi.rejectWithValue(error);
-      toast.error('Transaction not deleted :(', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return thunkApi.rejectWithValue(error.response.status);
     }
   }
 );
@@ -142,17 +92,7 @@ export const getTransactionsForPeriod = createAsyncThunk(
       // console.log('get Transactions For Period', response);
       return response.data;
     } catch (error) {
-      thunkApi.rejectWithValue(error);
-      toast.error('Something went wrong :(', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return thunkApi.rejectWithValue(error.response.status);
     }
   }
 );

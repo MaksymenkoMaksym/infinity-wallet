@@ -1,6 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
 import Switch from 'react-switch';
-import { modalIsIncome } from 'redux/transactions/transactionsSelectors';
 import sprite from '../../assets/images/icons.svg';
 import {
   SwitchIcon,
@@ -8,11 +6,8 @@ import {
   SwitchLabel,
   SwitchText,
 } from './ModalAddSwitch.styled';
-import { setIsIncome } from 'redux/transactions/transactionsSlice';
 
 const ModalAddSwitch = ({ values, setFieldValue }) => {
-  // const isIncome = useSelector(modalIsIncome);
-  // const dispatch = useDispatch();
   const switchTextColor = () => {
     return values.type === 'INCOME'
       ? { inc: '#24CCA7', exp: '#E0E0E0' }
@@ -28,8 +23,6 @@ const ModalAddSwitch = ({ values, setFieldValue }) => {
         checked={values.type === 'EXPENSE'}
         onChange={(checked, event) => {
           setFieldValue('type', checked ? 'EXPENSE' : 'INCOME');
-          //   setIsIncome(prev => !prev);
-          // dispatch(setIsIncome(!isIncome));
           setFieldValue('category', checked ? values.category : '');
         }}
         handleDiameter={44}
