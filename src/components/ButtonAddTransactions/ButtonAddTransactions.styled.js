@@ -2,21 +2,15 @@ import styled from 'styled-components';
 
 export const AddBtn = styled.button`
   position: ${props => (props.icon === 'plus' ? 'fixed' : 'initial')};
+  cursor: pointer;
   bottom: 20px;
   right: 20px;
   width: 44px;
   height: 44px;
-  background-color: ${p => {
-    switch (p.icon) {
-      case 'edit':
-        return p.theme.colors.black;
-      case 'delete':
-        return p.theme.colors.pink;
-      default:
-        return p.theme.colors.green;
-    }
+  background-color: ${p => p.theme.colors.button[p.icon]};
+  border-radius: ${p => {
+    return p.radius ? `${p.radius}%` : p.theme.radii.round;
   }};
-  border-radius: ${p => p.theme.radii.round};
   display: flex;
   justify-content: center;
   align-items: center;
