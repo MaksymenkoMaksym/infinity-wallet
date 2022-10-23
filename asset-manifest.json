@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/infinity-wallet/static/css/main.dae93cff.css",
-    "main.js": "/infinity-wallet/static/js/main.7bb06760.js",
+    "main.js": "/infinity-wallet/static/js/main.b21b8b89.js",
     "static/js/206.7e86279c.chunk.js": "/infinity-wallet/static/js/206.7e86279c.chunk.js",
     "static/js/708.075f913a.chunk.js": "/infinity-wallet/static/js/708.075f913a.chunk.js",
     "static/js/126.61f8844b.chunk.js": "/infinity-wallet/static/js/126.61f8844b.chunk.js",
-    "static/js/813.221ce40b.chunk.js": "/infinity-wallet/static/js/813.221ce40b.chunk.js",
+    "static/js/186.be60b6b5.chunk.js": "/infinity-wallet/static/js/186.be60b6b5.chunk.js",
     "static/js/805.d69cff2f.chunk.js": "/infinity-wallet/static/js/805.d69cff2f.chunk.js",
     "static/css/681.8f0e8410.chunk.css": "/infinity-wallet/static/css/681.8f0e8410.chunk.css",
     "static/js/681.6bd3496a.chunk.js": "/infinity-wallet/static/js/681.6bd3496a.chunk.js",
     "static/css/305.9e924afc.chunk.css": "/infinity-wallet/static/css/305.9e924afc.chunk.css",
-    "static/js/305.4b43c26d.chunk.js": "/infinity-wallet/static/js/305.4b43c26d.chunk.js",
+    "static/js/305.702fc059.chunk.js": "/infinity-wallet/static/js/305.702fc059.chunk.js",
     "static/js/862.74ea0f41.chunk.js": "/infinity-wallet/static/js/862.74ea0f41.chunk.js",
     "static/js/346.f7692065.chunk.js": "/infinity-wallet/static/js/346.f7692065.chunk.js",
     "static/js/265.7e46613e.chunk.js": "/infinity-wallet/static/js/265.7e46613e.chunk.js",
@@ -36,16 +36,16 @@
     "static/media/wave-mobile.svg": "/infinity-wallet/static/media/wave-mobile.340c22a500ab5a21cd92a8df9fb25c67.svg",
     "static/media/wave-desktop.svg": "/infinity-wallet/static/media/wave-desktop.79c23c3b7292d14148dba4e0343c8ea9.svg",
     "main.dae93cff.css.map": "/infinity-wallet/static/css/main.dae93cff.css.map",
-    "main.7bb06760.js.map": "/infinity-wallet/static/js/main.7bb06760.js.map",
+    "main.b21b8b89.js.map": "/infinity-wallet/static/js/main.b21b8b89.js.map",
     "206.7e86279c.chunk.js.map": "/infinity-wallet/static/js/206.7e86279c.chunk.js.map",
     "708.075f913a.chunk.js.map": "/infinity-wallet/static/js/708.075f913a.chunk.js.map",
     "126.61f8844b.chunk.js.map": "/infinity-wallet/static/js/126.61f8844b.chunk.js.map",
-    "813.221ce40b.chunk.js.map": "/infinity-wallet/static/js/813.221ce40b.chunk.js.map",
+    "186.be60b6b5.chunk.js.map": "/infinity-wallet/static/js/186.be60b6b5.chunk.js.map",
     "805.d69cff2f.chunk.js.map": "/infinity-wallet/static/js/805.d69cff2f.chunk.js.map",
     "681.8f0e8410.chunk.css.map": "/infinity-wallet/static/css/681.8f0e8410.chunk.css.map",
     "681.6bd3496a.chunk.js.map": "/infinity-wallet/static/js/681.6bd3496a.chunk.js.map",
     "305.9e924afc.chunk.css.map": "/infinity-wallet/static/css/305.9e924afc.chunk.css.map",
-    "305.4b43c26d.chunk.js.map": "/infinity-wallet/static/js/305.4b43c26d.chunk.js.map",
+    "305.702fc059.chunk.js.map": "/infinity-wallet/static/js/305.702fc059.chunk.js.map",
     "862.74ea0f41.chunk.js.map": "/infinity-wallet/static/js/862.74ea0f41.chunk.js.map",
     "346.f7692065.chunk.js.map": "/infinity-wallet/static/js/346.f7692065.chunk.js.map",
     "265.7e46613e.chunk.js.map": "/infinity-wallet/static/js/265.7e46613e.chunk.js.map",
@@ -54,6 +54,6 @@
   },
   "entrypoints": [
     "static/css/main.dae93cff.css",
-    "static/js/main.7bb06760.js"
+    "static/js/main.b21b8b89.js"
   ]
 }
