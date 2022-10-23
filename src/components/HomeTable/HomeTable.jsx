@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import { useError } from "../../hooks/useError";
+import { useError } from '../../hooks/useError';
+import 'react-toastify/dist/ReactToastify.css';
 
 import HeroBar from 'components/HeroBar';
 import DashboardPage from '../DashboardPage/DashboardPage';
