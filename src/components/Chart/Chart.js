@@ -6,7 +6,7 @@ import { theme } from '../../utility/theme';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectTransactionsForPeriod } from 'redux/transactions/transactionsSelectors';
-import useTransaction from 'utility/diagram';
+import useTransaction from 'hooks/diagram';
 // import { cssTransition } from 'react-toastify';
 
 const Div = styled.div`
