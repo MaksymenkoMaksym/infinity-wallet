@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 
 const Mob = ({ children }) => {
-  return <MediaQuery maxWidth={767}>{children}</MediaQuery>;
+  return <MediaQuery maxWidth={767.98}>{children}</MediaQuery>;
 };
 const Tab = ({ children }) => {
   return <MediaQuery minWidth={768}>{children}</MediaQuery>;

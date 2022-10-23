@@ -10,7 +10,7 @@ import {
   // Sum
 } from './DashboardPage.styled';
 import EmptyTransactions from '../EmptyTransactions/EmptyTransactions';
-import useSortedTtransactions from 'utility/sortedTtransactions';
+import useSortedTtransactions from 'hooks/sortedTtransactions';
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { deleteTransaction } from 'redux/transactions/transactionsOperation';
 import { addModalData } from 'redux/transactions/transactionsSlice';
