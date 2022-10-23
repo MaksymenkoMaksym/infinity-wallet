@@ -1,17 +1,24 @@
-import { useSelector } from 'react-redux';
-
 import { format } from 'date-fns';
-import { Li, DivItem, PName, PValue } from './DashboardPage.styled';
+import {
+  Li,
+  DivItem,
+  PName,
+  PValue,
+  Buttons,
+  MobDiv,
+} from './DashboardPage.styled';
 import EmptyTransactions from '../EmptyTransactions/EmptyTransactions';
 import useSortedTtransactions from 'hooks/sortedTtransactions';
-import ActionBlock from 'components/ActionBlock/ActionBlock';
+// import ActionBlock from 'components/ActionBlock/ActionBlock';
 import { useHookTransaction } from 'hooks';
+import DeleteBtn from '../ListButtons/deleteBtn';
+import EditBtn from '../ListButtons/editBtn';
 
 const MobileDashboard = () => {
   const transactions = useSortedTtransactions();
   const { categories } = useHookTransaction();
   return (
-    <>
+    <MobDiv>
       {transactions ? (
         transactions.map(item => {
           return (
@@ -55,14 +62,18 @@ const MobileDashboard = () => {
                 <PName> Balance</PName>
                 <PValue>{item.balanceAfter.toFixed(2)}</PValue>
               </DivItem>
-              <ActionBlock item={item} />
+              {/* <ActionBlock item={item} /> */}
+              <Buttons>
+                <DeleteBtn item={item} />
+                <EditBtn item={item} />
+              </Buttons>
             </Li>
           );
         })
       ) : (
         <EmptyTransactions />
       )}
-    </>
+    </MobDiv>
   );
 };
 export default MobileDashboard;
