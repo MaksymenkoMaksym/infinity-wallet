@@ -1,5 +1,3 @@
-import { ErrorBox, ErrorSvg } from "./AuthForm.styled";
-import svgIcon from '../../assets/images/icons.svg';
 import { ProgressBar } from "components/ProgressBar/ProgressBar";
 import { AuthError } from "./AuthError";
 
@@ -12,6 +10,7 @@ export const AuthConfirmError = ({touched, errors, name, values}) => {
       }
 
       function checkedOnEmpty() {
+        // eslint-disable-next-line
         return values.password != 0 && values.confirmPassword != 0;
       }
 

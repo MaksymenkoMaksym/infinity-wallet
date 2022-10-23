@@ -1,4 +1,3 @@
-import { ProgressBarVar } from 'components/ProgressBar';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useDispatch} from 'react-redux';
@@ -14,8 +13,7 @@ import svgIcon from '../../assets/images/icons.svg';
 import { AuthConfirmError } from './AuthConfirmError';
 import { AuthError } from './AuthError';
 import {
-  Link, Button, ErrorBox,
-  ErrorSvg, IconSvg, Input,
+  Link, Button, IconSvg, Input,
   Label,
   Placeholder, StyledForm
 } from './AuthForm.styled';
