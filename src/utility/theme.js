@@ -9,6 +9,13 @@ export const theme = {
     gray: '#BDBDBD',
     grayIcon: '#E0E0E0',
 
+    button: {
+      edit: '#FFC727',
+      delete: '#4A56E2',
+      plus: '#24CCA7',
+      active: '#24CCA7',
+    },
+
     background: {
       white: '#fff',
       blurSelect: 'rgba(255, 255, 255, 0.7)',
