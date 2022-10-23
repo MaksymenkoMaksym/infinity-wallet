@@ -11,7 +11,7 @@ export const validationSchemaLogin = Yup.object().shape({
 export const validationSchemaRegister = Yup.object().shape({
   email: Yup.string().email('Incorrect email').required('Missing email'),
   password: Yup.string()
-    .min(6, 'Password should be 8 chars minimum')
+    .min(6, 'Password should be 6 chars minimum')
     .max(12, 'Password should be 12 chars maximum')
     .required('Missing password'),
   confirmPassword: Yup.string()
