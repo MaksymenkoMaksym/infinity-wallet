@@ -105,7 +105,7 @@ export const Button = styled.button`
     letter-spacing: 0.1rem;
     font-size: ${props => props.theme.fontSizes.m};
     line-height: ${props => props.theme.lineHeights.main};
-    margin-bottom: ${props => props.theme.space[4]}px;
+    margin-bottom: ${props => props.theme.space[2]}px;
     transition: background-color 250ms linear, box-shadow 250ms linear, border-color 250ms linear;
     &:hover,
     &:focus{
