@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react';
+import fetchCurrency from 'utility/CurrencyApi/fetchCurrency';
 
-export const useLocalStorage = key => {
+export const useLocalStorage = () => {
   const [state, setState] = useState(() => {
-    return JSON.parse(localStorage.getItem(key)) ?? [];
+    return JSON.parse(localStorage.getItem('currency')) ?? [[], 0];
   });
-
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state));
-  }, [key, state]);
+    const difference = Date.now() - state[1];
+    const fetch = async () => {
+      try {
+        const data = await fetchCurrency();
+        const timeStamp = Date.now();
+        setState([data, timeStamp]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    difference > 3600000 && fetch();
+    localStorage.setItem('currency', JSON.stringify(state));
+  }, [state]);
 
-  return [state, setState];
+  return [state];
 };

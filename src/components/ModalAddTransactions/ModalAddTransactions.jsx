@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import sprite from '../../assets/images/icons.svg';
 import {
   AddForm,
-  // Overlay,
   Modal,
   Title,
   Button,
@@ -39,10 +38,7 @@ const ModalAddTransactions = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
   const modalData = useSelector(selectModalData);
-  console.log('cat', categories);
   const getCategoryName = id => {
-    console.log(categories.find(elem => elem.id === id).name);
-    // return categories.find(elem => elem.id === id).name;
     return {
       value: categories.find(elem => elem.id === id).name,
       label: categories.find(elem => elem.id === id).name,
@@ -65,7 +61,6 @@ const ModalAddTransactions = () => {
         date: new Date(),
       };
   const handleFormSubmit = values => {
-    // console.log('values', values);
     const categoryId = getCategoryId(values);
 
     const formatDate =

@@ -80,16 +80,20 @@ const transactionSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.transactions = state.transactions.map(transaction =>
-        transaction.id === action.payload.id ? action.payload : transaction
+        transaction.id === action.payload.response.id
+          ? action.payload.response
+          : transaction
       );
       state.isModalAddTransactionOpen = false;
+      state.modalData = {};
     },
 
     [deleteTransaction.fulfilled](state, action) {
+      // console.log('payload delete', action.payload);
       state.error = null;
       state.isLoading = false;
       state.transactions = state.transactions.filter(
-        transaction => transaction.id !== action.payload
+        transaction => transaction.id !== action.payload.id
       );
     },
 

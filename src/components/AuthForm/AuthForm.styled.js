@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const StyledForm = styled.form`
 margin-top: 60px;
+width: 280px;
 ${props => props.theme.breakpoints.tab} {
     width: 410px;
     display: flex;
@@ -104,11 +105,11 @@ export const Button = styled.button`
     letter-spacing: 0.1rem;
     font-size: ${props => props.theme.fontSizes.m};
     line-height: ${props => props.theme.lineHeights.main};
-    margin-bottom: ${props => props.theme.space[4]}px;
+    margin-bottom: ${props => props.theme.space[2]}px;
     transition: background-color 250ms linear, box-shadow 250ms linear, border-color 250ms linear;
     &:hover,
     &:focus{
-        color: #ffffff;
+        color: ${props => props.theme.colors.white};
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         background-color: ${props => props.theme.colors.blue};
         border-color: ${props => props.theme.colors.blue};
@@ -126,8 +127,12 @@ margin-left: ${props => props.theme.space[1]}px;
 export const ErrorSvg = styled.svg`
 width: 16px;
 height: 16px;
-fill: ${props => props.theme.colors.error};
 position: absolute;
+fill: ${props => props.theme.colors.error};
+top: -25px;
+left: 250px;
+${props => props.theme.breakpoints.tab} {
 top: -25px;
 left: 380px;
+}
 `

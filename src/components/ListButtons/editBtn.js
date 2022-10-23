@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { addModalData, openModal } from 'redux/transactions/transactionsSlice';
 import { isModalAddTransactionOpen } from 'redux/transactions/transactionsSelectors';
-import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransactions';
 
 import sprite from '../../assets/images/icons.svg';
 import { EdBtn, Icon } from './ListButton.styled';
@@ -28,7 +27,6 @@ const EditBtn = ({ item }) => {
           <use href={`${sprite}#icon-edit`}></use>
         </Icon>
       </EdBtn>
-      {isModalOpen && <ModalAddTransactions />}
     </div>
   );
 };

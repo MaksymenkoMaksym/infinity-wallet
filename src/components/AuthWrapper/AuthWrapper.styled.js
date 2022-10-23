@@ -12,7 +12,7 @@ export const Body = styled.div`
     background-image: url(${VioletSpot}), url(${PinkSpot});
     background-repeat: no-repeat, no-repeat;
     background-position: -133.33px 655px, 396.41px -123px;
-    ${props=>props.theme.breakpoints.tab} {
+    ${props=>props.theme.breakpoints.desc} {
       display: flex;
       padding: ${props=>props.theme.space[0]};
       height: 100vh;
@@ -38,10 +38,10 @@ backdrop-filter: blur(25px);
 export const Section = styled.section`
   box-sizing: border-box;
   padding: ${props=>props.theme.space[2]}px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 280px;
   margin-right: auto;
   margin-left: auto;

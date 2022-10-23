@@ -13,6 +13,7 @@ import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransa
 import {
   isModalAddTransactionOpen,
   selectTransactionCategories,
+  selectTransactions,
 } from 'redux/transactions/transactionsSelectors';
 import {
   getAllTransactions,
@@ -21,17 +22,19 @@ import {
 
 import { Wrapper, DashboardBox } from './HomeTable.styled';
 import { openModal } from 'redux/transactions/transactionsSlice';
+import { selectBalance } from 'redux/auth/authSelectors';
 
 const HomeTable = () => {
   useError();
   const dispatch = useDispatch();
   const isModalOpen = useSelector(isModalAddTransactionOpen);
   const categories = useSelector(selectTransactionCategories);
-
+  const transactions = useSelector(selectTransactions);
+  const balance = useSelector(selectBalance);
   useEffect(() => {
     categories.length === 0 && dispatch(getTransactionCategories());
-    dispatch(getAllTransactions());
-  }, [dispatch, categories]);
+    transactions.length === 0 && balance && dispatch(getAllTransactions());
+  }, [dispatch, categories, transactions, balance]);
   const onClickOpenModalAction = () => {
     dispatch(openModal());
   };
