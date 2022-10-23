@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const StyledForm = styled.form`
 margin-top: 60px;
+width: 280px;
 ${props => props.theme.breakpoints.tab} {
     width: 410px;
     display: flex;
@@ -126,8 +127,12 @@ margin-left: ${props => props.theme.space[1]}px;
 export const ErrorSvg = styled.svg`
 width: 16px;
 height: 16px;
-fill: ${props => props.theme.colors.error};
 position: absolute;
+fill: ${props => props.theme.colors.error};
+top: -25px;
+left: 250px;
+${props => props.theme.breakpoints.tab} {
 top: -25px;
 left: 380px;
+}
 `
