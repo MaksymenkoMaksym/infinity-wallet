@@ -39,9 +39,14 @@ const ModalAddTransactions = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
   const modalData = useSelector(selectModalData);
-
+  console.log('cat', categories);
   const getCategoryName = id => {
-    return categories.find(elem => elem.id === id).name;
+    console.log(categories.find(elem => elem.id === id).name);
+    // return categories.find(elem => elem.id === id).name;
+    return {
+      value: categories.find(elem => elem.id === id).name,
+      label: categories.find(elem => elem.id === id).name,
+    };
   };
 
   const initialValues = modalData.id
