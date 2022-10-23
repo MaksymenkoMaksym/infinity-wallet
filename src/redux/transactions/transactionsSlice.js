@@ -27,6 +27,7 @@ const pendingHandlerAuth = (state, action) => {
 const rejectedHandler = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  state.isModalAddTransactionOpen = false;
 };
 
 const transactionSlice = createSlice({

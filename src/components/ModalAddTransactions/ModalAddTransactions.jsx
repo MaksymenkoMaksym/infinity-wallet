@@ -53,7 +53,7 @@ const ModalAddTransactions = () => {
     ? {
         type: modalData.type,
         category: getCategoryName(modalData.categoryId),
-        sum: modalData.amount,
+        sum: +modalData.amount > 0 ? +modalData.amount : +modalData.amount * -1,
         comment: modalData.comment,
         date: new Date(modalData.transactionDate),
       }
