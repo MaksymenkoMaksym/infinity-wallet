@@ -19,20 +19,6 @@ const HeaderTag = styled.header`
     max-width: 1280px;
   }
 `;
-
-const LogoIcon = styled.svg`
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin-right: 16px;
-
-  ${props => props.theme.breakpoints.tab} {
-    width: 40px;
-    height: 40px;
-    margin-right: 20px;
-  }
-`;
-
 const LogoText = styled.span`
   display: inline-block;
   color: ${props => props.theme.colors.black};
@@ -45,7 +31,6 @@ const LogoText = styled.span`
     font-size: 30px;
   }
 `;
-
 const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
@@ -123,7 +108,6 @@ export {
   UserDiv,
   UserSpan,
   StyledLink,
-  LogoIcon,
   LogoText,
   UserBtn,
   ExitIcon,

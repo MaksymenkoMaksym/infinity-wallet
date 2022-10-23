@@ -1,6 +1,6 @@
 
 import { AuthWrapper } from "components/AuthWrapper";
-import Logo from "../components/Logo/Logo";
+import {Logo} from "../components/Logo";
 import { AuthForm } from "components/AuthForm";
 import { ToastContainer} from 'react-toastify';
 import { useError } from "../hooks/useError";
