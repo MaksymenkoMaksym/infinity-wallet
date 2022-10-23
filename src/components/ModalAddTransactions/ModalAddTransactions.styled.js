@@ -1,23 +1,4 @@
-// import { Field, Form } from 'formik';
 import styled from 'styled-components';
-
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.25);
-  z-index: 1200;
-  margin-top: 60px;
-  overflow-y: auto;
-  @media screen and (min-width: 768px) {
-    margin-top: 0;
-    padding-top: 60px;
-  }
-`;
 
 export const Modal = styled.div`
   position: fixed;
@@ -27,7 +8,6 @@ export const Modal = styled.div`
   width: 100vw;
   height: 100%;
   background-color: ${p => p.theme.colors.background.white};
-  /* padding: 20px; */
   @media screen and (min-width: 768px) {
     width: 540px;
     height: auto;
@@ -90,7 +70,7 @@ export const SwitchIcon = styled.svg`
 
 export const Input = styled.input`
   width: 100%;
-  height: 32px;
+  height: 35px;
   border: none;
   outline: none;
   /* padding-left: 20px; */
@@ -157,6 +137,15 @@ export const DateSumWrap = styled.div`
   }
 `;
 export const SumInput = styled(Input)`
+  /* margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    width: 181px;
+    margin-bottom: 0px;
+  } */
+`;
+export const SumLabel = styled.label`
+  display: block;
   margin-bottom: 40px;
 
   @media screen and (min-width: 768px) {
@@ -164,11 +153,25 @@ export const SumInput = styled(Input)`
     margin-bottom: 0px;
   }
 `;
+
 export const CommentLabel = styled.label`
   margin-top: 40px;
   margin-bottom: 40px;
   width: 100%;
 `;
 export const HeaderBox = styled.div`
+  width: 100%;
+`;
+
+export const ErrorMsg = styled.p`
+  color: red;
+  position: absolute;
+  font-size: 14px;
+  margin-left: 10px;
+  margin: 0;
+  padding-top: 3px;
+  padding-left: 5px;
+`;
+export const SelectBox = styled.div`
   width: 100%;
 `;

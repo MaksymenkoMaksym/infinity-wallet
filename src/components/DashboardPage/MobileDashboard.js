@@ -1,26 +1,15 @@
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 import { format } from 'date-fns';
 import { Li, DivItem, PName, PValue } from './DashboardPage.styled';
 import EmptyTransactions from '../EmptyTransactions/EmptyTransactions';
 import useSortedTtransactions from 'hooks/sortedTtransactions';
-import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
-import { deleteTransaction } from 'redux/transactions/transactionsOperation';
-import { addModalData } from 'redux/transactions/transactionsSlice';
+import ActionBlock from 'components/ActionBlock/ActionBlock';
 import { useHookTransaction } from 'hooks';
 
 const MobileDashboard = () => {
   const transactions = useSortedTtransactions();
   const { categories } = useHookTransaction();
-  //edit btn & delete btn func
-  const dispatch = useDispatch();
-
-  const deleteActionBtn = id => {
-    dispatch(deleteTransaction(id));
-  };
-  const editActionBtn = item => {
-    dispatch(addModalData(item));
-  };
-
   return (
     <>
       {transactions ? (
@@ -66,20 +55,7 @@ const MobileDashboard = () => {
                 <PName> Balance</PName>
                 <PValue>{item.balanceAfter.toFixed(2)}</PValue>
               </DivItem>
-              <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <ButtonAddTransactions
-                  icon="delete"
-                  onClickAction={() => {
-                    deleteActionBtn(item.id);
-                  }}
-                />
-                <ButtonAddTransactions
-                  icon="edit"
-                  onClickAction={() => {
-                    editActionBtn(item);
-                  }}
-                />
-              </div>
+              <ActionBlock item={item} />
             </Li>
           );
         })
