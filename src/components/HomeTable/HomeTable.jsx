@@ -33,7 +33,7 @@ const HomeTable = () => {
     categories.length === 0 && dispatch(getTransactionCategories());
     // console.log(transactions);
     transactions.length === 0 && dispatch(getAllTransactions());
-  }, [dispatch, categories]);
+  }, [dispatch, categories, transactions]);
   const onClickOpenModalAction = () => {
     dispatch(openModal());
     // console.log(categories);
