@@ -49,6 +49,7 @@ export const getAllTransactions = createAsyncThunk(
 export const updateTransaction = createAsyncThunk(
   'transaction/updateTransaction',
   async ({ id, ...transaction }, thunkApi) => {
+    console.log('export const updateTransaction', transaction);
     try {
       const response = await axios.patch(`api/transactions/${id}`, transaction);
       console.log('updateTransaction', response);

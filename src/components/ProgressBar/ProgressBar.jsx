@@ -20,21 +20,12 @@ function LinearProgressWithLabel(props) {
 }
 
 LinearProgressWithLabel.propTypes = {
-  /**
-   * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
-   */
   value: PropTypes.number.isRequired,
 };
-// >= 100 ? 0 : prevProgress
-export function LinearWithValueLabel({values}) {
+function LinearWithValueLabel({values}) {
   const [progress, setProgress] = useState(0);
-
   useEffect(() => {
       setProgress((values.confirmPassword.length/values.password.length)*100);
-      console.log(+values.confirmPassword)
-      console.log(+values.password)
-      console.log((+values.confirmPassword/+values.password))
   }, [values]);
  
   return (
@@ -42,4 +33,24 @@ export function LinearWithValueLabel({values}) {
       <LinearProgressWithLabel value={progress} />
     </Box>
   );
+}
+
+
+
+// export const ProgressBarVar = ({name, values}) => {
+//   function checkedOnEmpty() {
+//     return values.password != 0 && values.confirmPassword != 0;
+//   }
+  
+//   function checkedCoincidence() {
+//     return (
+//       values.password.slice(0, values.confirmPassword.length) === values.confirmPassword
+//     );
+//   }
+//   return (checkedOnEmpty() && <ProgressBarVarVar values={values}/>)
+// }
+
+export const ProgressBar = ({name, values}) => {
+
+  return (<LinearWithValueLabel values={values}/>)
 }

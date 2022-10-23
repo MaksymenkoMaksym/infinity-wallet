@@ -2,7 +2,7 @@ import Chart from 'components/Chart';
 import SelectButton from 'components/SelectBtn/SelectBtn';
 import SelectButtonMonth from 'components/SelectBtn/SelectBtnMonth';
 import 'react-datepicker/dist/react-datepicker.css';
-import useTransaction from 'utility/diagram';
+import useTransaction from 'hooks/diagram';
 
 import {
   ColorSpan,
@@ -19,6 +19,7 @@ import {
 } from './Table.styled';
 
 const Table = ({ setDate }) => {
+  console.log(useTransaction());
   const {
     categoriesSummary = [],
     expenseSummary = 0,
@@ -41,6 +42,7 @@ const Table = ({ setDate }) => {
         </TableHead>
         <ListUl>
           {categoriesSummary.map((item, index) => {
+            console.log(index);
             if (item.name !== 'Income') {
               return (
                 <Item key={item.name}>

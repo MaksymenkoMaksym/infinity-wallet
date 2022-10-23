@@ -14,12 +14,21 @@ import {
   DateSumWrap,
   SumInput,
   CommentLabel,
+  ErrorMsg,
+  SumLabel,
+  SelectBox,
 } from './ModalAddTransactions.styled';
 import { Tab } from 'components/MediaWraper/MediaWraper';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
-import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
-import { createTransaction } from 'redux/transactions/transactionsOperation';
+import {
+  selectModalData,
+  selectTransactionCategories,
+} from 'redux/transactions/transactionsSelectors';
+import {
+  createTransaction,
+  updateTransaction,
+} from 'redux/transactions/transactionsOperation';
 import ModalAddSwitch from 'components/ModalAddSwitch/ModalAddSwitch';
 import ModalAddSelect from 'components/ModalAddSelect/ModalAddSelect';
 import ModalAddDatePicker from 'components/ModalAddDatePicker/ModalAddDatePicker';
@@ -29,15 +38,34 @@ import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
-  const initialValues = {
-    category: '',
-    type: 'EXPENSE',
-    sum: '',
-    comment: '',
-    date: new Date(),
+  const modalData = useSelector(selectModalData);
+  console.log('cat', categories);
+  const getCategoryName = id => {
+    console.log(categories.find(elem => elem.id === id).name);
+    // return categories.find(elem => elem.id === id).name;
+    return {
+      value: categories.find(elem => elem.id === id).name,
+      label: categories.find(elem => elem.id === id).name,
+    };
   };
+
+  const initialValues = modalData.id
+    ? {
+        type: modalData.type,
+        category: getCategoryName(modalData.categoryId),
+        sum: +modalData.amount > 0 ? +modalData.amount : +modalData.amount * -1,
+        comment: modalData.comment,
+        date: new Date(modalData.transactionDate),
+      }
+    : {
+        category: '',
+        type: 'EXPENSE',
+        sum: '',
+        comment: '',
+        date: new Date(),
+      };
   const handleFormSubmit = values => {
-    console.log('values', values);
+    // console.log('values', values);
     const categoryId = getCategoryId(values);
 
     const formatDate =
@@ -55,8 +83,10 @@ const ModalAddTransactions = () => {
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
     console.log('transaction', transaction);
-    // TODO ресет значений по умолчанию
-    dispatch(createTransaction(transaction));
+    modalData.id
+      ? dispatch(updateTransaction({ id: modalData.id, ...transaction }))
+      : dispatch(createTransaction(transaction));
+    formik.values = { ...initialValues };
   };
   const formik = useFormik({
     initialValues,
@@ -97,7 +127,7 @@ const ModalAddTransactions = () => {
             </CloseIcon>
           </CloseBox>
         </Tab>
-        <Title>Add transaction</Title>
+        <Title>{modalData.id ? 'Update transaction' : 'Add transaction'}</Title>
         <AddForm onSubmit={formik.handleSubmit}>
           <ModalAddSwitch
             values={formik.values}
@@ -105,15 +135,20 @@ const ModalAddTransactions = () => {
           />
 
           {formik.values.type === 'EXPENSE' && (
-            <ModalAddSelect
-              options={options}
-              values={formik.values}
-              setFieldValue={formik.setFieldValue}
-            />
+            <SelectBox>
+              <ModalAddSelect
+                options={options}
+                values={formik.values}
+                setFieldValue={formik.setFieldValue}
+              />
+              {formik.touched.category && formik.errors.category ? (
+                <ErrorMsg>{formik.errors.category}</ErrorMsg>
+              ) : null}
+            </SelectBox>
           )}
           <DateSumWrap>
             <div>
-              <label>
+              <SumLabel>
                 <SumInput
                   type="number"
                   name="sum"
@@ -121,9 +156,9 @@ const ModalAddTransactions = () => {
                   {...formik.getFieldProps('sum')}
                 />
                 {formik.touched.sum && formik.errors.sum ? (
-                  <p>{formik.errors.sum}</p>
+                  <ErrorMsg>{formik.errors.sum}</ErrorMsg>
                 ) : null}
-              </label>
+              </SumLabel>
             </div>
             <div>
               <ModalAddDatePicker
@@ -143,10 +178,10 @@ const ModalAddTransactions = () => {
               {...formik.getFieldProps('comment')}
             />
             {formik.touched.comment && formik.errors.comment ? (
-              <p>{formik.errors.comment}</p>
+              <ErrorMsg>{formik.errors.comment}</ErrorMsg>
             ) : null}
           </CommentLabel>
-          <Button type="submit">ADD</Button>
+          <Button type="submit">{modalData.id ? 'UPDATE' : 'ADD'}</Button>
           <CancelButton
             type="button"
             onClick={() => {

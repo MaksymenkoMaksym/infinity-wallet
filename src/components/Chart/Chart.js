@@ -6,7 +6,7 @@ import { theme } from '../../utility/theme';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectTransactionsForPeriod } from 'redux/transactions/transactionsSelectors';
-import useTransaction from 'utility/diagram';
+import useTransaction from 'hooks/diagram';
 // import { cssTransition } from 'react-toastify';
 
 const Div = styled.div`
@@ -24,7 +24,13 @@ const Div = styled.div`
   }
 `;
 const getData = transactions => {
-  const tdata = transactions.filter(item => item.total !== 0);
+  const tdata =
+    transactions.filter(item => item.total !== 0).length > 0
+      ? transactions
+      : [];
+
+  // const tdata = transactions;
+  console.log('tdata', tdata);
   const data =
     tdata.length !== 0
       ? {
