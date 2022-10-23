@@ -1,23 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
 import { format } from 'date-fns';
-import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
-import {
-  Li,
-  DivItem,
-  PName,
-  PValue,
-  // Sum
-} from './DashboardPage.styled';
+import { Li, DivItem, PName, PValue } from './DashboardPage.styled';
 import EmptyTransactions from '../EmptyTransactions/EmptyTransactions';
 import useSortedTtransactions from 'utility/sortedTtransactions';
 import ButtonAddTransactions from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { deleteTransaction } from 'redux/transactions/transactionsOperation';
 import { addModalData } from 'redux/transactions/transactionsSlice';
+import { useHookTransaction } from 'hooks';
 
 const MobileDashboard = () => {
   const transactions = useSortedTtransactions();
-  const categories = useSelector(selectTransactionCategories);
+  const { categories } = useHookTransaction();
   //edit btn & delete btn func
   const dispatch = useDispatch();
 
@@ -64,7 +57,7 @@ const MobileDashboard = () => {
                 <PName> Sum</PName>
                 <PValue transaction={item.type}>
                   {item.amount < 0
-                    ? item.amount.toFixed(2) * -1
+                    ? (item.amount * -1).toFixed(2)
                     : item.amount.toFixed(2)}
                 </PValue>
               </DivItem>

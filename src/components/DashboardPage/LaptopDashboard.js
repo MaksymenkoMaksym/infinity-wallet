@@ -1,5 +1,3 @@
-import { useSelector } from 'react-redux';
-
 import { format } from 'date-fns';
 import {
   Sum,
@@ -11,12 +9,13 @@ import {
   Block,
 } from './DashboardPage.styled';
 import EmptyTransactions from '../EmptyTransactions';
-import { selectTransactionCategories } from '../../redux/transactions/transactionsSelectors';
+
 import useSortedTtransactions from 'utility/sortedTtransactions';
+import { useHookTransaction } from 'hooks';
 
 const LaptopDashboard = () => {
   const transactions = useSortedTtransactions();
-  const categories = useSelector(selectTransactionCategories);
+  const { categories } = useHookTransaction();
 
   return (
     <>
