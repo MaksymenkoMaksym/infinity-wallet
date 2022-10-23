@@ -76,6 +76,7 @@ const WraperPicker = styled.div`
   & .react-datepicker__month {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     max-width: 280px;
   }
 `;
