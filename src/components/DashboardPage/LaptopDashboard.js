@@ -35,7 +35,7 @@ const LaptopDashboard = () => {
             {transactions.map(item => {
               return (
                 <DivTablet key={item.id}>
-                  <DeleteBtn item={item} />
+                  <EditBtn item={item} />
                   <PList>
                     {format(new Date(item.transactionDate), 'dd.MM.yy')}
                   </PList>
@@ -55,7 +55,8 @@ const LaptopDashboard = () => {
                     </Sum>
                   </PList>
                   <PList>{item.balanceAfter.toFixed(2)}</PList>
-                  <EditBtn item={item} />
+
+                  <DeleteBtn item={item} />
                 </DivTablet>
               );
             })}

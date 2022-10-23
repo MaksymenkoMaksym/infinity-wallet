@@ -1,5 +1,14 @@
 import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 // import { DeleteBtn } from '../ListButtons/ListButton.styled';
+const example = keyframes`
+ 0% { opacity: 0; }
+ 30% {  opacity: 0.1 }
+ 40% {  opacity: 0.2; }
+ 60% {  opacity: 0.4; }
+ 100% { opacity: 0.5; }
+`;
+
 ///////home
 
 const UlBoard = styled.ul`
@@ -32,31 +41,29 @@ const PName = styled.span`
   line-height: ${props => props.theme.lineHeights.main};
   @media (min-width: 768px) {
     &:nth-child(1) {
-      width: 60px;
+      width: 55px;
+      text-align: left;
       margin-left: 20px;
     }
     &:nth-child(2) {
-      width: 40px;
-      margin-left: 45px;
+      width: 130px;
+
       text-align: center;
     }
     &:nth-child(3) {
-      width: 70px;
-      margin-left: 25px;
+      width: 140px;
     }
     &:nth-child(4) {
-      width: 180px;
-      margin-left: 25px;
+      width: 140px;
     }
     &:nth-child(5) {
-      width: 40px;
-      margin-left: 30px;
+      width: 78px;
       text-align: right;
     }
     &:nth-child(6) {
-      width: 120px;
-      margin-right: 20px;
+      width: 110px;
       text-align: right;
+      margin-right: 20px;
     }
   }
 `;
@@ -144,6 +151,7 @@ const Block = styled.div`
 
 const LiTablet = styled.li`
   list-style: none;
+  width: 715px;
 `;
 
 const UlTitle = styled.div`
@@ -166,15 +174,28 @@ const DivTablet = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
+  color: ${props => props.theme.colors.black};
   padding: 15px 0;
   &:not(:last-child) {
-    border-bottom: 1px solid #dcdcdf;
+    /* border-bottom: 1px solid #dcdcdf; */
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  }
+  &:hover {
+    box-shadow: #b6bbf3 0px 15px 15px -15px inset,
+      #b6bbf3 0px -15px 15px -15px inset;
+    /* border: 1px solid #dcdcdf; */
+    /* box-shadow: 0px 1px 0px red; */
+    backdrop-filter: blur(10px);
+    /* box-shadow: #b6bbf3 0px 0px 15px 0px inset; */
+    /* border-radius: ${props => props.theme.radii.lg}; */
+
+    /* box-shadow: 0px 0px 5px 5px #b6bbf3; */
   }
   &:hover button {
     background-color: blue;
     visibility: visible;
+    animation-name: ${example};
+    animation-duration: 1s;
   }
 `;
 
@@ -184,30 +205,30 @@ const PList = styled.p`
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: ${props => props.theme.fontSizes.s};
   line-height: ${props => props.theme.lineHeights.main};
+
   &:nth-child(2) {
-    width: 60px;
+    width: 55px;
+    text-align: left;
+    padding-left: 5px;
   }
   &:nth-child(3) {
-    width: 40px;
-    margin-left: 45px;
+    width: 130px;
+
     text-align: center;
   }
   &:nth-child(4) {
-    width: 70px;
-    margin-left: 40px;
+    width: 140px;
   }
   &:nth-child(5) {
-    width: 160px;
-    margin-left: 40px;
+    width: 140px;
   }
   &:nth-child(6) {
-    // width: 40px;
-    margin-left: 30px;
+    width: 78px;
     text-align: right;
   }
   &:nth-child(7) {
-    width: 120px;
-    // margin-left: 60px;
+    width: 110px;
+    padding-right: 5px;
     text-align: right;
   }
 `;
