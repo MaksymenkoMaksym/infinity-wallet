@@ -10,9 +10,8 @@ import {
   // Sum
 } from './DashboardPage.styled';
 import EmptyTransactions from '../EmptyTransactions/EmptyTransactions';
-import useSortedTtransactions from 'utility/sortedTtransactions';
+import useSortedTtransactions from 'hooks/sortedTtransactions';
 import ActionBlock from 'components/ActionBlock/ActionBlock';
-
 const MobileDashboard = () => {
   const transactions = useSortedTtransactions();
   const categories = useSelector(selectTransactionCategories);
