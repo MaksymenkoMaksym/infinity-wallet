@@ -1,14 +1,13 @@
 import { Section, Backdrop, Body } from './AuthWrapper.styled';
 import { TitleThumb } from 'components/TitleThumb';
-import { useMediaQuery } from 'react-responsive';
-
+import useIsMobile from 'hooks/isMobile';
 
 export const AuthWrapper = ({children}) => {
-    const isTabletOrBigScreen = useMediaQuery({ minWidth: 768 });
+    const isMobile = useIsMobile()
 
     return (
     <Body>
-        {isTabletOrBigScreen && <TitleThumb />}
+        {!isMobile && <TitleThumb />}
         <Backdrop>
         <Section>
             {children}

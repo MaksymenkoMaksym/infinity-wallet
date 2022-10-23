@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { DeleteBtn } from '../ListButtons/ListButton.styled';
 ///////home
 
 const UlBoard = styled.ul`
@@ -7,10 +8,23 @@ const UlBoard = styled.ul`
   margin-left: auto;
   margin-right: auto;
   background: transparent;
+  //   overflow-y: scroll;
+  //   max-height: 350px;
+  //   @media (min-width: 768px) {
+  //     // overflow-y: scroll;
+  //   }
+  //
 `;
 
 //////////////////////////////////for mobile
 
+const MobDiv = styled.div`
+  overflow-y: scroll;
+  max-height: 350px;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+`;
 const PName = styled.span`
   margin: 0;
   font-weight: ${props => props.theme.fontWeights.bold};
@@ -19,6 +33,7 @@ const PName = styled.span`
   @media (min-width: 768px) {
     &:nth-child(1) {
       width: 60px;
+      margin-left: 20px;
     }
     &:nth-child(2) {
       width: 40px;
@@ -27,11 +42,11 @@ const PName = styled.span`
     }
     &:nth-child(3) {
       width: 70px;
-      margin-left: 40px;
+      margin-left: 25px;
     }
     &:nth-child(4) {
-      width: 120px;
-      margin-left: 68px;
+      width: 180px;
+      margin-left: 25px;
     }
     &:nth-child(5) {
       width: 40px;
@@ -40,7 +55,7 @@ const PName = styled.span`
     }
     &:nth-child(6) {
       width: 120px;
-      // margin-left: 60px;
+      margin-right: 20px;
       text-align: right;
     }
   }
@@ -97,21 +112,38 @@ const Li = styled.li`
   background: ${props => props.theme.colors.white};
 `;
 
+const Buttons = styled.div`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+`;
+
 ////////////////////////////////////for laptop
 
 const Block = styled.div`
-  // margin-top: 60px;
-  // overflow: scroll;
   overflow-y: scroll;
-  height: 650px;
+  max-height: 650px;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transponent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ffc1d5;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #b6bbf3;
+  }
   @media (min-width: 1280px) {
-    height: 500px;
+    max-height: 500px;
   }
 `;
 
 const LiTablet = styled.li`
   list-style: none;
-  // position: reletive;
 `;
 
 const UlTitle = styled.div`
@@ -134,11 +166,15 @@ const DivTablet = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 15px 20px;
+  cursor: pointer;
+  padding: 15px 0;
   &:not(:last-child) {
     border-bottom: 1px solid #dcdcdf;
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  }
+  &:hover button {
+    background-color: blue;
+    visibility: visible;
   }
 `;
 
@@ -148,28 +184,28 @@ const PList = styled.p`
   font-weight: ${props => props.theme.fontWeights.normal};
   font-size: ${props => props.theme.fontSizes.s};
   line-height: ${props => props.theme.lineHeights.main};
-  &:nth-child(1) {
+  &:nth-child(2) {
     width: 60px;
   }
-  &:nth-child(2) {
+  &:nth-child(3) {
     width: 40px;
     margin-left: 45px;
     text-align: center;
   }
-  &:nth-child(3) {
+  &:nth-child(4) {
     width: 70px;
     margin-left: 40px;
   }
-  &:nth-child(4) {
-    width: 120px;
-    margin-left: 68px;
-  }
   &:nth-child(5) {
-    width: 40px;
+    width: 160px;
+    margin-left: 40px;
+  }
+  &:nth-child(6) {
+    // width: 40px;
     margin-left: 30px;
     text-align: right;
   }
-  &:nth-child(6) {
+  &:nth-child(7) {
     width: 120px;
     // margin-left: 60px;
     text-align: right;
@@ -196,4 +232,6 @@ export {
   UlTitle,
   UlBoard,
   Block,
+  Buttons,
+  MobDiv,
 };

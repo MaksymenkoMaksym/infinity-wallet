@@ -1,25 +1,15 @@
-import {
-  LogoIcon,
-  LogoText,
-  StyledLink,
-} from 'components/Header/Header.styled';
+import { LogoThumb, LogoIcon, LogoText, StyledLink } from './Logo.styled';
 import logo from '../../assets/images/icons.svg';
 export const Logo = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <LogoThumb>
       <StyledLink to={'/'}>
         <LogoIcon>
           <use href={logo + `#icon-logo`}></use>
         </LogoIcon>
         <LogoText>Wallet</LogoText>
       </StyledLink>
-    </div>
+    </LogoThumb>
   );
 };
 

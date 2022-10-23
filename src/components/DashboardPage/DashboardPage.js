@@ -9,7 +9,7 @@ import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelec
 const DashboardPage = () => {
   const isLoadingTransaction = useSelector(selectIsLoadingTransaction);
   return (
-    <>
+    <div key={Math.random() * 100}>
       {isLoadingTransaction ? (
         <Loader />
       ) : (
@@ -22,7 +22,7 @@ const DashboardPage = () => {
           </Tab>
         </UlBoard>
       )}
-    </>
+    </div>
   );
 };
 
