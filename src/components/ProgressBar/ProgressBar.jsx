@@ -35,22 +35,6 @@ function LinearWithValueLabel({values}) {
   );
 }
 
-
-
-// export const ProgressBarVar = ({name, values}) => {
-//   function checkedOnEmpty() {
-//     return values.password != 0 && values.confirmPassword != 0;
-//   }
-  
-//   function checkedCoincidence() {
-//     return (
-//       values.password.slice(0, values.confirmPassword.length) === values.confirmPassword
-//     );
-//   }
-//   return (checkedOnEmpty() && <ProgressBarVarVar values={values}/>)
-// }
-
 export const ProgressBar = ({name, values}) => {
-
   return (<LinearWithValueLabel values={values}/>)
 }

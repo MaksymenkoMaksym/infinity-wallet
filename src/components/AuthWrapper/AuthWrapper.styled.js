@@ -22,7 +22,6 @@ export const Body = styled.div`
 `;
 
 export const Backdrop = styled.div`
-
 ${props=>props.theme.breakpoints.desc} {
 box-sizing: border-box;
 height: 100%;
@@ -36,8 +35,6 @@ background: rgba(255, 255, 255, 0.4);
 backdrop-filter: blur(25px);
 -webkit-backdrop-filter: blur(25px);}
 `
-
-
 export const Section = styled.section`
   box-sizing: border-box;
   padding: ${props=>props.theme.space[2]}px;
@@ -49,7 +46,6 @@ align-items: center;
   margin-right: auto;
   margin-left: auto;
   background-color: ${props=>props.theme.colors.white};
-
   @media (max-width: 767px) {
     height: 100vh;
   }
@@ -62,7 +58,7 @@ align-items: center;
     min-height: auto;
     overflow: hidden;
   }
-  @media (min-width: 1280px) {
+  ${props=>props.theme.breakpoints.desc} {
     width: 533px;
   }
 `;
