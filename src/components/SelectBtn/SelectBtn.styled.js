@@ -65,6 +65,9 @@ const WraperPicker = styled.div`
   & .react-datepicker__year-wrapper {
     max-width: 280px;
     justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   & .react-datepicker__header {
@@ -78,6 +81,17 @@ const WraperPicker = styled.div`
     flex-wrap: wrap;
     justify-content: space-evenly;
     max-width: 280px;
+  }
+  & .react-datepicker__month-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  & .react-datepicker__month-wrapper:first-child {
+    margin-top: 15px;
   }
 `;
 
