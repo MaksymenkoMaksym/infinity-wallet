@@ -13,6 +13,7 @@ import {
 import EmptyTransactions from '../EmptyTransactions';
 import { selectTransactionCategories } from '../../redux/transactions/transactionsSelectors';
 import useSortedTtransactions from 'utility/sortedTtransactions';
+import ActionBlock from 'components/ActionBlock/ActionBlock';
 
 const LaptopDashboard = () => {
   const transactions = useSortedTtransactions();
@@ -33,27 +34,30 @@ const LaptopDashboard = () => {
           <Block>
             {transactions.map(item => {
               return (
-                <DivTablet key={item.id}>
-                  <PList>
-                    {format(new Date(item.transactionDate), 'dd.MM.yy')}
-                  </PList>
-                  <PList>{item.type === 'INCOME' ? '+' : '-'}</PList>
+                <>
+                  <DivTablet key={item.id}>
+                    <PList>
+                      {format(new Date(item.transactionDate), 'dd.MM.yy')}
+                    </PList>
+                    <PList>{item.type === 'INCOME' ? '+' : '-'}</PList>
 
-                  <PList>
-                    {categories.map(
-                      cat => cat.id === item.categoryId && cat.name
-                    )}
-                  </PList>
-                  <PList>{item.comment}</PList>
-                  <PList>
-                    <Sum transaction={item.type}>
-                      {item.amount < 0
-                        ? item.amount.toFixed(2) * -1
-                        : item.amount.toFixed(2)}
-                    </Sum>
-                  </PList>
-                  <PList>{item.balanceAfter.toFixed(2)}</PList>
-                </DivTablet>
+                    <PList>
+                      {categories.map(
+                        cat => cat.id === item.categoryId && cat.name
+                      )}
+                    </PList>
+                    <PList>{item.comment}</PList>
+                    <PList>
+                      <Sum transaction={item.type}>
+                        {item.amount < 0
+                          ? item.amount.toFixed(2) * -1
+                          : item.amount.toFixed(2)}
+                      </Sum>
+                    </PList>
+                    <PList>{item.balanceAfter.toFixed(2)}</PList>
+                  </DivTablet>
+                  <ActionBlock item={item} />
+                </>
               );
             })}
           </Block>

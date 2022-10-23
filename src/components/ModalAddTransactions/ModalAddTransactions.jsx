@@ -18,8 +18,14 @@ import {
 import { Tab } from 'components/MediaWraper/MediaWraper';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'redux/transactions/transactionsSlice';
-import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
-import { createTransaction } from 'redux/transactions/transactionsOperation';
+import {
+  selectModalData,
+  selectTransactionCategories,
+} from 'redux/transactions/transactionsSelectors';
+import {
+  createTransaction,
+  updateTransaction,
+} from 'redux/transactions/transactionsOperation';
 import ModalAddSwitch from 'components/ModalAddSwitch/ModalAddSwitch';
 import ModalAddSelect from 'components/ModalAddSelect/ModalAddSelect';
 import ModalAddDatePicker from 'components/ModalAddDatePicker/ModalAddDatePicker';
@@ -29,13 +35,27 @@ import ModalOverlay from 'components/ModalOverlay/ModalOverlay';
 const ModalAddTransactions = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectTransactionCategories);
-  const initialValues = {
-    category: '',
-    type: 'EXPENSE',
-    sum: '',
-    comment: '',
-    date: new Date(),
+  const modalData = useSelector(selectModalData);
+
+  const getCategoryName = id => {
+    return categories.find(elem => elem.id === id).name;
   };
+
+  const initialValues = modalData.id
+    ? {
+        type: modalData.type,
+        category: getCategoryName(modalData.categoryId),
+        sum: modalData.amount,
+        comment: modalData.comment,
+        date: new Date(modalData.transactionDate),
+      }
+    : {
+        category: '',
+        type: 'EXPENSE',
+        sum: '',
+        comment: '',
+        date: new Date(),
+      };
   const handleFormSubmit = values => {
     console.log('values', values);
     const categoryId = getCategoryId(values);
@@ -56,7 +76,9 @@ const ModalAddTransactions = () => {
     };
     console.log('transaction', transaction);
     // TODO ресет значений по умолчанию
-    dispatch(createTransaction(transaction));
+    modalData.id
+      ? dispatch(updateTransaction({ id: modalData.id, ...transaction }))
+      : dispatch(createTransaction(transaction));
   };
   const formik = useFormik({
     initialValues,
@@ -97,7 +119,7 @@ const ModalAddTransactions = () => {
             </CloseIcon>
           </CloseBox>
         </Tab>
-        <Title>Add transaction</Title>
+        <Title>{modalData.id ? 'Update transaction' : 'Add transaction'}</Title>
         <AddForm onSubmit={formik.handleSubmit}>
           <ModalAddSwitch
             values={formik.values}
@@ -146,7 +168,7 @@ const ModalAddTransactions = () => {
               <p>{formik.errors.comment}</p>
             ) : null}
           </CommentLabel>
-          <Button type="submit">ADD</Button>
+          <Button type="submit">{modalData.id ? 'UPDATE' : 'ADD'}</Button>
           <CancelButton
             type="button"
             onClick={() => {

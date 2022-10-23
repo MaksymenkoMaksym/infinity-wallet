@@ -39,6 +39,7 @@ const transactionSlice = createSlice({
     },
     closeModal(state, action) {
       state.isModalAddTransactionOpen = false;
+      state.modalData = {};
     },
     addModalData(state, action) {
       state.modalData = action.payload;
@@ -79,6 +80,7 @@ const transactionSlice = createSlice({
       state.transactions = state.transactions.map(transaction =>
         transaction.id === action.payload.id ? action.payload : transaction
       );
+      state.isModalAddTransactionOpen = false;
     },
 
     [deleteTransaction.fulfilled](state, action) {
