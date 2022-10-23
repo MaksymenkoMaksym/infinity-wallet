@@ -1,1 +1,1 @@
-export {LinearWithValueLabel as ProgressBar} from "./ProgressBar";
+export {ProgressBar} from "./ProgressBar";
