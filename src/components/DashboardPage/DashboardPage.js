@@ -3,15 +3,13 @@ import { useSelector } from 'react-redux';
 import MobileDashboard from './MobileDashboard';
 import LaptopDashboard from './LaptopDashboard';
 import Loader from 'components/Loader';
-import { useMediaQuery } from 'react-responsive';
+import useIsMobile from 'hooks/isMobile';
 import { UlBoard } from './DashboardPage.styled';
 import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelectors';
 
 const DashboardPage = () => {
   const isLoadingTransaction = useSelector(selectIsLoadingTransaction);
-  const isTabletOrBigScreen = useMediaQuery({ minWidth: 768 });
-  const isMobileScreen = useMediaQuery({ maxWidth: 767 });
-
+  const isMobileScreen = useIsMobile();
   return (
     <div key={Math.random() * 100}>
       {isLoadingTransaction ? (
@@ -19,7 +17,7 @@ const DashboardPage = () => {
       ) : (
         <UlBoard>
           {isMobileScreen && <MobileDashboard />}
-          {isTabletOrBigScreen && <LaptopDashboard />}
+          {!isMobileScreen && <LaptopDashboard />}
         </UlBoard>
       )}
     </div>
