@@ -12,22 +12,8 @@ import Loader from 'components/Loader';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 
 const Currency = () => {
-  const [currency, setCurrency] = useLocalStorage('currency');
+  const [currency] = useLocalStorage();
   const isServerResponse = currency.length === 0;
-
-  useEffect(() => {
-    const difference = Date.now() - currency[1];
-    const fetch = async () => {
-      try {
-        const data = await fetchCurrency();
-        const timeStamp = Date.now();
-        setCurrency([data, timeStamp]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    difference > 50000 && fetch();
-  }, [currency, setCurrency]);
 
   return (
     <>

@@ -61,7 +61,6 @@ const ModalAddTransactions = () => {
         date: new Date(),
       };
   const handleFormSubmit = values => {
-    // console.log('values', values);
     const categoryId = getCategoryId(values);
 
     const formatDate =

@@ -85,6 +85,7 @@ const transactionSlice = createSlice({
           : transaction
       );
       state.isModalAddTransactionOpen = false;
+      state.modalData = {};
     },
 
     [deleteTransaction.fulfilled](state, action) {

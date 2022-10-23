@@ -7,14 +7,14 @@ import { DelBtn, Icon } from './ListButton.styled';
 const DeleteBtn = ({ item }) => {
   const dispatch = useDispatch();
 
-  const deleteActionBtn = id => {
-    dispatch(deleteTransaction(id));
+  const deleteActionBtn = item => {
+    dispatch(deleteTransaction(item));
   };
   return (
     <div>
       <DelBtn
         onClick={() => {
-          deleteActionBtn(item.id);
+          deleteActionBtn(item);
         }}
       >
         <Icon>

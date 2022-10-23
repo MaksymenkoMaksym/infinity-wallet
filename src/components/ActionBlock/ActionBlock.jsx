@@ -41,7 +41,6 @@ const ActionBlock = ({ item }) => {
           editActionBtn(item);
         }}
       />
-      {isModalOpen && <ModalAddTransactions />}
     </div>
   );
 };
