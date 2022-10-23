@@ -15,8 +15,8 @@ export const validationSchemaRegister = Yup.object().shape({
     .max(12, 'Password should be 12 chars maximum')
     .required('Missing password'),
   confirmPassword: Yup.string()
-    .required('Please retype your password')
-    .oneOf([Yup.ref('password')], 'Your passwords do not match.'),
+    .required('Your passwords do not match')
+    .oneOf([Yup.ref('password')], 'Your passwords do not match'),
   firstName: Yup.string()
     .min(1)
     .max(12, 'First name should be 12 chars maximum.')

@@ -1,3 +1,4 @@
+import { ProgressBarVar } from 'components/ProgressBar';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useDispatch} from 'react-redux';
@@ -10,6 +11,8 @@ import {
 } from 'utility/validationSchema';
 
 import svgIcon from '../../assets/images/icons.svg';
+import { AuthConfirmError } from './AuthConfirmError';
+import { AuthError } from './AuthError';
 import {
   Link, Button, ErrorBox,
   ErrorSvg, IconSvg, Input,
@@ -44,17 +47,7 @@ export const AuthForm = () => {
     validateOnBlur: false,
   });
 
-  const{ resetForm, touched, errors} = formik
-
-  // function checkedOnEmpty() {
-  //   return formik.values.password !== 0 && formik.values.confirmPassword !== 0;
-  // }
-  // function checkedCoincidence() {
-  //   return (
-  //     formik.values.password.slice(0, formik.values.confirmPassword.length) ===
-  //     formik.values.confirmPassword
-  //   );
-  // }
+  const{ resetForm, touched, errors, values} = formik;
   useEffect(()=> {
 resetForm()
   }, [location, resetForm])
@@ -75,21 +68,9 @@ resetForm()
               <use href={svgIcon + `#icon-${name}`}></use>
             </IconSvg>
             <Placeholder>{label}</Placeholder>
-            {touched[name] && errors[name] ? (
-              <ErrorBox>
-                {errors[name]}{' '}
-                <ErrorSvg>
-                  <use href={svgIcon + `#icon-cancel-circle`}></use>
-                </ErrorSvg>
-              </ErrorBox>
-            ) : null}
-            {/* {item === 'confirmPassword' &&
-              checkedOnEmpty() &&
-              (checkedCoincidence() ? (
-                <ProgressBar values={formik.values} />
-              ) : (
-                <ErrorBox>Your passwords do not match</ErrorBox>
-              ))} */}
+            {(name !== 'confirmPassword') ? <AuthError touched={touched} errors={errors} name={name}/> : <AuthConfirmError touched={touched} errors={errors} name={name} values={values}/>}
+             {/* : ((name === 'confirmPassword') ? <ProgressBarVar name={name} values={values}/> : null)} */}
+          
           </Label>
         );
       })}
