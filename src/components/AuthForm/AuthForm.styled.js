@@ -109,7 +109,7 @@ export const Button = styled.button`
     transition: background-color 250ms linear, box-shadow 250ms linear, border-color 250ms linear;
     &:hover,
     &:focus{
-        color: #ffffff;
+        color: ${props => props.theme.colors.white};
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         background-color: ${props => props.theme.colors.blue};
         border-color: ${props => props.theme.colors.blue};
