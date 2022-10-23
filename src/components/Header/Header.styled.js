@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const HeaderTag = styled.header`
   display: flex;
@@ -18,23 +17,6 @@ const HeaderTag = styled.header`
     padding: 20px 16px;
     max-width: 1280px;
   }
-`;
-const LogoText = styled.span`
-  display: inline-block;
-  color: ${props => props.theme.colors.black};
-  font-family: ${props => props.theme.fonts.secondary};
-  font-weight: ${props => props.theme.fontWeights.bold};
-  font-size: ${props => props.theme.fontSizes.m};
-  line-height: ${props => props.theme.lineHeights.main};
-
-  ${props => props.theme.breakpoints.tab} {
-    font-size: 30px;
-  }
-`;
-const StyledLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
 `;
 
 const UserDiv = styled.div`
@@ -107,8 +89,6 @@ const ExitText = styled.span`
 export {
   UserDiv,
   UserSpan,
-  StyledLink,
-  LogoText,
   UserBtn,
   ExitIcon,
   ExitText,
