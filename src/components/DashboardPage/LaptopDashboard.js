@@ -12,7 +12,7 @@ import {
 } from './DashboardPage.styled';
 import EmptyTransactions from '../EmptyTransactions';
 import { selectTransactionCategories } from '../../redux/transactions/transactionsSelectors';
-import useSortedTtransactions from 'utility/sortedTtransactions';
+import useSortedTtransactions from 'hooks/sortedTtransactions';
 
 const LaptopDashboard = () => {
   const transactions = useSortedTtransactions();

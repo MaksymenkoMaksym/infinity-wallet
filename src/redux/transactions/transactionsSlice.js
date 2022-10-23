@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logOutUser } from 'redux/auth/authOperation';
 import {
   createTransaction,
   deleteTransaction,
@@ -99,6 +100,12 @@ const transactionSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.transactionCategories = action.payload;
+    },
+
+    [logOutUser.fulfilled](state, action) {
+      state.transactions = [];
+      state.transactionsForPeriod = [];
+      state.transactionCategories = [];
     },
   },
 });

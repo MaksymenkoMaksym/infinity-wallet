@@ -6,7 +6,7 @@ import {
   StyledLink,
 } from './Navigation.styled';
 import sprite from '../../assets/images/icons.svg';
-import useIsMobile from 'utility/isMobile';
+import useIsMobile from 'hooks/isMobile';
 
 const Navigation = () => {
   const isMobileScreen = useIsMobile();
