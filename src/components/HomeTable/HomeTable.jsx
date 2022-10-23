@@ -13,6 +13,7 @@ import ModalAddTransactions from 'components/ModalAddTransactions/ModalAddTransa
 import {
   isModalAddTransactionOpen,
   selectTransactionCategories,
+  selectTransactions,
 } from 'redux/transactions/transactionsSelectors';
 import {
   getAllTransactions,
@@ -27,11 +28,12 @@ const HomeTable = () => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(isModalAddTransactionOpen);
   const categories = useSelector(selectTransactionCategories);
-
+  const transactions = useSelector(selectTransactions);
   useEffect(() => {
     categories.length === 0 && dispatch(getTransactionCategories());
-    dispatch(getAllTransactions());
-  }, [dispatch, categories]);
+    // console.log(transactions);
+    transactions.length === 0 && dispatch(getAllTransactions());
+  }, [dispatch, categories, transactions]);
   const onClickOpenModalAction = () => {
     dispatch(openModal());
   };

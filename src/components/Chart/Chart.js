@@ -29,7 +29,6 @@ const getData = transactions => {
       ? transactions
       : [];
 
-  console.log('tdata', tdata);
   const data =
     tdata.length !== 0
       ? {
