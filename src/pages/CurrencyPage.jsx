@@ -3,7 +3,7 @@ import Navigation from 'components/Navigation/Navigation';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { ToastContainer } from 'react-toastify';
-import { useError } from 'utility/hoooks';
+import { useError } from "../hooks/useError";
 import { Navigate } from 'react-router-dom';
 
 
