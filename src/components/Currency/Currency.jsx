@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Container,
   Thead,
@@ -9,27 +9,25 @@ import {
 } from './Currency.styled';
 import fetchCurrency from '../../utility/CurrencyApi/fetchCurrency';
 import Loader from 'components/Loader';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 
 const Currency = () => {
-  const [currency, setCurrency] = useState([]);
+  const [currency, setCurrency] = useLocalStorage('currency');
   const isServerResponse = currency.length === 0;
-  // const isServerResponse = false;
+
   useEffect(() => {
+    const difference = Date.now() - currency[1];
     const fetch = async () => {
       try {
         const data = await fetchCurrency();
-        setCurrency([...data]);
+        const timeStamp = Date.now();
+        setCurrency([data, timeStamp]);
       } catch (error) {
         console.log(error);
       }
     };
-
-    const id = setInterval(() => {
-      fetch();
-    }, 300000);
-    fetch();
-    return () => clearInterval(id);
-  }, []);
+    difference > 50000 && fetch();
+  }, [currency, setCurrency]);
 
   return (
     <>
@@ -44,7 +42,7 @@ const Currency = () => {
           </Thead>
 
           <TdBox>
-            {currency
+            {currency[0]
               ?.filter(element => {
                 return element.ccy !== 'RUR';
               })

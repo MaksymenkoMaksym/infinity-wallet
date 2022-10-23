@@ -11,13 +11,7 @@ import { selectIsLoading, selectToken } from 'redux/auth/authSelectors';
 import Loader from './Loader';
 
 import Header from './Header';
-// import Home from 'pages/HomePage';
-// import TestCom from './TestCom/TestCom ';
-// import DiagramPage from 'pages/DiagramPage';
-// import CurrencyPage from 'pages/CurrencyPage';
-// import { RegistrationPage } from 'pages';
 const Home = lazy(() => import('pages/HomePage'));
-const TestCom = lazy(() => import('./TestCom/TestCom '));
 const DiagramPage = lazy(() => import('pages/DiagramPage'));
 const CurrencyPage = lazy(() => import('pages/CurrencyPage'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
@@ -27,7 +21,7 @@ export const App = () => {
   const isLoggedIn = useSelector(selectToken);
   const dispatch = useDispatch();
   useEffect(() => {
-   isLoggedIn && dispatch(refreshUser());
+    isLoggedIn && dispatch(refreshUser());
   }, [dispatch, isLoggedIn]);
 
   return isLoading ? (
@@ -41,12 +35,6 @@ export const App = () => {
             path="/"
             element={
               <PrivateRoute redirectTo="/auth/login" component={<Home />} />
-            }
-          />
-          <Route
-            path="/test"
-            element={
-              <PrivateRoute redirectTo="/auth/login" component={<TestCom />} />
             }
           />
           <Route
@@ -67,18 +55,6 @@ export const App = () => {
               />
             }
           />
-          {/* <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
-          }
-        />
-        <Route
-          path="/registration"
-          element={
-            <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
-          }
-          /> */}
           <Route
             path="/auth/:authType"
             element={
