@@ -7,8 +7,6 @@ import logo from '../../assets/images/icons.svg';
 import {
   UserDiv,
   UserSpan,
-  StyledLink,
-  LogoText,
   UserBtn,
   ExitIcon,
   ExitText,
@@ -26,9 +24,6 @@ const Header = () => {
     <>
       <HeaderTag>
         <Logo />
-        <StyledLink to={'/test'}>
-          <LogoText>TEST</LogoText>
-        </StyledLink>
         <UserDiv>
           <UserSpan>{username}</UserSpan>
           <UserBtn onClick={() => setShow(true)}>

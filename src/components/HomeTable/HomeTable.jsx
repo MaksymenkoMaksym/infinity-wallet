@@ -34,7 +34,6 @@ const HomeTable = () => {
   }, [dispatch, categories]);
   const onClickOpenModalAction = () => {
     dispatch(openModal());
-    // console.log(categories);
   };
 
   return (
