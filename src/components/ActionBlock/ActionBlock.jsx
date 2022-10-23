@@ -11,8 +11,8 @@ const ActionBlock = ({ item }) => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(isModalAddTransactionOpen);
 
-  const deleteActionBtn = id => {
-    dispatch(deleteTransaction(id));
+  const deleteActionBtn = item => {
+    dispatch(deleteTransaction(item));
   };
   const editActionBtn = item => {
     dispatch(addModalData(item));
@@ -31,7 +31,7 @@ const ActionBlock = ({ item }) => {
         radius="25"
         icon="delete"
         onClickAction={() => {
-          deleteActionBtn(item.id);
+          deleteActionBtn(item);
         }}
       />
       <ButtonAddTransactions

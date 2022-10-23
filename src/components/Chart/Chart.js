@@ -29,8 +29,6 @@ const getData = transactions => {
       ? transactions
       : [];
 
-  // const tdata = transactions;
-  console.log('tdata', tdata);
   const data =
     tdata.length !== 0
       ? {

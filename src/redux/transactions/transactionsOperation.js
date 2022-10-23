@@ -49,11 +49,15 @@ export const getAllTransactions = createAsyncThunk(
 export const updateTransaction = createAsyncThunk(
   'transaction/updateTransaction',
   async ({ id, ...transaction }, thunkApi) => {
-    console.log('export const updateTransaction', transaction);
+    // console.log('export const updateTransaction', transaction);
+    const oldSum = thunkApi.getState().transaction.modalData.amount;
+    // const oldType = thunkApi.getState().transaction.modalData.type;
+    // console.log('thunk', oldSum, oldType, transaction);
     try {
       const response = await axios.patch(`api/transactions/${id}`, transaction);
       console.log('updateTransaction', response);
-      return response.data;
+      const newSum = response.data.amount - oldSum;
+      return { response: response.data, newSum };
     } catch (error) {
       return thunkApi.rejectWithValue(error.response.status);
     }
@@ -66,9 +70,9 @@ export const deleteTransaction = createAsyncThunk(
     try {
       const response = await axios.delete(`api/transactions/${item.id}`);
       console.log('transaction/deleteTransaction', response);
-      const sum = item.type === 'INCOME' ? item.amount : item.amount * -1;
-      console.log(sum);
-      return { id: item.id, sum };
+      // const sum = item.type === 'INCOME' ? item.amount : item.amount * -1;
+      // console.log(sum);
+      return { id: item.id, sum: item.amount };
     } catch (error) {
       return thunkApi.rejectWithValue(error.response.status);
     }

@@ -11,9 +11,9 @@ const Balance = () => {
   const balance = useSelector(selectBalance);
   const transactions = useSelector(selectTransactions);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch, transactions]);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch, transactions]);
 
   return (
     <Container>
