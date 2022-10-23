@@ -1,23 +1,24 @@
-import { useSelector } from 'react-redux';
-
 import { format } from 'date-fns';
-import { selectTransactionCategories } from 'redux/transactions/transactionsSelectors';
 import {
   Li,
   DivItem,
   PName,
   PValue,
-  // Sum
+  Buttons,
+  MobDiv,
 } from './DashboardPage.styled';
 import EmptyTransactions from '../EmptyTransactions/EmptyTransactions';
 import useSortedTtransactions from 'hooks/sortedTtransactions';
-import ActionBlock from 'components/ActionBlock/ActionBlock';
+// import ActionBlock from 'components/ActionBlock/ActionBlock';
+import { useHookTransaction } from 'hooks';
+import DeleteBtn from '../ListButtons/deleteBtn';
+import EditBtn from '../ListButtons/editBtn';
+
 const MobileDashboard = () => {
   const transactions = useSortedTtransactions();
-  const categories = useSelector(selectTransactionCategories);
-
+  const { categories } = useHookTransaction();
   return (
-    <>
+    <MobDiv>
       {transactions ? (
         transactions.map(item => {
           return (
@@ -52,7 +53,7 @@ const MobileDashboard = () => {
                 <PName> Sum</PName>
                 <PValue transaction={item.type}>
                   {item.amount < 0
-                    ? item.amount.toFixed(2) * -1
+                    ? (item.amount * -1).toFixed(2)
                     : item.amount.toFixed(2)}
                 </PValue>
               </DivItem>
@@ -61,14 +62,18 @@ const MobileDashboard = () => {
                 <PName> Balance</PName>
                 <PValue>{item.balanceAfter.toFixed(2)}</PValue>
               </DivItem>
-              <ActionBlock item={item} />
+              {/* <ActionBlock item={item} /> */}
+              <Buttons>
+                <DeleteBtn item={item} />
+                <EditBtn item={item} />
+              </Buttons>
             </Li>
           );
         })
       ) : (
         <EmptyTransactions />
       )}
-    </>
+    </MobDiv>
   );
 };
 export default MobileDashboard;
