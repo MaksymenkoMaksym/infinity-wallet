@@ -21,6 +21,7 @@ export const Wrapper = styled.div`
 `;
 
 export const DiagramBox = styled.div`
+  width: 100%;
   ${props => props.theme.breakpoints.tab} {
     display: flex;
   }

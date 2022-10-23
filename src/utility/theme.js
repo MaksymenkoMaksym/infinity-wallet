@@ -1,13 +1,14 @@
 export const theme = {
   colors: {
-    black: '#000',
-    white: '#fff',
+    black: '#000000',
+    white: '#ffffff',
 
     green: '#24CCA7',
     pink: '#FF6596',
     blue: '#4A56E2',
     gray: '#BDBDBD',
     grayIcon: '#E0E0E0',
+    error: '#ff0000',
 
     button: {
       edit: '#FFC727',
@@ -17,7 +18,7 @@ export const theme = {
     },
 
     background: {
-      white: '#fff',
+      white: '#ffffff',
       blurSelect: 'rgba(255, 255, 255, 0.7)',
       blurTablet: '#E7EAF2',
       currency: '#4A56E2',
@@ -69,6 +70,7 @@ export const theme = {
   borders: {
     none: 'none',
     normal: '1px solid #4A56E2',
+    green: '1px solid #24CCA7',
   },
   radii: {
     none: '0',
