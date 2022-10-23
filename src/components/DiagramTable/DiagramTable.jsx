@@ -8,13 +8,20 @@ import Container from 'components/Container';
 import Navigation from 'components/Navigation';
 import { Wrapper, DiagramBox } from './DiagramTable.styled';
 
-import { getTransactionsForPeriod } from 'redux/transactions/transactionsOperation';
-import { selectIsLoadingTransaction } from 'redux/transactions/transactionsSelectors';
+import {
+  getTransactionCategories,
+  getTransactionsForPeriod,
+} from 'redux/transactions/transactionsOperation';
+import {
+  selectIsLoadingTransaction,
+  selectTransactionCategories,
+} from 'redux/transactions/transactionsSelectors';
 
 import timeConverter from 'utility/timeConvertor';
 import useIsMobile from 'hooks/isMobile';
 
 const DiagramTable = () => {
+  const categories = useSelector(selectTransactionCategories);
   const isMobileScreen = useIsMobile();
 
   const dispatch = useDispatch();
@@ -22,8 +29,9 @@ const DiagramTable = () => {
   const defaultDate = timeConverter();
   const [date, setDate] = useState(defaultDate);
   useEffect(() => {
+    categories.length === 0 && dispatch(getTransactionCategories());
     dispatch(getTransactionsForPeriod(date));
-  }, [dispatch, date]);
+  }, [dispatch, date, categories]);
   return (
     <Container>
       <Wrapper>
