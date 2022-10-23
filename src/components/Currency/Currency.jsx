@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import {
   Container,
   Thead,
@@ -7,7 +6,6 @@ import {
   ThItem,
   TdList,
 } from './Currency.styled';
-import fetchCurrency from '../../utility/CurrencyApi/fetchCurrency';
 import Loader from 'components/Loader';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 
