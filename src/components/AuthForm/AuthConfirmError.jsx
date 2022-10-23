@@ -4,7 +4,7 @@ import { AuthError } from "./AuthError";
 export const AuthConfirmError = ({touched, errors, name, values}) => {
 function checkedCoincidence() {
     return (
-      values.password.slice(0, values.confirmPassword.length) === values.confirmPassword
+      values.password.slice(0, values.confirmPassword?.length) === values.confirmPassword
     );
   }
 function checkedOnEmpty() {
