@@ -12,7 +12,11 @@ const Container = styled.div`
   ${props => props.theme.breakpoints.desc} {
     background-image: url(${BlurImg});
   }
-  min-height: calc(100vh - 85px);
+  min-height: calc(100vh - 60px);
+
+  @media screen and (min-width: 768px) {
+    min-height: calc(100vh - 85px);
+  }
 `;
 
 export default Container;
