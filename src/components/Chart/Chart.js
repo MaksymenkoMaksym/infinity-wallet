@@ -10,8 +10,8 @@ import useTransaction from 'hooks/diagram';
 // import { cssTransition } from 'react-toastify';
 
 const Div = styled.div`
-  width: 294px;
-  height: 294px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   padding-bottom: 32px;
 
@@ -29,7 +29,6 @@ const getData = transactions => {
       ? transactions
       : [];
 
-  // const tdata = transactions;
   console.log('tdata', tdata);
   const data =
     tdata.length !== 0

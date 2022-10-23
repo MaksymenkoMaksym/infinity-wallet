@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
 const WraperDiv = styled.div`
-  width: 320px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: ${props => props.theme.space[3]}px;
+  /* padding-top: ${props => props.theme.space[3]}px; */
   padding-bottom: ${props => props.theme.space[3]}px;
   ${props => props.theme.breakpoints.tab} {
     width: 351px;
-    // margin-right: 85px;
     margin-left: auto;
   }
 `;
