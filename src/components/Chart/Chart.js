@@ -24,8 +24,12 @@ const Div = styled.div`
   }
 `;
 const getData = transactions => {
-  // const tdata = transactions.filter(item => item.total !== 0);
-  const tdata = transactions;
+  const tdata =
+    transactions.filter(item => item.total !== 0).length > 0
+      ? transactions
+      : [];
+
+  // const tdata = transactions;
   console.log('tdata', tdata);
   const data =
     tdata.length !== 0
