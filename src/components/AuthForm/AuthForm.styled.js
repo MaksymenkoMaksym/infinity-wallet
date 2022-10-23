@@ -11,7 +11,6 @@ ${props => props.theme.breakpoints.tab} {
     align-items: center;
     }
 ` 
- 
 export const Label = styled.label`
 margin-bottom: ${props => props.theme.space[4]}px;
 color: ${props => props.theme.colors.grayIcon};
@@ -20,10 +19,7 @@ display: block;
 ${props => props.theme.breakpoints.tab} {
         width: 100%;
 }
- 
-
 `
-
 export const Placeholder = styled.span`
 color: currentColor;
 position: absolute;
@@ -41,10 +37,8 @@ top: -3px;
 left: 10px;
 transition:  color 250ms linear;
 `
-
 export const Input = styled.input`
 width: 100%;
-
 box-sizing: border-box;
 height: 24px;
 font-size: ${props => props.theme.fontSizes.m};
@@ -68,14 +62,10 @@ transition: border-color 250ms linear;
     transform: translateY(-20px);
     font-size: ${props => props.theme.fontSizes.xs};
 }
-
 ${props => props.theme.breakpoints.tab} {
         width: 100%;
 }
 `
-
-
-
 export const Link = styled(NavLink)`
     width: 100%;
     height: ${props => props.theme.space[5]}px;
@@ -99,12 +89,10 @@ export const Link = styled(NavLink)`
         color: ${props=>props.theme.colors.green};
         border-color: ${props=>props.theme.colors.green};
     }
-
     ${props=> props.theme.breakpoints.tab} {
         width: 300px;
   }
 `
-
 export const Button = styled.button`
     width: 100%;
     height: ${props => props.theme.space[5]}px;
@@ -129,14 +117,12 @@ export const Button = styled.button`
         width: 300px;
   }
 `
-
 export const ErrorBox = styled.div`
 color: ${props => props.theme.colors.error};
 position: absolute;
 font-size: 14px;
 margin-left: ${props => props.theme.space[1]}px;
 `
-
 export const ErrorSvg = styled.svg`
 width: 16px;
 height: 16px;

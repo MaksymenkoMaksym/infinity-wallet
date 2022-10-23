@@ -6,13 +6,11 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
-
 export const LogoIcon = styled.svg`
   display: inline-block;
   width: 30px;
   height: 30px;
   margin-right: 16px;
-
   ${props => props.theme.breakpoints.tab} {
     width: 40px;
     height: 40px;
