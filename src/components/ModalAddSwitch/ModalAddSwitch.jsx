@@ -23,7 +23,7 @@ const ModalAddSwitch = ({ values, setFieldValue }) => {
         checked={values.type === 'EXPENSE'}
         onChange={(checked, event) => {
           setFieldValue('type', checked ? 'EXPENSE' : 'INCOME');
-          setFieldValue('category', checked ? values.category : '');
+          setFieldValue('category', checked ? '' : 'Income');
         }}
         handleDiameter={44}
         offColor="#FF6596"

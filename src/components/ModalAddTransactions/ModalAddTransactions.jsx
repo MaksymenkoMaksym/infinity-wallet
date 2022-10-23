@@ -14,6 +14,9 @@ import {
   DateSumWrap,
   SumInput,
   CommentLabel,
+  ErrorMsg,
+  SumLabel,
+  SelectBox,
 } from './ModalAddTransactions.styled';
 import { Tab } from 'components/MediaWraper/MediaWraper';
 import { useDispatch, useSelector } from 'react-redux';
@@ -55,8 +58,9 @@ const ModalAddTransactions = () => {
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
     console.log('transaction', transaction);
-    // TODO ресет значений по умолчанию
+
     dispatch(createTransaction(transaction));
+    // TODO ресет значений по умолчанию
   };
   const formik = useFormik({
     initialValues,
@@ -105,15 +109,20 @@ const ModalAddTransactions = () => {
           />
 
           {formik.values.type === 'EXPENSE' && (
-            <ModalAddSelect
-              options={options}
-              values={formik.values}
-              setFieldValue={formik.setFieldValue}
-            />
+            <SelectBox>
+              <ModalAddSelect
+                options={options}
+                values={formik.values}
+                setFieldValue={formik.setFieldValue}
+              />
+              {formik.touched.category && formik.errors.category ? (
+                <ErrorMsg>{formik.errors.category}</ErrorMsg>
+              ) : null}
+            </SelectBox>
           )}
           <DateSumWrap>
             <div>
-              <label>
+              <SumLabel>
                 <SumInput
                   type="number"
                   name="sum"
@@ -121,9 +130,9 @@ const ModalAddTransactions = () => {
                   {...formik.getFieldProps('sum')}
                 />
                 {formik.touched.sum && formik.errors.sum ? (
-                  <p>{formik.errors.sum}</p>
+                  <ErrorMsg>{formik.errors.sum}</ErrorMsg>
                 ) : null}
-              </label>
+              </SumLabel>
             </div>
             <div>
               <ModalAddDatePicker
@@ -143,7 +152,7 @@ const ModalAddTransactions = () => {
               {...formik.getFieldProps('comment')}
             />
             {formik.touched.comment && formik.errors.comment ? (
-              <p>{formik.errors.comment}</p>
+              <ErrorMsg>{formik.errors.comment}</ErrorMsg>
             ) : null}
           </CommentLabel>
           <Button type="submit">ADD</Button>
