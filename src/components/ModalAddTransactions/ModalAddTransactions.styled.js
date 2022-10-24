@@ -13,7 +13,7 @@ export const Modal = styled.div`
     height: auto;
     min-height: 400px;
     max-height: 700px;
-    padding: 40px 80px;
+    padding: 40px 0;
     border-radius: ${p => p.theme.radii.md};
   }
 `;
@@ -37,6 +37,9 @@ export const Title = styled.h2`
   line-height: ${p => p.theme.lineHeights.main};
   text-align: center;
   padding-bottom: 50px;
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
 `;
 export const Button = styled.button`
   width: 100%;

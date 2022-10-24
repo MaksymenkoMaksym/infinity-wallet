@@ -21,7 +21,9 @@ const Balance = () => {
   return (
     <Container>
       <Title>YOUR BALANCE</Title>
-      <Sum>&#8372; {balance.toFixed(2)}</Sum>
+      <Sum>
+        &#8372; <b>{balance.toFixed(2)}</b>
+      </Sum>
     </Container>
   );
 };
