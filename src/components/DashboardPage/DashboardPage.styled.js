@@ -21,7 +21,7 @@ const UlBoard = styled.ul`
 
 const MobDiv = styled.li`
   overflow-y: scroll;
-  max-height: 350px;
+  max-height: 60vh;
   &::-webkit-scrollbar {
     width: 0;
   }
