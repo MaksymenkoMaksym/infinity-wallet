@@ -77,7 +77,6 @@ const ModalAddTransactions = () => {
       comment: values.comment,
       amount: values.type === 'INCOME' ? +values.sum : +values.sum * -1,
     };
-    console.log('transaction', transaction);
     modalData.id
       ? dispatch(updateTransaction({ id: modalData.id, ...transaction }))
       : dispatch(createTransaction(transaction));
