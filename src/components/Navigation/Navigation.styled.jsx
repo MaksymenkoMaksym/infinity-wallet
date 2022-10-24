@@ -45,7 +45,7 @@ export const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: inherit;
   fill: #6e78e8;
-
+  transition: transform 250ms linear;
   &:hover,
   &:focus {
     transform: scale(1.1, 1.1);

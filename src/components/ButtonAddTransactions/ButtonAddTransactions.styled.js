@@ -20,6 +20,10 @@ export const AddBtn = styled.button`
     right: 40px;
     bottom: 40px;
   }
+  transition: transform 250ms linear;
+  &:hover {
+    transform: scale(1.1, 1.1);
+  }
 `;
 export const Icon = styled.svg`
   width: 20px;
