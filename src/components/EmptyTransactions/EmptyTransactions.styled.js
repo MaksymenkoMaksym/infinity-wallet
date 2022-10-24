@@ -36,6 +36,7 @@ const Text = styled.div`
 
   animation-name: ${example};
   animation-duration: 4s;
+  padding: 0;
 
   @media (min-width: 768px) {
     font-size: ${props => props.theme.fontSizes.l};
@@ -55,11 +56,14 @@ const Text = styled.div`
 `;
 const Picture = styled.div`
   @media (min-width: 1280px) {
-    width: 650px;
-    height: 700px;
-    background-size: 650px 700px;
     background-image: url(${imgPerson});
     background-repeat: no-repeat;
+    width: 500px;
+    height: 500px;
+    background-size: 500px 500px;
+
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 const Name = styled.span`
