@@ -39,17 +39,29 @@ export const Title = styled.h2`
   padding-bottom: 50px;
 `;
 export const Button = styled.button`
-  width: 300px;
-  height: 50px;
-  padding: 0;
-  margin-bottom: 20px;
-  color: ${p => p.theme.colors.white};
-  background-color: ${p => p.theme.colors.green};
-  border: 1px solid ${p => p.theme.colors.green};
-  border-radius: 20px;
+  width: 100%;
+  height: ${props => props.theme.space[5]}px;
+  padding: ${props => props.theme.space[0]};
+  color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.green};
+  border: ${props => props.theme.borders.green};
+  border-radius: ${props => props.theme.radii.md};
   letter-spacing: 0.1rem;
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: ${props => props.theme.fontSizes.m};
+  line-height: ${props => props.theme.lineHeights.main};
+  margin-bottom: ${props => props.theme.space[2]}px;
+  transition: background-color 250ms linear, box-shadow 250ms linear,
+    border-color 250ms linear;
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: ${props => props.theme.colors.blue};
+    border-color: ${props => props.theme.colors.blue};
+  }
+  ${props => props.theme.breakpoints.tab} {
+    width: 300px;
+  }
 `;
 export const CancelButton = styled(Button)`
   background-color: ${p => p.theme.colors.white};
