@@ -19,7 +19,7 @@ const UlBoard = styled.ul`
 
 //////////////////////////////////for mobile
 
-const MobDiv = styled.div`
+const MobDiv = styled.li`
   overflow-y: scroll;
   max-height: 350px;
   &::-webkit-scrollbar {
@@ -72,7 +72,7 @@ const PValue = styled.p`
       : props.theme.colors.black};
 `;
 
-const DivItem = styled.div`
+const DivItem = styled.li`
   margin: 0;
   padding: 0;
   display: flex;
@@ -102,7 +102,7 @@ const DivItem = styled.div`
     justify-content: center;
   }
 `;
-const Li = styled.li`
+const Li = styled.ul`
   overflow: hidden;
   border-radius: ${props => props.theme.radii.sm};
   padding: 0;

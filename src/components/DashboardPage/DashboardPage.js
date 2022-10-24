@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-// import { Mob, Tab } from 'components/MediaWraper/MediaWraper';
 import MobileDashboard from './MobileDashboard';
 import LaptopDashboard from './LaptopDashboard';
 import Loader from 'components/Loader';
