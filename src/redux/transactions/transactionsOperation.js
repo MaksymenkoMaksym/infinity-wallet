@@ -24,7 +24,7 @@ export const createTransaction = createAsyncThunk(
   async (transaction, thunkApi) => {
     try {
       const response = await axios.post('/api/transactions', transaction);
-      console.log('createTransaction', response.data);
+      // console.log('createTransaction', response.data);
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.response.status);
@@ -65,8 +65,8 @@ export const deleteTransaction = createAsyncThunk(
   'transaction/deleteTransaction',
   async (item, thunkApi) => {
     try {
-      const response = await axios.delete(`api/transactions/${item.id}`);
-      console.log('transaction/deleteTransaction', response);
+      await axios.delete(`api/transactions/${item.id}`);
+      // console.log('transaction/deleteTransaction', response);
       return { id: item.id, sum: item.amount };
     } catch (error) {
       return thunkApi.rejectWithValue(error.response.status);
