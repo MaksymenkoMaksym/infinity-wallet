@@ -129,6 +129,10 @@ export const CloseBox = styled.button`
   padding: 0;
   border: none;
   background: transparent;
+  transition: transform 250ms linear;
+  &:hover {
+    transform: scale(1.2, 1.2);
+  }
 `;
 export const CloseIcon = styled.svg`
   display: block;
@@ -148,14 +152,7 @@ export const DateSumWrap = styled.div`
     align-items: baseline;
   }
 `;
-export const SumInput = styled(Input)`
-  /* margin-bottom: 40px;
-
-  @media screen and (min-width: 768px) {
-    width: 181px;
-    margin-bottom: 0px;
-  } */
-`;
+export const SumInput = styled(Input)``;
 export const SumLabel = styled.label`
   display: block;
   margin-bottom: 40px;
