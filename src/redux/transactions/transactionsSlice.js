@@ -8,7 +8,7 @@ import {
   getTransactionsForPeriod,
   updateTransaction,
 } from './transactionsOperation';
-
+console.log();
 const userInitialState = {
   transactions: [],
   transactionsForPeriod: [],
