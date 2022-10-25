@@ -1,4 +1,8 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { format } from 'date-fns';
+import Modal from '../ModalLogout/Modal';
+
 import {
   Li,
   DivItem,
@@ -13,10 +17,19 @@ import useSortedTtransactions from 'hooks/sortedTtransactions';
 import { useHookTransaction } from 'hooks';
 import DeleteBtn from '../ListButtons/deleteBtn';
 import EditBtn from '../ListButtons/editBtn';
+import { deleteTransaction } from 'redux/transactions/transactionsOperation';
 
 const MobileDashboard = () => {
+  const [show, setShow] = useState(false);
   const transactions = useSortedTtransactions();
+  const [transactionID, setTransactionID] = useState(null);
   const { categories } = useHookTransaction();
+  const dispatch = useDispatch();
+
+  const deleteActionBtn = item => {
+    dispatch(deleteTransaction(item));
+  };
+
   return (
     <MobDiv>
       {transactions ? (
@@ -64,7 +77,11 @@ const MobileDashboard = () => {
               </DivItem>
               {/* <ActionBlock item={item} /> */}
               <Buttons>
-                <DeleteBtn item={item} />
+                <DeleteBtn
+                  item={item}
+                  setShow={() => setShow(true)}
+                  setTransactionID={setTransactionID}
+                />
                 <EditBtn item={item} />
               </Buttons>
             </Li>
@@ -73,6 +90,17 @@ const MobileDashboard = () => {
       ) : (
         <EmptyTransactions />
       )}
+      <Modal
+        handlerFunc={() => {
+          deleteActionBtn(transactionID);
+        }}
+        onClose={() => {
+          setShow(false);
+          setTransactionID(null);
+        }}
+        show={show}
+        title="Delete transaction?"
+      />
     </MobDiv>
   );
 };

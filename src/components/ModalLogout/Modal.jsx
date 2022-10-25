@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -11,15 +10,8 @@ import {
   ModalFooter,
   ModalButton,
 } from './Modal.styled.js';
-import { logOutUser } from 'redux/auth/authOperation.js';
 
-const Modal = ({ show, onClose, title }) => {
-  const dispatch = useDispatch();
-
-  const onLogOut = () => {
-    dispatch(logOutUser());
-  };
-
+const Modal = ({ show = false, onClose, title, handlerFunc }) => {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -39,7 +31,7 @@ const Modal = ({ show, onClose, title }) => {
         <ModalContent onClick={e => e.stopPropagation()}>
           <ModalTitle>{title}</ModalTitle>
           <ModalFooter>
-            <ModalButton onClick={onLogOut}>Yes</ModalButton>
+            <ModalButton onClick={handlerFunc}>Yes</ModalButton>
             <ModalButton onClick={onClose}>No</ModalButton>
           </ModalFooter>
         </ModalContent>

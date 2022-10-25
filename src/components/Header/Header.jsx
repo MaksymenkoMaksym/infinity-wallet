@@ -1,6 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Logo from 'components/Logo/Logo';
-
 // import { Outlet } from 'react-router-dom';
 import logo from '../../assets/images/icons.svg';
 
@@ -15,11 +14,15 @@ import {
 import Modal from '../ModalLogout';
 import { selectUser } from 'redux/auth/authSelectors';
 import { useState } from 'react';
+import { logOutUser } from 'redux/auth/authOperation';
 
 const Header = () => {
+  const dispatch = useDispatch();
   const { username } = useSelector(selectUser);
   const [show, setShow] = useState(false);
-
+  const onLogOut = () => {
+    dispatch(logOutUser());
+  };
   return (
     <>
       <HeaderTag>
@@ -34,7 +37,12 @@ const Header = () => {
           </UserBtn>
         </UserDiv>
       </HeaderTag>
-      <Modal onClose={() => setShow(false)} show={show} title="Exit the App?" />
+      <Modal
+        onClose={() => setShow(false)}
+        handlerFunc={onLogOut}
+        show={show}
+        title="Exit the App?"
+      />
     </>
   );
 };
